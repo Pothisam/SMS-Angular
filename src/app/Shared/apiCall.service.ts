@@ -177,8 +177,8 @@ export class ApiCallService {
     );
   }
   public static GetToken(area: string): string | null {
-    if (area == 'CMS') {
-      const Storage = localStorage.getItem('CMSToken');
+    if (area == 'SMS') {
+      const Storage = localStorage.getItem('SMSToken');
       if (Storage !== null) {
         // Parse the JSON string to an object
         return JSON.parse(Storage).token;
@@ -194,9 +194,9 @@ export class ApiCallService {
     return null;
   }
   public static RemoveToken(area: string) {
-    if (area == 'CMS') {
-      localStorage.removeItem('CMSToken');
-      window.location.href = '/CMS/Login';
+    if (area == 'SMS') {
+      localStorage.removeItem('SMSToken');
+      window.location.href = '/SMS/Login';
     }
     if (area == 'Staff') {
       localStorage.removeItem('StaffToken');

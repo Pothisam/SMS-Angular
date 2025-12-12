@@ -81,7 +81,7 @@ export class GlobalService {
   // Get Local Storage Key value
   GLSKV(storagename: string, key: string = 'token'): string | null {
     const area = this.getArea();
-    if (area === 'CMS') {
+    if (area === 'SMS') {
       const Storage = localStorage.getItem(storagename);
       if (Storage !== null) {
         // Parse the JSON string to an object
@@ -94,14 +94,12 @@ export class GlobalService {
     return null;
   }
   HandleArea(area: string) {
-    this.layout.IsCMSNavVisible = false;
+    this.layout.IsSMSNavVisible = false;
     this.layout.IsStaffNavVisible = false;
-    if (area == 'CMS') {
-      if (this.GLSG('CMSToken')) this.layout.IsCMSNavVisible = true;
+    if (area == 'SMS') {
+      if (this.GLSG('SMSToken')) this.layout.IsSMSNavVisible = true;
     } else if (area == 'Staff') {
       if (this.GLSG('StaffToken')) this.layout.IsStaffNavVisible = true;
-    } else if (area == 'SMS') {
-      if (this.GLSG('SMSToken')) this.layout.IsSMSNavVisible = true;
     }
   }
   getArea(): string {
@@ -109,8 +107,8 @@ export class GlobalService {
   }
 
   loadLogo(area: string) {
-    if (area == 'CMS') {
-      if (this.GLSG('CMSToken')) {
+    if (area == 'SMS') {
+      if (this.GLSG('SMSToken')) {
       }
     }
   }

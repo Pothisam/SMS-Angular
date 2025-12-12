@@ -4,17 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LayoutService {
-  IsCMSNavVisible: boolean = false;
-  IsStaffNavVisible: boolean = false;
   IsSMSNavVisible: boolean = false;
+  IsStaffNavVisible: boolean = false;
   constructor() {}
-  updateCMSNavVisibility(isVisible: boolean) {
-    this.IsCMSNavVisible = isVisible;
-  }
-  updateStaffNavVisible(isVisible: boolean) {
-    this.IsCMSNavVisible = isVisible;
-  }
-  updateSMSNavVisible(isVisible: boolean) {
+  updateSMSNavVisibility(isVisible: boolean) {
     this.IsSMSNavVisible = isVisible;
   }
+  updateStaffNavVisible(isVisible: boolean) {
+    this.IsStaffNavVisible = isVisible;
+  }
+
 }

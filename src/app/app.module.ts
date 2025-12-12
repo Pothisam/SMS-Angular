@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StaffNavComponent } from './Area/Staff/Shared/Layout/staff-nav/staff-nav.component';
-import { CmsNavComponent } from './Area/SMS/Shared/Layout/cms-nav/cms-nav.component';
-import { CmsLeftMenuComponent } from './Area/SMS/Shared/Layout/cms-left-menu/cms-left-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatInputModule } from '@angular/material/input';
@@ -31,14 +28,9 @@ import { FormsModule } from '@angular/forms';
 import { FrameworkModule } from './Shared/framework/framework.module';
 import { NoaccessComponent } from './Shared/common/noaccess/noaccess.component';
 import { LogErrorInterceptor } from './Shared/interceptor/log-error.interceptor';
-import { StaffLeftMenuComponent } from './Area/Staff/Shared/Layout/staff-left-menu/staff-left-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CmsNavComponent,
-    StaffNavComponent,
-    CmsLeftMenuComponent,
-    StaffLeftMenuComponent,
     NoaccessComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

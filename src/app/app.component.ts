@@ -34,15 +34,13 @@ export class AppComponent {
       while (r.firstChild) r = r.firstChild;
       this.isPrintLayout = r.snapshot.data?.['isprint'] == true;
     });
-    if (this.Location.path() == '' || this.Location.path() == '/cms') {
-      this.router.navigate(['CMS/Login']);
+    if (this.Location.path() == '' || this.Location.path() == '/sms') {
+      this.router.navigate(['SMS/Login']);
     }
     if (this.Location.path().toLowerCase() == '/staff') {
       this.router.navigate(['Staff/Login']);
     }
-    if (this.Location.path().toLowerCase() == '/sms') {
-      this.router.navigate(['SMS/Login']);
-    }
+
     this.CheckLocalStorage(this.Location.path().split('/')[1]);
   }
   private closeClickedByBackdrop = false;
@@ -75,12 +73,12 @@ export class AppComponent {
   IsStaffNavVisible() {
     return this.layout.IsStaffNavVisible;
   }
-  IsCMSNavVisible() {
-    return this.layout.IsCMSNavVisible;
+  IsSMSNavVisible() {
+    return this.layout.IsSMSNavVisible;
   }
   public CheckLocalStorage(Area: string) {
-    if (Area == 'CMS') {
-      this.layout.IsCMSNavVisible = true;
+    if (Area == 'SMS') {
+      this.layout.IsSMSNavVisible = true;
     }
   }
   ngOnDestroy(): void {
@@ -94,7 +92,7 @@ export class AppComponent {
   }
   async getCurrentDate(): Promise<void> {
     const response = await lastValueFrom(
-      this.frameworkService.callAPIWithNoAuth('/Common/GetDate', '', 'CMS', true),
+      this.frameworkService.callAPIWithNoAuth('/Common/GetDate', '', 'SMS', true),
     );
   }
 }

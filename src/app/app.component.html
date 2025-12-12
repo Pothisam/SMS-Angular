@@ -3,7 +3,7 @@
   <fw-toast></fw-toast>
   <mat-drawer-container class="mat-drawer-content" hasBackdrop="true" (backdropClick)="onBackdropClicked()">
     <mat-drawer #drawer mode="over" (closed)="onDrawerClosed()">
-      @if (IsCMSNavVisible()) {
+      @if (IsSMSNavVisible()) {
         <app-cms-left-menu></app-cms-left-menu>
       }
       @if (IsStaffNavVisible()) {
@@ -12,7 +12,7 @@
     </mat-drawer>
     <mat-drawer-content class="mat-drawer-content">
       <!-- <mat-progress-bar mode="indeterminate" class="position-relative"></mat-progress-bar> -->
-      @if (IsCMSNavVisible()) {
+      @if (IsSMSNavVisible()) {
         <app-cms-nav></app-cms-nav>
       }
 
