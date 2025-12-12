@@ -1,0 +1,9 @@
+.header-container {
+  display: flex;
+  align-items: center; /* This aligns items vertically in the middle */
+  justify-content: space-between; /* This separates the logo and close button */
+  padding: 2px;
+}
+.mat-expansion-panel-header[aria-disabled=true] {
+  color: inherit;
+}

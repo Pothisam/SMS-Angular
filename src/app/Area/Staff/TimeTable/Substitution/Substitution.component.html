@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">Substitution</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Timesheet">
+        <app-CommonFilter [apiurl]="apidetails" class="" [parameter]="filterparameter" [triggercatch]="triggercatch" (parameterChange)="onParameterChange($event)" [(Semester)]="request.semester" (sectionIsChange)="onSectionChanges()">
+          <div class="section-one">
+            <fw-select entity="hour" label="Hour" [isrequired]="true" [commaSeparatedString]="hourstring" [(modelValue)]="request.hour" (onSelectChange)="GetHourData()"></fw-select>
+          </div>
+          <div class="section-two">
+            <fw-date label="Date" entity="date" [isrequired]="true" [(modelValue)]="request.date" (modelValueChange)="onDateChange($event)"></fw-date>
+          </div>
+        </app-CommonFilter>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <fw-textbox label="Day Order" entity="dayorder" [isdisabled]="true" [(modelValue)]="dayorder"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <fw-textbox label="Staff Name" entity="staffname" [isdisabled]="true" [(modelValue)]="Staffdetails"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <fw-textbox label="Subject Name" entity="subjectname" [isdisabled]="true" [(modelValue)]="SubjectName"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <fw-select entity="subject" label="Subject Name" apiUrl="/Subject/GetSubjectDetails" valueAndname="subjectId,subjectName" [isrequired]="true" [parameter]="request" [(triggerAPI)]="triggerSubjectAPI" [(modelValue)]="request.subjectCode"></fw-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="DepartmentCode" label="Department Name" [isrequired]="true" [triggerAPIOnload]="true" [(modelValue)]="Staffrequest.departmentCode" apiUrl="/Staff/GetStaffActiveDepartmentList" valueAndname="departmentCode,departmentName" [(isSelectChange)]="triggerstaffapi"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="Staff" label="Staff Name" [isrequired]="true" [(modelValue)]="request.staffCode" apiUrl="/Staff/GetStaffNameListByDepartmentCode" valueAndname="sysid,name" [(triggerAPI)]="triggerstaffapi" [(parameter)]="Staffrequest"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6 pt-3 d-flex">
+            @if (!editenabled) {
+              <fw-button label="Add Substitution" buttontype="S" apiUrl="/TimeSheetStudents/InsertSubstitution" [parameter]="request" (apiResponseSuccess)="onAddClick($event)"></fw-button>
+            }
+            @if (editenabled) {
+              <fw-button label="Update Course Instructor" [parameter]="request" buttontype="S" class="pe-2" apiUrl="/TimeSheetStudents/UpdateSubstitution" (apiResponseSuccess)="onAddClick($event)"></fw-button>
+              <fw-button label="Cancel Update" buttontype="D" validationgroup="EQ" (click)="onCancel()"></fw-button>
+            }
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [parameter]="request" [jsonData]="tabledata" (apiResponseChange)="onTableResponse($event)" apiUrl="/TimeSheetStudents/GetSubstitutionByDate" [(triggerAPI)]="triggerTableAPI" (matEditClickChange)="onEditClick($event)"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

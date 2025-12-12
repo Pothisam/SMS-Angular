@@ -1,0 +1,6 @@
+<button mat-raised-button #myButton [id]="this.id" class="matButton btn" [ngClass]="_buttonclass" [disabled]="_disabled" (click)="onClick()">
+  @if (_loading) {
+    <mat-icon><mat-spinner diameter="20" class="text-white"></mat-spinner></mat-icon>
+  }
+  {{ _label }}
+</button>

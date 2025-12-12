@@ -1,0 +1,69 @@
+.Error-Bar {
+  position: fixed;
+  top: 150px;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+
+  &-Notification-Card {
+    position: fixed;
+    top: 275px;
+    right: 0px;
+    height: 300px;
+    width: 280px;
+    transform: translateY(-50%);
+  }
+}
+
+.Error-Notification-Card {
+  position: fixed;
+  top: 275px;
+  right: 0px;
+  height: 300px;
+  width: 280px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.icon-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #333333;
+  background: #dddddd;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    background: #cccccc;
+  }
+
+  &-badge {
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    background: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: visible;
+  }
+}

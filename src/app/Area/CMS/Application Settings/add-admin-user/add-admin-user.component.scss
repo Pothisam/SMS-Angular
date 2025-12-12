@@ -1,0 +1,20 @@
+.mat-mdc-card-title {
+    display: flex;
+    flex-wrap: nowrap; /* Prevents chips from wrapping to a second row */
+    align-items: center; /* Vertically aligns content */
+    gap: 10px; /* Adds spacing between chips */
+  }
+  
+  .mat-mdc-chip-set {
+    display: flex;
+    /* Ensures chips are displayed inline */
+    flex-wrap: nowrap;
+    /* Prevent wrapping to a second row */
+    gap: 10px;
+    /* Adds spacing between chips */
+  }
+  
+  .mat-mdc-chip {
+    white-space: nowrap;
+    /* Ensures the text inside the chips doesn't wrap */
+  }

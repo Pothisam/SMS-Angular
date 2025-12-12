@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Course
+      <fw-download class="float-end" desc="Export Course list" apiUrl="/File/ExportCourseDetails" icon="excel"></fw-download>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Course">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="CourseNameSD" label="Course Name In Short Description" Case="U" [isrequired]="true" min="3" maxlength="15" [(modelValue)]="request.courseNameSD" placeholder="B.SC (IT)"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="CourseNameBD" label="Course Name In Brief Description" Case="T" [isrequired]="true" min="10" maxlength="50" [(modelValue)]="request.courseNameBD" placeholder="Bachelor of Science (Information Technology)"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="DurationofCourse" label="Duration of Course" [isrequired]="true" commaSeparatedString="1|1 Year,2|2 Year,3|3 Year,4|4 Year,5|5 Year" (onSelectChange)="onDurationofCourseChanges($event)" [(modelValue)]="request.courseYearSD"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="DepartmentCode" label="Department Name" (onSelectChange)="onDepartmentNameChanges($event)" [(modelValue)]="request.departmentCode" [triggerAPIOnload]="true" [isrequired]="true" [apicache]="true" apiUrl="/Department/GetActiveDepartmentListDistinct" valueAndname="departmentCode,departmentName"></fw-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="CourseType" label="Course Type" [isrequired]="true" commaSeparatedString="Under Graduate|UG,Post Graduate|PG" (onSelectChange)="onCourseTypeChanges($event)" [(modelValue)]="request.courseTypeBD"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 pt-3">
+            <fw-button label="Add Course" apiUrl="/Course/AddCourse" [parameter]="request" (apiResponseSuccess)="ClearFormAndReload()"></fw-button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.courseList"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>
+      Application Form |
+      <mat-chip-set>
+        <mat-chip class="cursor-pointer mt-0" (click)="onMatIconClick($event)" matTooltip="Application Add Form"><i class="fa-solid fa-user-plus py-1" style="font-size: 14px"></i></mat-chip>
+      </mat-chip-set>
+    </mat-card-title>
+    <fw-download apiUrl="/File/ExportCollegeApplicationForms" icon="excel" class="pe-1" validateform="applicationFormList" [parameter]="request" desc="Export Excel"></fw-download>
+  </mat-card-header>
+
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="applicationFormList">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-6 col-lg-1 col-xl-1">
+            <fw-select entity="Year" label="Year" [triggerAPIOnload]="true" [apicache]="true" apiUrl="/Student/GetCollegeApplicationFormYear" [(modelValue)]="request.year" valueAndname="year,year" (onSelectChange)="getApplicationList()" [isFirstOptionEmpty]="false"></fw-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 z-80">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.applicationList" class="TableApplicationList"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
+<fw-form-modal id="application-add-form">
+  <app-application-add-form (requestChange)="SyncAddRequest($event)" [(request)]="AddFromRequest"></app-application-add-form>
+</fw-form-modal>
+
+<fw-form-modal id="application-edit-form">
+  <app-application-edit-form [(request)]="EditFormRequest" (requestChange)="SyncEditRequest($event)"></app-application-edit-form>
+</fw-form-modal>

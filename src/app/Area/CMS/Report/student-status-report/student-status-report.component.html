@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="left-align w-100">Student Status Report</mat-card-title>
+    <fw-download apiUrl="/File/ExportStudentDetails" icon="excel" desc="Export Student Status Report"></fw-download>
+  </mat-card-header>
+</mat-card>
+
+<div class="scrolldiv">
+  <mat-card-content>
+    <form id="viewStaffList">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+          <fw-select entity="courseType" label="Course Type" [apicache]="true" [isrequired]="true" [triggerAPI]="true" [(modelValue)]="request.courseType" [(isSelectChange)]="triggerBatchAPI" apiUrl="/Course/GetCourseType" valueAndname="courseType,courseType"></fw-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+          <fw-select entity="batch" label="Batch" [isrequired]="true" [(triggerAPI)]="triggerBatchAPI" [(modelValue)]="request.batch" [parameter]="request" apiUrl="/Batch/GetBatchByCourseType" valueAndname="batch,batch"></fw-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+          <fw-select entity="status" label="Status" [isrequired]="true" [(modelValue)]="request.status" [jsonData]="status" valueAndname="status,text" [isFirstOptionEmpty]="false"></fw-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 pt-3">
+          <fw-button label="View" buttontype="S" [loading]="_loading" (formvalidationtrue)="onViewStudentList()"></fw-button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <fw-table [tableSettings]="tableSettings" [jsonData]="this.studentList"></fw-table>
+      </div>
+    </form>
+  </mat-card-content>
+</div>

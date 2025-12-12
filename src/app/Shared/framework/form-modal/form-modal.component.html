@@ -1,0 +1,35 @@
+@if (_modalSettings.isModalVisible && !_modalSettings.isDeleteForm && _modalSettings.modalId === id()) {
+  <div class="modal fade" #staticBackdrop id="staticBackdrop" role="dialog" style="display: block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [ngClass]="_modalSettings.isModalVisible ? 'show' : ''">
+    <div class="modal-dialog modal-dialog-centered modal-{{ _modalSettings.modalSize?.toString() }}">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header mat-card-header mat-primary py-1">
+          <h1 class="modal-title fs-5 mb-0" id="staticBackdropLabel">{{ _modalSettings.headerMessage }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body p-0">
+          @if (_modalSettings.bodyMessage.length > 0) {
+            <div [innerHTML]="_modalSettings.bodyMessage"></div>
+          }
+          @if (_modalSettings.note.length > 0) {
+            <span class="text-danger d-inline-block">{{ _modalSettings.note }}</span>
+          }
+          <ng-content></ng-content>
+        </div>
+        @if (_modalSettings.api != '') {
+          <div>
+            <div class="modal-footer">
+              @if ((_modalSettings.buttonGroup?.includes('add') || _modalSettings.buttonGroup?.includes('edit')) && !isApiLoading) {
+                <button role="button" class="btn btn-success" (click)="CallAPI()" (keydown.enter)="CallAPI()">{{ _modalSettings.buttonGroup?.includes('add') ? 'Add' : 'Update' }}</button>
+              } @else {
+                <button class="btn btn-success" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                  <span role="status">Loading...</span>
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

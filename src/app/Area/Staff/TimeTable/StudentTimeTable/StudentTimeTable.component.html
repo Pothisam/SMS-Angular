@@ -1,0 +1,158 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">Student Time Table</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Timesheet">
+        <app-CommonFilter [apiurl]="apidetails" class="" [parameter]="filterparameter" [triggercatch]="triggercatch" (parameterChange)="onParameterChange($event)" [(Semester)]="request.semester" (sectionIsChange)="loadgrid()">
+          <div class="section-one">
+            <fw-select entity="semester" label="Semester" apiUrl="/Common/GetSemesterList" valueAndname="value,text" [isrequired]="true" [apicache]="true" [triggerAPIOnload]="true" (onSelectChange)="loadgrid()" [(modelValue)]="request.semester"></fw-select>
+          </div>
+          @if (showstatus) {
+            <div class="section-two">
+              <fw-select entity="Status" label="Status" commaSeparatedString="Active,InActive" [(modelValue)]="request.status" (onSelectChange)="ChangeStatus()"></fw-select>
+            </div>
+          }
+        </app-CommonFilter>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div style="max-width: 100%; overflow: auto; zoom: 75%">
+              <table style="width: 100%; border-collapse: collapse; font-family: system-ui, sans-serif">
+                <thead>
+                  <tr style="background: #f5f5f5">
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Slno</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Day Name</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour I</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour II</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour III</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour IV</th>
+                    <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour V</th>
+                    @if (attendancehours6) {
+                      <th style="text-align: left; padding: 8px; border: 1px solid #ddd">Hour VI</th>
+                    }
+                    @if (showhistory) {
+                      <th style="text-align: center; padding: 8px; border: 1px solid #ddd">Action</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #eee">1</td>
+                    <td style="padding: 8px; border: 1px solid #eee">Day-01</td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd11" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 1)" (modelValueChange)="setHour(1, 1, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd12" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 2)" (modelValueChange)="setHour(1, 2, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd13" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 3)" (modelValueChange)="setHour(1, 3, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd14" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 4)" (modelValueChange)="setHour(1, 4, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd15" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 5)" (modelValueChange)="setHour(1, 5, $event)"></fw-select></td>
+                    @if (attendancehours6) {
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd16" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(1, 6)" (modelValueChange)="setHour(1, 6, $event)"></fw-select></td>
+                    }
+                    @if (showhistory) {
+                      <td style="padding: 8px; border: 1px solid #eee">
+                        <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(1, $event)" (click)="onHistoryClick(1, $event)">history</mat-icon>
+                      </td>
+                    }
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #eee">2</td>
+                    <td style="padding: 8px; border: 1px solid #eee">Day-02</td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd21" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 1)" (modelValueChange)="setHour(2, 1, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd22" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 2)" (modelValueChange)="setHour(2, 2, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd23" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 3)" (modelValueChange)="setHour(2, 3, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd24" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 4)" (modelValueChange)="setHour(2, 4, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd25" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 5)" (modelValueChange)="setHour(2, 5, $event)"></fw-select></td>
+                    @if (attendancehours6) {
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd26" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(2, 6)" (modelValueChange)="setHour(2, 6, $event)"></fw-select></td>
+                    }
+                    @if (showhistory) {
+                      <td style="padding: 8px; border: 1px solid #eee">
+                        <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(2, $event)" (click)="onHistoryClick(2, $event)">history</mat-icon>
+                      </td>
+                    }
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #eee">3</td>
+                    <td style="padding: 8px; border: 1px solid #eee">Day-03</td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd31" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 1)" (modelValueChange)="setHour(3, 1, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd32" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 2)" (modelValueChange)="setHour(3, 2, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd33" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 3)" (modelValueChange)="setHour(3, 3, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd34" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 4)" (modelValueChange)="setHour(3, 4, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd35" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 5)" (modelValueChange)="setHour(3, 5, $event)"></fw-select></td>
+                    @if (attendancehours6) {
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd36" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(3, 6)" (modelValueChange)="setHour(3, 6, $event)"></fw-select></td>
+                    }
+                    @if (showhistory) {
+                      <td style="padding: 8px; border: 1px solid #eee">
+                        <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(3, $event)" (click)="onHistoryClick(3, $event)">history</mat-icon>
+                      </td>
+                    }
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #eee">4</td>
+                    <td style="padding: 8px; border: 1px solid #eee">Day-04</td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd41" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 1)" (modelValueChange)="setHour(4, 1, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd42" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 2)" (modelValueChange)="setHour(4, 2, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd43" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 3)" (modelValueChange)="setHour(4, 3, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd44" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 4)" (modelValueChange)="setHour(4, 4, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd45" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 5)" (modelValueChange)="setHour(4, 5, $event)"></fw-select></td>
+                    @if (attendancehours6) {
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd46" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(4, 6)" (modelValueChange)="setHour(4, 6, $event)"></fw-select></td>
+                    }
+                    @if (showhistory) {
+                      <td style="padding: 8px; border: 1px solid #eee">
+                        <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(4, $event)" (click)="onHistoryClick(4, $event)">history</mat-icon>
+                      </td>
+                    }
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px; border: 1px solid #eee">5</td>
+                    <td style="padding: 8px; border: 1px solid #eee">Day-05</td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd51" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 1)" (modelValueChange)="setHour(5, 1, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd52" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 2)" (modelValueChange)="setHour(5, 2, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd53" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 3)" (modelValueChange)="setHour(5, 3, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd54" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 4)" (modelValueChange)="setHour(5, 4, $event)"></fw-select></td>
+                    <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd55" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 5)" (modelValueChange)="setHour(5, 5, $event)"></fw-select></td>
+                    @if (attendancehours6) {
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd56" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(5, 6)" (modelValueChange)="setHour(5, 6, $event)"></fw-select></td>
+                    }
+                    @if (showhistory) {
+                      <td style="padding: 8px; border: 1px solid #eee">
+                        <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(5, $event)" (click)="onHistoryClick(5, $event)">history</mat-icon>
+                      </td>
+                    }
+                  </tr>
+                  @if (saturdayisworkingday) {
+                    <tr>
+                      <td style="padding: 8px; border: 1px solid #eee">6</td>
+                      <td style="padding: 8px; border: 1px solid #eee">Day-06</td>
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd61" label="Subject Hour 1" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 1)" (modelValueChange)="setHour(6, 1, $event)"></fw-select></td>
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd62" label="Subject Hour 2" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 2)" (modelValueChange)="setHour(6, 2, $event)"></fw-select></td>
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd63" label="Subject Hour 3" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 3)" (modelValueChange)="setHour(6, 3, $event)"></fw-select></td>
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd64" label="Subject Hour 4" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 4)" (modelValueChange)="setHour(6, 4, $event)"></fw-select></td>
+                      <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd65" label="Subject Hour 5" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 5)" (modelValueChange)="setHour(6, 5, $event)"></fw-select></td>
+                      @if (attendancehours6) {
+                        <td style="padding: 8px; border: 1px solid #eee"><fw-select entity="subjectd66" label="Subject Hour 6" [jsonData]="subjects" valueAndname="subjectId,subjectName" [isrequired]="true" [modelValue]="getHour(6, 6)" (modelValueChange)="setHour(6, 6, $event)"></fw-select></td>
+                      }
+                      @if (showhistory) {
+                        <td style="padding: 8px; border: 1px solid #eee">
+                          <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onHistoryClick(6, $event)" (click)="onHistoryClick(6, $event)">history</mat-icon>
+                        </td>
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center">
+            <fw-button label="Update Timesheet" buttontype="S" apiUrl="/TimeSheetStudents/InsertUpdateTimeTable" [parameter]="tabledata"></fw-button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

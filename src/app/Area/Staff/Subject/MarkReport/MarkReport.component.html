@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">Student Mark Report</mat-card-title>
+    <fw-download apiUrl="/File/ExportStudentMarkReport" validateform="MarkReport" icon="excel" [parameter]="request" desc="Export Student Mark Report"></fw-download>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2 z-80">
+      <form id="MarkReport">
+        <app-CommonFilter [apiurl]="apidetails" class="" [parameter]="filterparameter" [triggercatch]="triggercatch" (parameterChange)="onParameterChange($event)" [(Semester)]="request.semester" (sectionIsChange)="loadsubject()">
+          <div class="section-one">
+            <fw-select entity="semester" label="Semester" apiUrl="/Common/GetSemesterList" valueAndname="value,text" [isrequired]="true" [apicache]="true" [triggerAPIOnload]="true" (onSelectChange)="loadsubject()" [(modelValue)]="request.semester"></fw-select>
+          </div>
+          <div class="section-two">
+            <fw-select entity="subjectId" label="Subject Name" apiUrl="/Subject/GetSubjectDetails" valueAndname="subjectId,subjectName" [isrequired]="true" [(triggerAPI)]="triggersubjectAPI" [parameter]="request" (apiResponseChange)="onSubjectAPIResponse($event)" [(modelValue)]="request.subjectId" (onSelectChange)="onSubjectChanges($event)"></fw-select>
+          </div>
+        </app-CommonFilter>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectCode" label="Subject Code" Case="U" [(modelValue)]="subjectcode" [isdisabled]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectCredit" label="Subject Credit" [isdisabled]="true" [(modelValue)]="subjectcredit" Case="U"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectType" label="Subject Type" [isdisabled]="true" [(modelValue)]="subjecttype" Case="U"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="MarginMark" label="Minimum Pass Mark" [isdisabled]="true" [(modelValue)]="marginMark" Case="U"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 pt-3">
+            <fw-button label="View" buttontype="S" (formvalidationtrue)="loadgrid()"></fw-button>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 pt-3 d-flex"></div>
+        </div>
+
+        <div class="row" #tableContainer>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [(tableSettings)]="tableSettings" [parameter]="request" [(triggerAPI)]="triggerTableAPI" apiUrl="/StudentMarkDetails/StudentInternalMarkReport"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

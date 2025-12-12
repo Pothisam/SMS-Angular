@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">Issue TC</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="ClassIncharge">
+        <app-CommonFilter [apiurl]="apidetails" class="" [parameter]="request" [triggercatch]="triggercatch" (sectionApiSuccess)="onSectionAPIResponse()">
+          <div class="section-one pt-3">
+            <fw-button label="View" buttontype="S" [parameter]="request" apiUrl="/Student/GetTCList" (apiResponseSuccess)="onRespons($event)" [(jsonResponse)]="tclist" [filtercatch]="true" [triggerbutton]="triggerbutton"></fw-button>
+          </div>
+        </app-CommonFilter>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="tclist"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

@@ -1,0 +1,40 @@
+.Border {
+    border: 1px solid black;
+}
+
+.Noborder {
+    border: none;
+}
+
+.Capital {
+    text-transform: capitalize;
+}
+
+.PB {
+    padding-bottom: 20px;
+}
+
+.Fontsize20 {
+    font-size: 20px
+}
+
+.Bold {
+    font-weight: bold;
+}
+
+.Absolute-Right {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 90;
+    bottom: 0;
+    right: 0;
+}
+
+.Fontst {
+    font-style: italic;
+}
+
+.Di {
+    display: inline;
+}

@@ -1,0 +1,5 @@
+<div class="h-100 d-flex" [ariaDisabled]="isDisabled()">
+  <fw-grid-selector [columnsInput]="Columns" [typeInput]="gridType.list" (columnSelectedEvent)="onSelectedColumnsEvent($event)" />
+  <mat-icon class="justify-content-center align-self-center mx-4 fw-bold" aria-hidden="false" aria-label="Example home icon" fontIcon="sync_alt"></mat-icon>
+  <fw-grid-selector [columnsInput]="selectedColumns" [typeInput]="gridType.selected" (columnRemovedEvent)="onRemovedColumnsEvent($event)" />
+</div>

@@ -1,0 +1,33 @@
+<div>
+  <div class="Error-Bar" tabindex="0">
+    <button mat-icon-button matBadgeOverlap="false" tabindex="-1" class="text-danger">
+      <mat-icon [matBadge]="iconButtonBadgeValue" matBadgePosition="before" aria-hidden="false">notifications</mat-icon>
+    </button>
+  </div>
+  <mat-card class="Error-Notification-Card position-absolute z-index-2 d-none" appearance="outlined">
+    <mat-card-header class="bg-danger text-white rounded-top">
+      <mat-card-title class="d-flex justify-content-between w-100">
+        Error Notification
+        <button mat-icon-button aria-label="Close" matTooltip="Error tab close" class="text-white Error-Bar-Close">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-card-title>
+    </mat-card-header>
+    <div class="scrolldiv">
+      <mat-card-content class="px-1 py-1" id="Errorbody">
+        <ol>
+          @for (item of errormessage; track item) {
+            <li>
+              <a tabindex="0" class="Errorlist cursor-pointer" (keyup.enter)="errorInputFocus(item.id)" (click)="errorInputFocus(item.id)" [attr.data-focus]="item.id">{{ item.msg }}</a>
+            </li>
+          }
+        </ol>
+        <!-- <mat-list class="list-group list-group-numbered">
+        <mat-list-item *ngFor="let item of errormessage" class="list-group-item">
+          <a tabindex='0' class='Errorlist cursor-pointer ' (keyup.enter)="errorInputFocus(item.id)" (click)="errorInputFocus(item.id)" [attr.data-focus]="item.id">{{ item.msg }}</a>
+        </mat-list-item>
+      </mat-list> -->
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

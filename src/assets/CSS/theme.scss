@@ -1,0 +1,36 @@
+@import '@angular/material/theming';
+
+// Define a theme using the given palettes
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes
+$my-app-primary: mat-palette($mat-indigo);
+$my-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$my-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a configuration of color intentions)
+$my-app-theme: mat-light-theme((
+  color: (
+    primary: $my-app-primary,
+    accent: $my-app-accent,
+    warn: $my-app-warn,
+  )
+));
+
+// Define a separate dark theme
+$my-app-dark-theme: mat-dark-theme((
+  color: (
+    primary: $my-app-primary,
+    accent: $my-app-accent,
+    warn: $my-app-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and include the pre-built theme mixins
+@include angular-material-theme($my-app-theme);
+
+// Define a class that applies the dark theme
+.dark-theme {
+  @include angular-material-theme($my-app-dark-theme);
+}

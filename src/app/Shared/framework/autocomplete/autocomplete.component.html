@@ -1,0 +1,21 @@
+<mat-form-field class="MatInput">
+  <mat-label>
+    {{ label }}
+    @if (_required) {
+      <span class="text-danger">*</span>
+    }
+  </mat-label>
+  <input type="text" #input [attr.required]="_required" (input)="onInputChange($event)" [disabled]="_disabled" [attr.aria-label]="label" [attr.name]="entity" matInput [matAutocomplete]="auto" [value]="_modelValue" [attr.ErrorMessage]="message" [attr.aria-validationgroup]="validationgroup" [attr.maxLength]="maxlength" [attr.min]="min" />
+  @if (_modelValue && _showClearAll) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInputValue()" tabindex="-1">
+      <mat-icon tabindex="0">close</mat-icon>
+    </button>
+  }
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectChange($event)">
+    @if (arrayDate.length > 0) {
+      @for (item of arrayDate; track item) {
+        <mat-option [value]="item.value">{{ item.text }}</mat-option>
+      }
+    }
+  </mat-autocomplete>
+</mat-form-field>

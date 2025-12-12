@@ -1,0 +1,40 @@
+.toast-container {
+  > :not(:last-child) {
+    margin-bottom: 0.3rem;
+  }
+}
+:root {
+  --bs-form-Control-Text-Color: 21,25,29;
+  --bs-table-Text-Color: 21,25,29;
+  --bs-Select-Arrow-Color: 198,198,198;
+  --bs-label: 0,0,0;
+  --bs-table-group: 224.224,224;
+  --bs-body-color: 255,255,255;
+  --bs-card-spacer-y: auto;
+}
+@mixin generate-width-classes($start, $end) {
+  @for $i from $start through $end {
+    .Mat-th-width-#{$i} {
+      width: #{$i}+'%';
+    }
+    .width-#{$i} {
+      width: #{$i}+'%';
+    }
+    .z-#{$i} {
+      font-size: #{$i + '%'};
+      zoom: #{$i + '%'};
+      transform-origin: top left;
+    }
+  }
+}
+:host ::ng-deep h2 {
+  font-style: italic;
+}
+@include generate-width-classes(1, 100);
+.card {
+  --bs-card-spacer-y: 0;
+  --bs-card-spacer-x:0;
+}
+// .mat-mdc-form-field-subscript-wrapper {
+//   display: none;
+// }

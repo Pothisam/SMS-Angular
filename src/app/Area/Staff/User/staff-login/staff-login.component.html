@@ -1,0 +1,34 @@
+<div class="FullBg">
+  <mat-card class="login-card mat-elevation-z8">
+    <mat-card-header class="mat-card-header-center">
+      <br />
+      <mat-card-title>
+        <div class="mat-card-avatar">
+          <img src="assets/SARAS Logo 100.png" alt="CMS Admin" />
+        </div>
+        <br />
+        <div class="title"><h1>Staff</h1></div>
+        <div class="sub-title">V 4.0</div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="login-form" id="Login">
+        <div class="row">
+          <div class="col-12">
+            <fw-textbox entity="Name" label="Name" min="3" [isrequired]="true" [(modelValue)]="LoginRequest.userName" [showMaxCount]="true"></fw-textbox>
+          </div>
+          <div class="col-12">
+            <fw-password entity="Password" label="Password" [(modelValue)]="LoginRequest.password"></fw-password>
+          </div>
+          <div class="col-12"></div>
+          <div class="col-12">
+            <fw-button label="Login" apiUrl="/Staff/login" [parameter]="LoginRequest" (apiResponseChange)="onRespons($event)" [auth]="false"></fw-button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- Login Button -->
+    </mat-card-actions>
+  </mat-card>
+</div>

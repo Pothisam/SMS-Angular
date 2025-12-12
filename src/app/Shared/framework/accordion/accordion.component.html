@@ -1,0 +1,38 @@
+<mat-accordion>
+  @for (item of _MenuItem; track item) {
+  <mat-expansion-panel [disabled]="!item.subMenu">
+    <mat-expansion-panel-header>
+      @if (item.subMenu) {
+      <mat-panel-title>{{ item.name }}</mat-panel-title>
+      } @else {
+      <mat-panel-title [routerLink]="item.link" tabindex="0" (keydown)="handleKeydown($event, item.link!)">
+        {{ item.name }}
+      </mat-panel-title>
+      }
+    </mat-expansion-panel-header>
+
+    @if (item.subMenu) {
+    <mat-nav-list>
+      @for (subItem of item.subMenu; track subItem) {
+
+      <!-- HEADER -->
+      @if (subItem.type === 'header') {
+      <div mat-subheader [ngClass]="subItem.cssClass">{{ subItem.name }}</div>
+      }
+
+      <!-- DIVIDER -->
+      @else if (subItem.type === 'divider') {
+      <mat-divider inset></mat-divider>
+      }
+
+      <!-- LINK (default) -->
+      @else {
+      <a mat-list-item [routerLink]="subItem.link">
+        {{ subItem.name }}
+      </a>
+      } }
+    </mat-nav-list>
+    }
+  </mat-expansion-panel>
+  }
+</mat-accordion>

@@ -1,0 +1,45 @@
+@if (!_isrange) {
+  <mat-form-field>
+    <mat-label>
+      {{ label }}
+      @if (_required) {
+        <span class="text-danger">*</span>
+      }
+    </mat-label>
+    <input matInput #input [matDatepicker]="datepicker" [disabled]="inputdisabled" [min]="_min" [max]="_max" [value]="_modelValue" (dateChange)="onDateSelect($event)" [attr.name]="entity" [attr.aria-label]="label" [attr.ErrorMessage]="message" [attr.aria-required]="_required" [attr.aria-validationgroup]="validationgroup" />
+    @if (type === 'date' && showhint) {
+      <mat-hint>DD/MM/YYYY</mat-hint>
+    }
+    @if (type === 'month' && showhint) {
+      <mat-hint>MM/YYYY</mat-hint>
+    }
+    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker [panelClass]="type === 'month' ? 'month-picker' : ''" [disabled]="pickerdisabled" [startView]="type === 'month' ? 'multi-year' : 'month'" (monthSelected)="setMonthAndYear($event, datepicker)"></mat-datepicker>
+  </mat-form-field>
+}
+@if (_isrange) {
+  <mat-form-field>
+    <mat-label>
+      {{ label }}
+      @if (_required) {
+        <span class="text-danger">*</span>
+      }
+    </mat-label>
+    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="picker" [min]="_min" [max]="_max" [disabled]="inputdisabled">
+      <input matStartDate #input id="start" placeholder="Start date" formControlName="start" [attr.name]="entity" [attr.aria-label]="label" [attr.ErrorMessage]="message" [value]="_start" [attr.aria-required]="_required" (dateChange)="onStartDateSelect($event)" [attr.aria-validationgroup]="validationgroup" />
+      <input matEndDate #input id="end" placeholder="End date" formControlName="end" [attr.name]="entity" [attr.aria-label]="label" [attr.ErrorMessage]="message" [attr.aria-required]="_required" [value]="_end" (dateChange)="onEndDateSelect($event)" [attr.aria-validationgroup]="validationgroup" />
+    </mat-date-range-input>
+    @if (type === 'date' && showhint) {
+      <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+    }
+    @if (type === 'month' && showhint) {
+      <mat-hint>MM/YYYY - MM/YYYY</mat-hint>
+    }
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker [panelClass]="type === 'month' ? 'month-picker' : ''" [disabled]="pickerdisabled" [startView]="type === 'month' ? 'multi-year' : 'month'">
+      @if (type === 'month') {
+        <mat-calendar (monthSelected)="onMonthSelected($event)"></mat-calendar>
+      }
+    </mat-date-range-picker>
+  </mat-form-field>
+}

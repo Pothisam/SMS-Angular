@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>Change Institution</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="GroupInstitution">
+        <div class="row">
+          <div class="col-lg-12">
+            <fw-table [tableSettings]="tableInstitution" [jsonData]="this.institutionList" (matdynamicClickChange)="ondynamicClick($event)"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

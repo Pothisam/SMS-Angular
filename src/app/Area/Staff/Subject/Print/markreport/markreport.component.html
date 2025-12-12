@@ -1,0 +1,120 @@
+<div style="width: 100%; align-content: center; margin: 0 auto">
+  <table style="width: 100%; text-align: center; align-content: center" class="Border" id="headt">
+    <tr>
+      <td class="Border">
+        <app-PrintHeader></app-PrintHeader>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="font-weight: bold; font-size: 15px">CONTINUOUS ASSESSMENT</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table id="Table2" class="table table-striped table-bordered table-responsive text-wrap" style="width: 100%; text-align: left">
+          <tr>
+            <td colspan="3">Subject Name: {{ this.responseData.courseInstructor[0].subjectName }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">Subject Code: {{ this.responseData.courseInstructor[0].subjectCode }}</td>
+            <td>Course Code: {{ basedetails.courseCode }}</td>
+          </tr>
+          <tr>
+            <td style="width: 33%">Year/Prog./Sec: {{ this.responseData.studentMarkDetails[0].courseWithYearandSection }}</td>
+            <td style="width: 33%">Semester: {{ basedetails.semester }}</td>
+            <td style="width: 33%">Batch: {{ basedetails.batch }}</td>
+          </tr>
+          <tr>
+            <td colspan="3">Course in Charge: {{ this.responseData.courseInstructor[0].sharingName }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table id="Table1" class="table table-striped table-bordered table-responsive text-wrap" style="width: 100%; text-align: left">
+          <thead>
+            <tr>
+              <th style="width: 10%">S.No</th>
+              <th style="width: 25%">Reg. No.</th>
+              <th style="width: 45%">Student Name</th>
+              <th style="width: 20%; text-align: center">Marks</th>
+            </tr>
+          </thead>
+          @for (item of responseData.studentMarkDetails; track item.examRegisterNumber; let i = $index; let isOdd = $odd; let isEven = $even) {
+            <tr [class.odd]="isOdd" [class.even]="isEven">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.examRegisterNumber }}</td>
+              <td>{{ item.name }} [{{ item.dob | date: 'yyyy-MM-dd' }}] [{{ item.gender }}]</td>
+              <td style="text-align: center">{{ item.mark }}</td>
+            </tr>
+          }
+          <tbody></tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table id="Table2" class="table table-striped table-bordered table-responsive text-wrap" style="width: 100%; text-align: left">
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">No on Roll</td>
+            <td style="width: 10%">{{ totalroll }}</td>
+          </tr>
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">No Present</td>
+            <td style="width: 10%">{{ present }}</td>
+          </tr>
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">No Absent</td>
+            <td style="width: 10%">{{ absent }}</td>
+          </tr>
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">No Pass</td>
+            <td style="width: 10%">{{ pass }}</td>
+          </tr>
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">No Fail</td>
+            <td style="width: 10%">{{ fail }}</td>
+          </tr>
+          <tr>
+            <td style="width: 75%"></td>
+            <td style="width: 15%">Pass Percentage</td>
+            <td style="width: 10%">{{ percentage }}%</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table style="width: 100%; text-align: center; align-content: center">
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="width: 33%"></td>
+            <td style="width: 33%">Course in Charge</td>
+            <td style="width: 33%">Principal</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

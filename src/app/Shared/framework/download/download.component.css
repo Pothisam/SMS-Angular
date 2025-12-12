@@ -1,0 +1,8 @@
+.custom-tooltip {
+  white-space: normal;
+  max-width: 250px;
+  line-height: 1.4;
+}
+::ng-deep .mat-tooltip {
+  white-space: pre-line;
+}

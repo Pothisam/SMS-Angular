@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>
+      Add Admin
+      <mat-chip-set>
+        <mat-chip class="cursor-pointer mt-0" (click)="onMatIconClick($event)" matTooltip="Application Add Form"><i class="fa-solid fa-user-plus py-1 text-black" style="font-size: 14px"></i></mat-chip>
+      </mat-chip-set>
+    </mat-card-title>
+  </mat-card-header>
+
+  <div class="scrolldiv">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 z-80">
+          <fw-table [tableSettings]="tableSettings" [jsonData]="this.data" class="TableApplicationList"></fw-table>
+        </div>
+      </div>
+    </mat-card-content>
+  </div>
+</mat-card>
+
+<fw-form-modal id="add-edit-admin-user">
+  <mat-card>
+    <mat-card-content>
+      <form id="addadminuser">
+        <div class="row px-3">
+          <div class="col-3">
+            <h3 class="pt-3">Department</h3>
+          </div>
+          <div class="col-3"></div>
+          <div class="col-6 pe-5">
+            <fw-select entity="department" label="Select Department" [triggerAPIOnload]="true" apiUrl="/Staff/GetStaffActiveDepartmentList" [(modelValue)]="staffrequest.departmentcode" valueAndname="departmentCode,departmentName" [(isSelectChange)]="triggerAPI" [isdisabled]="_modalSettings.buttonGroup?.includes('edit') ?? false"></fw-select>
+          </div>
+        </div>
+        <div class="row px-3">
+          <div class="col-3">
+            <h3 class="pt-3">Staff</h3>
+          </div>
+          <div class="col-3"></div>
+          <div class="col-6 pe-5">
+            <fw-select entity="staff" label="Select Staff" [(triggerAPI)]="triggerAPI" apiUrl="/Staff/GetStaffNameListByDepartmentCode" [parameter]="staffrequest" valueAndname="sysid,name" [(modelValue)]="request.fid" [isdisabled]="_modalSettings.buttonGroup?.includes('edit') ?? false"></fw-select>
+          </div>
+        </div>
+        <div class="row px-3">
+          <div class="col-4">
+            <h3 class="pt-3">Allow user to login application</h3>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-6 pe-5">
+            <i class="fa-solid fa-2x cursor-pointer ps-1 pt-3" [ngClass]="request.allowLogin === 'Yes' ? 'fa-toggle-on text-success' : 'fa-toggle-off text-danger'" matTooltipPosition="above" tabindex="0" (click)="UpdateAllowLogin(request.allowLogin === 'Yes' ? (request.allowLogin = 'No') : (request.allowLogin = 'Yes'))"></i>
+          </div>
+        </div>
+        <div class="row px-3">
+          <div class="col-4">
+            <h3 class="pt-3">Access permitted</h3>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-6 pe-5">
+            <mat-chip-set>
+              @for (access of accessList.sort(); track access) {
+                <mat-chip class="cursor-pointer m-1" (click)="addFromChipClick(access.name, !access.value)" [matTooltip]="access.desc" [highlighted]="access.value">
+                  <span class="text-black">{{ access.name }}</span>
+                </mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</fw-form-modal>

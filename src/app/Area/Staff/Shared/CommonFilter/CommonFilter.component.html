@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <fw-select entity="courseType" label="Course Type" [apicache]="true" [isrequired]="true" valueAndname="courseType,courseType" [triggerAPI]="triggerCourseTypeAPI" [(modelValue)]="_parameter.courseType" [(isSelectChange)]="triggerBatchAPI" [apiUrl]="_apidetails.coursetypeapiUrl" [isdisabled]="_disabled" (onSelectChange)="onSelectChange()"></fw-select>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <fw-select entity="batch" label="Batch" [isrequired]="true" [(triggerAPI)]="triggerBatchAPI" [(modelValue)]="_parameter.batch" [parameter]="_parameter" [(isSelectChange)]="triggerCourseAPI" [apiUrl]="_apidetails.batchapiUrl" valueAndname="batch,batch" (onSelectChange)="onBatchChange()" [isdisabled]="_disabled"></fw-select>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+    <fw-select entity="course" label="Course" [isrequired]="true" [(triggerAPI)]="triggerCourseAPI" [(modelValue)]="_parameter.courseCode" [parameter]="_parameter" [(isSelectChange)]="triggerSectionAPI" [apiUrl]="_apidetails.courseapiUrl" valueAndname="courseCode,courseNameSD" (onSelectChange)="onCourseChange()" [isdisabled]="_disabled"></fw-select>
+  </div>
+  @if (!_hidesection) {
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+    <fw-select entity="section" label="Section" [isrequired]="true" [(triggerAPI)]="triggerSectionAPI" [(modelValue)]="_parameter.section" [parameter]="_parameter" [apiUrl]="_apidetails.sectionapiUrl" valueAndname="section,section" (onSelectChange)="onSectionChange()" (apiResponseChange)="onSectionAPIResponse()" [isdisabled]="_disabled"></fw-select>
+  </div>
+  } @if (_hidesection) {
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+    <ng-content select=".section"></ng-content>
+  </div>
+  }
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+    <ng-content select=".section-one"></ng-content>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+    <ng-content select=".section-two"></ng-content>
+  </div>
+</div>

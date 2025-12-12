@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">Add Course Instructor</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2 z-80">
+      <form id="CourseInstructor">
+        <app-CommonFilter [apiurl]="apidetails" class="" [parameter]="filterparameter" [triggercatch]="triggercatch" (parameterChange)="onParameterChange($event)" [(Semester)]="request.semester" (sectionIsChange)="loadgrid()" [isdisabled]="isdisabled">
+          <div class="section-one">
+            <fw-select entity="semester" label="Semester" apiUrl="/Common/GetSemesterList" valueAndname="value,text" [isrequired]="true" [apicache]="true" [triggerAPIOnload]="true" (onSelectChange)="loadgrid()" [(modelValue)]="request.semester" [isdisabled]="isdisabled"></fw-select>
+          </div>
+        </app-CommonFilter>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <fw-select entity="subject" label="Subject Name" apiUrl="/Subject/GetSubjectDetails" valueAndname="subjectId,subjectName" [isrequired]="true" [(triggerAPI)]="triggerTableAPI" [parameter]="request" (apiResponseChange)="onSubjectAPIResponse($event)" [(modelValue)]="request.subjectId" (onSelectChange)="onSubjectChanges($event)" [isdisabled]="isdisabled"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectCode" label="Subject Code" Case="U" [(modelValue)]="subjectcode" [isdisabled]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectCredit" label="Subject Credit" [isdisabled]="true" [(modelValue)]="subjectcredit" Case="U"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="SubjectType" label="Subject Type" [isdisabled]="true" [(modelValue)]="subjecttype" Case="U"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+            <fw-textbox entity="MarginMark" label="Minimum Pass Mark" [isdisabled]="true" [(modelValue)]="marginMark" Case="U"></fw-textbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="DepartmentCode" label="Department Name" [isrequired]="true" [triggerAPIOnload]="true" [(modelValue)]="Staffrequest.departmentCode" apiUrl="/Staff/GetStaffActiveDepartmentList" valueAndname="departmentCode,departmentName" [(isSelectChange)]="triggerstaffapi"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="Staff" label="Staff Name" [isrequired]="true" [(modelValue)]="request.staffCode" apiUrl="/Staff/GetStaffNameListByDepartmentCode" valueAndname="sysid,name" [(triggerAPI)]="triggerstaffapi" [(parameter)]="Staffrequest" [(modelText)]="request.staffName" (onSelectChange)="onStaffChanges($event)"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-6 pt-3 d-flex">
+            @if (!editenabled) {
+              <fw-button label="Add Course Instructor" buttontype="S" apiUrl="/CourseInstructor/InsertCourseInstructor" [parameter]="request" (apiResponseSuccess)="onAddClick($event)"></fw-button>
+            }
+            @if (editenabled) {
+              <fw-button label="Update Course Instructor" buttontype="S" class="pe-2" apiUrl="/CourseInstructor/UpdateCourseInstructorByID" [parameter]="updateRequest" (apiResponseSuccess)="onUpdateClick($event)"></fw-button>
+              <fw-button label="Cancel Update" buttontype="D" (click)="onCancel()"></fw-button>
+            }
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="tabledata" [parameter]="request" (apiResponseChange)="onTableResponse($event)" apiUrl="/CourseInstructor/GetCourseInstructorByClass" [(triggerAPI)]="triggerTableAPI" (matEditClickChange)="onEditClick($event)"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

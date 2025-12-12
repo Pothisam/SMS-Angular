@@ -1,0 +1,25 @@
+How to use dataArray in @Input()
+ @Input()
+  set dataArray(value: { text: string; value: string }[]) {
+    this.arrayDate = value;
+  }
+
+in Parrent
+departments: SelectInterface[] = [];
+this.departments = Response.data.map((item: any) => ({
+        text: item.departmentName,
+        value: item.departmentCode
+      }));
+
+Get Selected Value in Parent Componat
+
+
+onModelValueChanges(options: { value: string, text: string }) {
+  // Handle the change event here
+  console.log('Model value changed:', options.value);
+  console.log('Model text changed:', options.text);
+}
+
+<fw-select entity="Department" label="Department List"  [isrequired]="true" [isMultiSelect]="false"
+            (onSelectChange)="onModelValueChanges($event)"
+              [jsonData]="this.jsondata" valueAndname="departmentCode,departmentName"></fw-select>

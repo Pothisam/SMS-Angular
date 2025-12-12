@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+}
+.RecordInfo .mdc-tooltip__surface.mdc-tooltip__surface-animation {
+  max-width: 240px;
+}
+mat-icon {
+  cursor: pointer;
+}
+.table-container {
+  /* height: 400px; */
+  max-width: 100%;
+  overflow: auto;
+}
+.mat-row{
+  height: 10px !important;
+}
+.mat-table {
+  border: 1px solid black;
+}
+.mat-table {
+  border-collapse: collapse;
+}
+
+.mat-table td {
+  border: 1px solid black;
+}
+.full-page-container {
+  width: 100%;  /* Ensures the table takes full width */
+  position: relative; /* Helps with the positioning context for sticky headers */
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  overflow-y: scroll; /* Ensures the scrollbar is present on the whole page */
+}
+.fa-2x {
+  font-size: 1.7em !important;
+}

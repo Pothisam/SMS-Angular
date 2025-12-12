@@ -1,0 +1,18 @@
+
+.dropdown-toggle {
+  outline: 0;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  border-top: 0;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+}
+.mat-drawer-content{
+  height: 100vh;
+  box-sizing: border-box; /* This ensures padding and borders are included in the height */
+      background-color: var(--mat-sidenav-content-background-color, var(--mat-sys-background));
+}

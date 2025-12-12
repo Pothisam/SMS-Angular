@@ -1,0 +1,7 @@
+<div class="pt-3">
+  <button mat-raised-button #myuploadbutton class="matButton btn" [ngClass]="_buttonclass" (click)="triggerFileUpload()">
+    <mat-icon class="me-1">cloud_upload</mat-icon>
+    {{ _label }}
+  </button>
+  <input type="file" [id]="dynamicId" #fileInput [attr.ErrorMessage]="message" [accept]="_accept" style="display: none" [attr.aria-validationgroup]="validationgroup" [attr.aria-required]="_required" (change)="onFileSelected($event)" />
+</div>

@@ -1,0 +1,2 @@
+<img alt="" class="rounded mx-auto d-block" tabindex="0" [src]="_url" [height]="size" [matTooltip]="_tooltip" [style.cursor]="fileupload ? 'pointer' : 'default'" (keydown)="onImageKeydown($event)" [width]="size" (click)="onImageClick($event)" (mousedown)="onImageMouseDown($event)" />
+<input type="file" id="fileUpload" #fileUpload accept="image/*" style="display: none" (change)="onFileSelected($event)" />

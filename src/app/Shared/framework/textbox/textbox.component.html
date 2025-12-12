@@ -1,0 +1,19 @@
+<mat-form-field class="MatInput">
+  <mat-label>
+    {{ label }}
+    @if(tooltip && tooltip.length > 0) {
+    <mat-icon mat-button matTooltipPosition="above" [matTooltip]="tooltip" class="text-info me-1">info</mat-icon>
+    } @if (_required) {
+    <span class="text-danger">*</span>
+    }
+  </mat-label>
+
+  <input type="text" matInput #input (input)="onInputChange($event)" [disabled]="_disabled" [attr.maxLength]="maxlength" [value]="_modelValue" [attr.aria-label]="label" [placeholder]="placeholder.toString()" [attr.ErrorMessage]="message" [attr.name]="entity" [attr.min]="min" [attr.aria-required]="_required" [attr.aria-validationgroup]="validationgroup" />
+  @if (_modelValue && _showClearAll) {
+  <button matSuffix mat-icon-button aria-label="Clear" (click)="clearInputValue()" tabindex="-1">
+    <mat-icon tabindex="0">close</mat-icon>
+  </button>
+  } @if (_showMaxCount) {
+  <mat-hint align="end">{{ input.value.length }}/{{ maxlength }}</mat-hint>
+  }
+</mat-form-field>

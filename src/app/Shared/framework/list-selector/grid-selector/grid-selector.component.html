@@ -1,0 +1,26 @@
+<div class="container-box">
+  <mat-form-field class="mb-0 pb-0">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="filterInput" (ngModelChange)="onInputChangedEvent($event)" />
+    <button mat-icon-button matSuffix (click)="clearFilterInput()" [attr.aria-label]="'Hide password'">
+      <mat-icon>{{ filterInput.length > 0 ? 'close' : '' }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="scrollable h-100 my-1 pb-4">
+    <mat-list role="list" #ColumnList>
+      @for (col of ColumnsDataSource; let i = $index; track col) {
+        @if (typeInput() === 'list') {
+          <mat-list-item (click)="onColumnSelectedEvent(col, 'selectedColumn_' + i)" tabindex="0" id="selectedColumn_{{ i }}" class="grid-row animate__animated animate__slideInLeft">
+            <mat-icon matListItemIcon class="m-1 bg-success" aria-hidden="false" aria-label="Add to Export" fontSize="14" fontIcon="add"></mat-icon>
+            <p class="my-auto">{{ col.columnText }}</p>
+          </mat-list-item>
+        } @else {
+          <mat-list-item (click)="onColumnRemovedEvent(col, 'removedColumn_' + i)" tabindex="0" id="removedColumn_{{ i }}" class="grid-row animate__animated animate__slideInLeft">
+            <mat-icon matListItemIcon class="m-1 bg-danger" aria-hidden="false" aria-label="Add to Export" fontSize="14" fontIcon="remove"></mat-icon>
+            <p class="my-auto">{{ col.columnText }}</p>
+          </mat-list-item>
+        }
+      }
+    </mat-list>
+  </div>
+</div>

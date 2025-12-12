@@ -1,0 +1,377 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>View Staff</mat-card-title>
+    <fw-key class="pe-1" [Parameter]="_resetPassword"></fw-key>
+    <fw-history-info class="pe-1" [Parameter]="_historyrecordParameter"></fw-history-info>
+    <mat-icon class="pe-1" (click)="navigateToStaffList()" mat-button class="cursor-pointer" matTooltipPosition="above" matTooltip="Back TO Staff List">backspace</mat-icon>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="EditStaff">
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Staff Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+                  <fw-select entity="staffType" label="Staff Type" [isrequired]="true" commaSeparatedString="Teaching,Non-Teaching" [(modelValue)]="request.staffType"></fw-select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                  <fw-select entity="title" label="Title" [isrequired]="true" [(modelValue)]="request.title" commaSeparatedString="Dr,Mr,Ms"></fw-select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                  <fw-textbox entity="Initial" label="Initial" Case="U" [(modelValue)]="request.initial" [isrequired]="true" min="1" maxlength="3"></fw-textbox>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                  <fw-textbox entity="Name" label="Name" Case="U" [isrequired]="true" [(modelValue)]="request.name" min="3" maxlength="20"></fw-textbox>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                  <fw-select entity="gender" label="Gender" [isrequired]="true" [(modelValue)]="request.sex" commaSeparatedString="Male,Female"></fw-select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                  <fw-date label="DOB" [isrange]="false" [isrequired]="true" [(modelValue)]="request.dob" [(daydiff)]="age" [(triggerdaydiff)]="agetrigger"></fw-date>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                  <fw-textbox entity="age" label="Age" [isdisabled]="true" [(modelValue)]="age"></fw-textbox>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                  <fw-select entity="bloodGroup" label="Blood Group" [isrequired]="true" commaSeparatedString="A+,A-,AB+,AB-,A1+,A1B+,A1B-,A2+,A2-,A2B+,A2B-,B+,B-,B1+,O+,O-" [(modelValue)]="request.bloodGroup"></fw-select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                  <fw-select entity="community" label="Community" commaSeparatedString="SC,ST,BC,MBC,OBC,OC" [(modelValue)]="request.community"></fw-select>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                  <fw-select entity="maritalStatus" label="Marital Status" commaSeparatedString="Yes,No" [(modelValue)]="request.maritalStatus" [isrequired]="true"></fw-select>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-center">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <fw-Image-upload [size]="150" [gender]="request.sex" [fileupload]="true" [filesize]="500" [(filename)]="request.imageFileName" [(url)]="request.imageData" [(guid)]="request.guid" [(contenttype)]="request.imageContentType" uploadto="staff" [PK]="editId"></fw-Image-upload>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="PlaceofBirth" label="Place of Birth" min="0" maxlength="20" [(modelValue)]="request.placeOfBirth"></fw-textbox>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select entity="religion" label="Religion" commaSeparatedString="Christian,Hindu,Muslim" [(modelValue)]="request.religion"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select entity="physicalDisablity" label="Physical Disability" commaSeparatedString="Yes,No" [(modelValue)]="request.physicalDisability" [isrequired]="true"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-autocomplete entity="Caste" label="Caste" apiUrl="/Staff/GetStaffAutoComplete" [(modelValue)]="request.caste" valueAndname="column,column" [parameter]="castRequest" [isrequired]="true" min="0" maxlength="20"></fw-autocomplete>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="MobileNo" label="Mobile No" min="10" maxlength="10" [isrequired]="true" [isNumberOnly]="true" [(modelValue)]="request.mobileNo"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-email entity="EmailID" label="Email ID" maxlength="30" [isrequired]="false" [(modelValue)]="request.emailId"></fw-email>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="AadharCardNo" label="Aadhar Card No" min="12" maxlength="12" [isrequired]="true" [(modelValue)]="request.aadharCardNo" [isNumberOnly]="true"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="MotherTongue" label="Mother Tongue" min="0" maxlength="20" [(modelValue)]="request.motherTongue"></fw-textbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select entity="DepartmentCode" label="Department Name" [triggerAPIOnload]="true" [isrequired]="true" [(modelValue)]="request.departmentCode" [apicache]="true" apiUrl="/Department/GetActiveDepartmentListDistinct" valueAndname="departmentCode,departmentName" [(modelText)]="request.departmentName"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select
+                entity="designation"
+                label="Designation"
+                [(modelValue)]="request.designationCode"
+                [(modelText)]="request.designation"
+                [isrequired]="true"
+                commaSeparatedString="101|Professor(HOD),102|Professor,103|Associate Professor,104|Assistant Professor,105|Sr. Lecturer,106|Lecturer,
+                201|Librarian,202|Lab Assistant,203|Physical Director,1|Principal,2|Vice Principal,11|Cashier,12|Office Administrator,204|Driver,205|Conductor,206|Sweeper"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-date label="DOJ" [isrange]="false" [isrequired]="true" [(modelValue)]="request.doj" [(daydiff)]="expirence" [(triggerdaydiff)]="expirencetrigger"></fw-date>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="experience" label="Experience" [isdisabled]="true" [(modelValue)]="expirence"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="StaffID" label="Staff ID" [isdisabled]="true" [(modelValue)]="request.staffID"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="enteredBy" label="Entred By" [isdisabled]="true" [(modelValue)]="recordinfo.enteredBy"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="entryDate" label="Entry Date" [isdisabled]="true" [(modelValue)]="recordinfo.entryDate"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="modifiedBy" label="Modified By" [isdisabled]="true" [(modelValue)]="recordinfo.modifiedBy"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="modifiedDate" label="Modified Date" [isdisabled]="true" [(modelValue)]="recordinfo.modifiedDate"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-select entity="Status" label="Status" [isrequired]="true" [(modelValue)]="request.status" commaSeparatedString="Active,InActive"></fw-select>
+            </div>
+          </div>
+          @if (request.status == 'InActive') {
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <fw-date label="Last Working Day" [isrange]="false" [isrequired]="true" [(modelValue)]="request.dor" max="0|d"></fw-date>
+              </div>
+            </div>
+          }
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Bank Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="iFSCCode" label="IFSC" Case="U" maxlength="12" [(modelValue)]="request.ifscCode" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="bankName" label="Bank Name" Case="U" maxlength="20" [(modelValue)]="request.bankName" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="bankAddress" label="Bank Address" Case="U" maxlength="500" [(modelValue)]="request.bankAddress" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="MICRCode" label="MICR No" maxlength="20" [(modelValue)]="request.micrCode" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="AccountNumber" label="Account No" maxlength="20" [isNumberOnly]="true" [(modelValue)]="request.accountNumber" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="PANCardNo" label="PAN Card" Case="U" maxlength="10" [(modelValue)]="request.panCardNo" [isrequired]="ifscvalidation"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <label id="lblErrorIFSC" class="position-absolute"></label>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Permanent Address Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="ParmanentAddress1" label="Address 1" maxlength="40" [(modelValue)]="request.permanentAddress1"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="ParmanentAddress2" label="Address 2" maxlength="40" [(modelValue)]="request.permanentAddress2"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="ParmanentAddressPincode" label="Postal Code" maxlength="6" [isNumberOnly]="true" [(modelValue)]="request.permanentAddressPincode" [isrequired]="true" [(modelValue)]="request.permanentAddressPincode"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select entity="ParmanentAddressPostOffice" label="Post Office Name" apiUrl="/Common/GetPostOffice" [isrequired]="true" valueAndname="officeName,officeName" [(parameter)]="parmanentpostalrequest" [(triggerAPI)]="parmanentpostaltriggerApi" [(modelValue)]="request.permanentAddressPostOffice"></fw-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="ParmanentAddressDistrict" label="District" [(modelValue)]="request.permanentAddressDistrict"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="ParmanentAddressState" label="State" [(modelValue)]="request.permanentAddressState"></fw-textbox>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Communication Address Details</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="CommunicationAddress1" label="Address 1" maxlength="40" [(modelValue)]="request.communicationAddress1"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="CommunicationAddress2" label="Address 2" maxlength="40" [(modelValue)]="request.communicationAddress2"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="CommunicationAddressPincode" label="Postal Code" maxlength="6" [isNumberOnly]="true" [isrequired]="true" [(modelValue)]="request.communicationAddressPincode" [(modelValue)]="request.communicationAddressPincode"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select entity="CommunicationAddressPostOffice" label="Post Office Name" apiUrl="/Common/GetPostOffice" [isrequired]="true" valueAndname="officeName,officeName" [(parameter)]="CommunicationAddressrequest" [(triggerAPI)]="CommunicationpostaltriggerApi" [(modelValue)]="request.communicationAddressPostOffice"></fw-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="CommunicationAddressDistrict" label="District" [(modelValue)]="request.communicationAddressDistrict"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="CommunicationAddressState" label="State" [(modelValue)]="request.communicationAddressState"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pt-2">
+              <fw-checkbox label="Same as Parmanent Address"></fw-checkbox>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Language</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-autocomplete entity="LanguageKnown" label="Language Known" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="languageRequest" [isrequired]="true" min="0" maxlength="20" [(modelValue)]="LanguageknowRequest.languageKnow" Case="U" validationgroup="LanguageKnown"></fw-autocomplete>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 pt-2">
+              <fw-checkbox (modelValueChange)="onCheckboxValueChange($event, 'Read')" [(modelValue)]="R" label="Read"></fw-checkbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 pt-2">
+              <fw-checkbox (modelValueChange)="onCheckboxValueChange($event, 'Write')" [(modelValue)]="W" label="Write"></fw-checkbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-2 pt-2">
+              <fw-checkbox (modelValueChange)="onCheckboxValueChange($event, 'Speake')" [(modelValue)]="S" label="Speake"></fw-checkbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 pt-1">
+              <fw-button label="Save" validationgroup="LanguageKnown" (formvalidationtrue)="AddLanguage()"></fw-button>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 text-danger">
+              {{ AddLanguageError }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <fw-table [tableSettings]="tableSettingsLanguage" (DeleteapiCalled)="getStaffLanguage()" [jsonData]="this.LanguageknownList"></fw-table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Education & Qualifications</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-select entity="DegreeType" label="Degree Type" commaSeparatedString="U.G,P.G,NET,SET,Ph.D,M.Phil,Others" [isrequired]="true" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.degreeType"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-select entity="Degree" label="Degree" [isrequired]="true" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.degree" commaSeparatedString="B.Tech,B.E,B.Sc,B.A,B.Com,B.B.A,PGDM,M.Tech,M.E,M.Sc,M.A,M.Com,M.B.A,Doctorate in Philosophy,Others"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="YearofPassing" label="Year of Passing" min="4" maxlength="4" [isrequired]="true" [isNumberOnly]="true" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.yearOfPassing"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-autocomplete entity="UniversityName" label="University Name" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="UniversityNameRequest" [isrequired]="true" min="0" maxlength="20" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.universityName"></fw-autocomplete>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-autocomplete entity="InstituionName" label="Instituion Name" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="InstituionNameRequest" [isrequired]="true" min="0" maxlength="20" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.instituionName"></fw-autocomplete>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-select entity="Mode" label="Mode" commaSeparatedString="Regular,Distance Education,Part Time" [isrequired]="true" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.mode"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox entity="PassPercentage" label="Pass Percentage" maxlength="2" [isrequired]="true" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.passPercentage"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-autocomplete entity="Specialization" label="Specialization" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="SpecializationRequest" [isrequired]="true" min="0" maxlength="20" validationgroup="EQ" [(modelValue)]="EducationDetailRequest.specialization"></fw-autocomplete>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pt-2">
+              @if (!editStaffeducation) {
+                <fw-button label="Add Education Details" validationgroup="EQ" (formvalidationtrue)="AddEducation()"></fw-button>
+              }
+              @if (editStaffeducation) {
+                <fw-button label="Update Education Details" validationgroup="EQ" (formvalidationtrue)="UpdateEducation()"></fw-button>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <fw-table [tableSettings]="tableSettingsEducation" (matEditClickChange)="onStaffEducationEditClick($event)" (DeleteapiCalled)="GetStaffEducationDetails()" [jsonData]="this.EducationDetailList"></fw-table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Expirence</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-autocomplete entity="InstitutionName" label="Institution Name" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="AutoInstitutionNameRequest" [isrequired]="true" min="0" maxlength="20" validationgroup="EX" [(modelValue)]="ExperienceDetailRequest.InstituionName"></fw-autocomplete>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-autocomplete entity="Position" label="Position" apiUrl="/Staff/GetStaffAutoComplete" valueAndname="column,column" [parameter]="PositionRequest" [isrequired]="true" min="0" maxlength="20" validationgroup="EX" [(modelValue)]="ExperienceDetailRequest.position"></fw-autocomplete>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-date [isrequired]="true" label="Start and End" [isrange]="true" [inputdisabled]="true" type="date" validationgroup="EX" [(startValue)]="ExperienceDetailRequest.fromDate" [(endValue)]="ExperienceDetailRequest.toDate" [(daydiff)]="ExperienceDetailRequest.yearsOfExperience"></fw-date>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-textbox entity="YearofExperience" label="Year of Experience" validationgroup="EX" [isdisabled]="true" [(modelValue)]="ExperienceDetailRequest.yearsOfExperience"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+              <fw-textbox [isrequired]="true" entity="Salary" label="Salary (CTC)" maxlength="6" validationgroup="EX" [(modelValue)]="ExperienceDetailRequest.salary" [isNumberOnly]="true"></fw-textbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              @if (!editStaffex) {
+                <fw-button label="Add Expirence Details" validationgroup="EX" (formvalidationtrue)="AddExpirence()"></fw-button>
+              }
+              @if (editStaffex) {
+                <fw-button label="Update Expirence Details" validationgroup="EX" (formvalidationtrue)="UpdateExpirence()"></fw-button>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <fw-table [tableSettings]="tableSettingsExpirence" (matEditClickChange)="onEditExperienceClick($event)" (DeleteapiCalled)="GetStaffExpirence()" [jsonData]="this.ExperienceDetailList"></fw-table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Document</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-file-upload [isrequired]="true" [filesize]="500000" accept="image and document" validationgroup="DU" [(filename)]="DocumentLibraryRequest.fileName" [(data)]="DocumentLibraryRequest.data" [(contenttype)]="DocumentLibraryRequest.contentType"></fw-file-upload>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <fw-select
+                entity="DocumentType"
+                label="Document Type"
+                commaSeparatedString="U.G Degree Certificate, P.G Degree Certificate, Ph.D. Certificate, Provisional Certificate, Migration Certificate, Transfer Certificate, Diploma Certificate, Character Certificate, Consolidated Marksheet, Internship Certificate, Fellowship Certificate, Participation Certificate"
+                [isrequired]="true"
+                validationgroup="DU"
+                [(modelValue)]="DocumentLibraryRequest.fileType"
+                [isdisabled]="editStafdoc"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 pt-2">
+              @if (!editStafdoc) {
+                <fw-button label="Add Document" validationgroup="DU" (formvalidationtrue)="AddDocument()"></fw-button>
+              }
+              @if (editStafdoc) {
+                <fw-button label="Update Document" validationgroup="DU" (formvalidationtrue)="UpdateDocument()"></fw-button>
+              }
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <fw-table [tableSettings]="tableSettingsDocument" (matEditClickChange)="onEditDocumentClick($event)" (DeleteapiCalled)="GetStaffDocument()" [jsonData]="this.DocumentLibraryList"></fw-table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center pt-2">
+            <fw-button label="Update Staff Details" apiUrl="/Staff/UpdateStaffDetails" buttontype="S" [parameter]="request" (apiResponseSuccess)="UpdateStaff()"></fw-button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

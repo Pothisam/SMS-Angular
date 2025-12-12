@@ -1,0 +1,133 @@
+<div style="width: 100%; align-content: center; margin: 0 auto">
+  <table style="width: 100%; text-align: center; align-content: center" class="Border" id="headt">
+    <tr>
+      <td class="Border">
+        <app-PrintHeader></app-PrintHeader>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="font-weight: bold; font-size: 15px">{{ heading }}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table style="width: 100%" class="Border">
+          <tr>
+            <td>
+              Department
+              <span style="font-weight: bold">: {{ this.CourseDetailResponse.departmentName }}</span>
+            </td>
+            <td>
+              Batch
+              <span style="font-weight: bold">
+                :
+                {{ request.batch }}
+              </span>
+            </td>
+            <td>
+              Class
+              <span style="font-weight: bold">: {{ this.CourseDetailResponse.courseNameSD }}</span>
+            </td>
+
+            <td>
+              Section
+              <span style="font-weight: bold">
+                :
+                {{ request.section }}
+              </span>
+            </td>
+            <td>
+              Semester
+              <span style="font-weight: bold">
+                :
+                {{ request.semester }}
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="table-wrapper pt-2">
+          <table #Table1 mat-table [dataSource]="grid1response" class="mat-elevation-z8 full-width-table">
+            <!-- Dynamic Header -->
+            <ng-container *ngFor="let column of displayedColumnsgrid1" [matColumnDef]="column">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ columnHeader1Map[column] || column }}
+              </th>
+              <td mat-cell *matCellDef="let row; let i = index">
+                {{ getValuegrid1(row, column, i) }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsgrid1"></tr>
+            <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumnsgrid1" [ngClass]="{ 'odd-row': i % 2 === 1, 'even-row': i % 2 === 0 }"></tr>
+          </table>
+        </div>
+        <div class="table-wrapper pt-2">
+          <table #Table2 mat-table [dataSource]="grid2response" class="mat-elevation-z8 full-width-table">
+            <!-- Dynamic Header -->
+            <ng-container *ngFor="let column of displayedColumnsgrid2" [matColumnDef]="column">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ columnHeader2Map[column] || column }}
+              </th>
+              <td mat-cell *matCellDef="let row; let i = index">
+                {{ getValuegrid2(row, column, i) }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsgrid2"></tr>
+            <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumnsgrid2" [ngClass]="{ 'odd-row': i % 2 === 1, 'even-row': i % 2 === 0 }"></tr>
+          </table>
+        </div>
+        <div class="table-wrapper pt-2">
+          <table #Table3 mat-table [dataSource]="grid3response" class="mat-elevation-z8 full-width-table">
+            <!-- Dynamic Header -->
+            <ng-container *ngFor="let column of displayedColumnsgrid3" [matColumnDef]="column">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ columnHeader3Map[column] || column }}
+              </th>
+              <td mat-cell *matCellDef="let row; let i = index">
+                {{ getValuegrid3(row, column, i) }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsgrid3"></tr>
+            <tr mat-row *matRowDef="let row; let i = index; columns: displayedColumnsgrid3" [ngClass]="{ 'odd-row': i % 2 === 1, 'even-row': i % 2 === 0 }"></tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <table style="width: 100%; text-align: center; align-content: center">
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="width: 33%">Class Incharge</td>
+            <td style="width: 33%">HOD</td>
+            <td style="width: 33%">Principal</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

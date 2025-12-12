@@ -1,0 +1,50 @@
+@if (_historySettings.isModalVisible) {
+  <div class="modal fade show" #recordhistorydrop id="recordhistorydrop" role="dialog" style="display: block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="recordhistorydropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down modal-xl">
+      <div class="modal-content">
+        <div class="modal-header mat-card-header mat-primary py-1">
+          <h1 class="modal-title fs-5 mb-0" id="recordhistorydropLabel">Record History</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body p-0">
+          <mat-card-content>
+            <mat-accordion>
+              @for (item of accordionItems; track item; let i = $index) {
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{ item.modifiedBy }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{ item.modifiedDate | date: 'medium' }}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div class="panel-body">
+                    <p>{{ item.content }}</p>
+                    <!-- Example of a table or other data display within the accordion -->
+                    <table mat-table [dataSource]="item.dataSource" class="mat-elevation-z8">
+                      <ng-container matColumnDef="key">
+                        <th mat-header-cell *matHeaderCellDef>Key</th>
+                        <td mat-cell *matCellDef="let element">{{ element.key }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="oldValue">
+                        <th mat-header-cell *matHeaderCellDef>Old Value</th>
+                        <td mat-cell *matCellDef="let element">{{ element.oldValue }}</td>
+                      </ng-container>
+                      <ng-container matColumnDef="newValue">
+                        <th mat-header-cell *matHeaderCellDef>New Value</th>
+                        <td mat-cell *matCellDef="let element">{{ element.newValue }}</td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                  </div>
+                </mat-expansion-panel>
+              }
+            </mat-accordion>
+          </mat-card-content>
+        </div>
+      </div>
+    </div>
+  </div>
+}

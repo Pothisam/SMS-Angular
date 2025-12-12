@@ -1,0 +1,27 @@
+@if (_modalSettings.isModalVisible && _modalSettings.isDeleteForm && _modalSettings.modalId === id()) {
+  <div class="modal fade show" #staticBackdrop id="staticBackdrop" role="dialog" style="display: block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header mat-card-header mat-primary py-1">
+          <h1 class="modal-title fs-5 mb-0" id="staticBackdropLabel">{{ _modalSettings.headerMessage }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body p-0">
+          <mat-card-content>
+            <div [innerHTML]="_modalSettings.bodyMessage"></div>
+            <span class="text-danger d-inline-block">{{ _modalSettings.note }}</span>
+            <ng-content></ng-content>
+          </mat-card-content>
+        </div>
+        @if (_modalSettings.api != '') {
+          <div>
+            <div class="modal-footer py-1">
+              <mat-icon class="text-danger cursor-pointer" aria-label="Accept Transation" matTooltip="Accept Transation" matTooltipPosition="above" tabindex="0" (click)="CallAPI()" (keydown.enter)="CallAPI()">check_circle</mat-icon>
+              <mat-icon class="text-success cursor-pointer" aria-label="cancel Transation" matTooltip="Cancel Transation" matTooltipPosition="above" (keydown.enter)="closeModal()" (click)="closeModal()" tabindex="0">cancel</mat-icon>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

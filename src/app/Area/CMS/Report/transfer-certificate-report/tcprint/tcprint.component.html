@@ -1,0 +1,438 @@
+<div *ngIf="courseType === 'UG'">
+  <div *ngFor="let r of TCDetailsList; let i = index">
+    <table style="width: 100%; text-align: center; align-content: center">
+      <div style="float: left; margin: 15px 50px 50px 80px; position: absolute">
+        <img id="IMG" [src]="logo" style="position: relative; padding-right: 5%" />
+      </div>
+      <tr>
+        <td>
+          <div style="font-weight: 10px; text-align: center">({{ type() }})</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight: bold; font-size: 30px; text-align: center" class="ff">
+            {{ r.institutionName }}
+          </div>
+          <br />
+          <div style="font-weight: bold; text-align: center">
+            {{ r.address }}
+            <br />
+            Phone: {{ r.landline }} &nbsp; Web: {{ r.website }}
+            <br />
+            Approved by the Govt.of Tamil Nadu G.O.Ms.No. 296 Higher Education Date 10-07-2020,
+            <br />
+            G.O.Ms. 26 Higher Education Dated 09-02-2004 Affiliated to the University of Madras.
+          </div>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%; font-size: 20px">
+            <tr>
+              <td style="text-align: left; width: 33%">
+                Admission Number:
+                <div class="Bold Di">&nbsp;{{ r.admissionNumber }}</div>
+              </td>
+              <td style="text-align: center; width: 33%">
+                Roll No:
+                <div class="Bold Di">&nbsp;{{ r.rollNo }}</div>
+              </td>
+              <td style="text-align: right; width: 33%">
+                Sl.No:
+                <div class="Bold Di">&nbsp;{{ r.admissionSerialNumber }}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 50px">
+          <br />
+          <div style="font-weight: bold; font-size: 30px; text-align: center">TRANSFER CERTIFICATE</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%; font-size: 20px">
+            <tr>
+              <td style="width: 50%" class="PB">
+                1. Name of the Student(IN BLOCK LETTERS)
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;(as entered in +2 or equivalent certificate)
+              </td>
+              <td style="width: 50%; border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.studentName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">2. Name of the Father / Mother</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.fatherName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">3. Nationality, Religion and Caste</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.nationality }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">4. Community SC / ST / BC / MBC / OC</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.community }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                5. Date of Birth as entered in the Admission Register
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;(in figures and words)
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ ConvertDateTime(r.dob) }}</div>
+                <br />
+                &nbsp;&nbsp;
+                <div class="Bold Di">&nbsp;{{ r.dobToWord }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">6. Gender</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.gender }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">7. Date of Admission and Department</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di" *ngIf="r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II'">&nbsp;{{ ConvertDateTime(r.dateOfAdmission) + ' / ' + 'BACHELOR OF COMPUTER APPLICATION' }}</div>
+                <div class="Bold Di" *ngIf="!(r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II')">&nbsp;{{ ConvertDateTime(r.dateOfAdmission) + r.departmentName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">8. EMIS No</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.emisno }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                9. Class in which the Student was studying at the
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp; time of leaving {{ r.courseName }} here
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di" *ngIf="r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II'">&nbsp;{{ r.courseYear + ' BCA' }}</div>
+                <div class="Bold Di" *ngIf="!(r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II')">&nbsp;{{ r.courseYear + ' ' + r.courseName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                &nbsp;&nbsp;&nbsp; a&#40; Language offered under Part - 1
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp; time of leaving
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.firstLanguage }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">&nbsp;&nbsp;&nbsp; b&#40; Medium of Instruction</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;English</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">10. Date of Leaving the College</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ ConvertLdate(DOL) }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">The Student's conduct and character</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;GOOD</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%" class="Fontsize20">
+            <tr>
+              <td style="text-align: left; width: 33%; padding-top: 100px">Date: {{ ConvertLdate(Date) }}</td>
+              <td style="text-align: center; width: 33%; padding-top: 100px">College Seal</td>
+              <td style="text-align: center; width: 33%; padding-top: 100px">&nbsp;&nbsp;&nbsp;&nbsp; Principal</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; padding-left: 4%; padding-right: 4%" class="Fontsize20">
+          <br />
+          Note: 1. Erasures and unauthenticated fraudulent alterations in certificate will lead to cancellation
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Should be signed in ink by the Head of the Institution who will be held responsible for the correctness of
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the entries
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; font-size: 20px; padding-left: 4%; padding-right: 4%; text-align: center">DECLARATION BY THE STUDENT</td>
+      </tr>
+      <tr>
+        <td class="Fontsize20" style="padding-left: 4%; padding-right: 4%; text-align: left">
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I hereby declare that the particulars recorded against items 2 to 9 are correct and final that no change
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will be demanded by me in future
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><br /></td>
+      </tr>
+      <tr style="text-align: right; padding-right: 4%" class="Fontsize20">
+        <td style="padding-right: 4%">SIGNATURE OF THE STUDENT</td>
+      </tr>
+    </table>
+    <div class="page-break" *ngIf="!(i === TCDetailsList.length - 1)"></div>
+  </div>
+</div>
+
+<div *ngIf="courseType === 'PG'">
+  <div *ngFor="let r of TCDetailsList; let i = index">
+    <table style="width: 100%; text-align: center; align-content: center">
+      <div style="float: left; margin: 15px 50px 50px 80px; position: absolute">
+        <img id="IMG" [src]="logo" style="position: relative; padding-right: 5%" />
+      </div>
+      <tr>
+        <td>
+          <div style="font-weight: 10px; text-align: center">({{ type() }})</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div style="font-weight: bold; font-size: 30px; text-align: center" class="ff">
+            {{ r.institutionName }}
+          </div>
+          <br />
+          <div style="font-weight: bold; text-align: center">
+            {{ r.address }}
+            <br />
+            Phone: {{ r.landline }} &nbsp; Web: {{ r.website }}
+            <br />
+            Approved by the Govt.of Tamil Nadu G.O.Ms.No. 296 Higher Education Date 10-07-2020,
+            <br />
+            G.O.Ms. 26 Higher Education Dated 09-02-2004 Affiliated to the University of Madras.
+          </div>
+          <br />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%; font-size: 20px">
+            <tr>
+              <td style="text-align: left; width: 33%">
+                Admission Number:
+                <div class="Bold Di">&nbsp;{{ r.admissionNumber }}</div>
+              </td>
+              <td style="text-align: center; width: 33%">
+                Roll No:
+                <div class="Bold Di">&nbsp;{{ r.rollNo }}</div>
+              </td>
+              <td style="text-align: right; width: 33%">
+                Sl.No:
+                <div class="Bold Di">&nbsp;{{ r.admissionSerialNumber }}</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 50px">
+          <br />
+          <div style="font-weight: bold; font-size: 30px; text-align: center">TRANSFER CERTIFICATE</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%; font-size: 20px">
+            <tr>
+              <td style="width: 50%" class="PB">
+                1. Name of the Student(IN BLOCK LETTERS)
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;(as entered in +2 or equivalent certificate)
+              </td>
+              <td style="width: 50%; border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.studentName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">2. Name of the Father / Mother</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.fatherName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">3. Nationality, Religion and Caste</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.nationality }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">4. Community SC / ST / BC / MBC / OC</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.community }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                5. Date of Birth as entered in the Admission Register
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;(in figures and words)
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ ConvertDateTime(r.dob) }}</div>
+                <br />
+                &nbsp;&nbsp;
+                <div class="Bold Di">{{ r.dobToWord }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">6. Gender</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.gender }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">7. Date of Admission and Department</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di" *ngIf="r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II'">&nbsp;{{ ConvertDateTime(r.dateOfAdmission) + ' / ' + 'BACHELOR OF COMPUTER APPLICATION' }}</div>
+                <div class="Bold Di" *ngIf="!(r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II')">&nbsp;{{ ConvertDateTime(r.dateOfAdmission) + r.departmentName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                8. Class in which the Student was studying at the
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp; time of leaving {{ r.courseName }} here
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di" *ngIf="r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II'">&nbsp;{{ r.courseYear + ' BCA' }}</div>
+                <div class="Bold Di" *ngIf="!(r.courseName == 'BCA-SHIFT I' || r.courseName == 'BCA-SHIFT II')">&nbsp;{{ r.courseYear + ' ' + r.courseName }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">
+                &nbsp;&nbsp;&nbsp; a&#40; Language offered under Part - 1
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp; time of leaving
+              </td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ r.firstLanguage }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">&nbsp;&nbsp;&nbsp; b&#40; Medium of Instruction</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;English</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">9. Date of Leaving the College</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;{{ ConvertLdate(DOL) }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="PB">The Student's conduct and character</td>
+              <td style="border-bottom: 1px solid black">
+                :
+                <div class="Bold Di">&nbsp;GOOD</div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <table style="width: 100%; text-align: left; padding-left: 4%; padding-right: 4%" class="Fontsize20">
+            <tr>
+              <td style="text-align: left; width: 33%; padding-top: 100px">Date: {{ ConvertLdate(Date) }}</td>
+              <td style="text-align: center; width: 33%; padding-top: 100px">College Seal</td>
+              <td style="text-align: center; width: 33%; padding-top: 100px">&nbsp;&nbsp;&nbsp;&nbsp; Principal</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; padding-left: 4%; padding-right: 4%" class="Fontsize20">
+          <br />
+          Note: 1. Erasures and unauthenticated fraudulent alterations in certificate will lead to cancellation
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. Should be signed in ink by the Head of the Institution who will be held responsible for the correctness of
+          <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the entries
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight: bold; font-size: 20px; padding-left: 4%; padding-right: 4%; text-align: center">DECLARATION BY THE STUDENT</td>
+      </tr>
+      <tr>
+        <td class="Fontsize20" style="padding-left: 4%; padding-right: 4%; text-align: left">
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I hereby declare that the particulars recorded against items 2 to 9 are correct and final that no change
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will be demanded by me in future
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><br /></td>
+      </tr>
+      <tr style="text-align: right; padding-right: 4%" class="Fontsize20">
+        <td style="padding-right: 4%">SIGNATURE OF THE STUDENT</td>
+      </tr>
+    </table>
+    <div class="page-break" *ngIf="!(i === TCDetailsList.length - 1)"></div>
+  </div>
+</div>

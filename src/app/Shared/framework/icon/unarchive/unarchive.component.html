@@ -1,0 +1,12 @@
+<div aria-hidden="false">
+  <mat-icon mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" class="cursor-pointer" matTooltipPosition="above" tabindex="0" matTooltip="fill form data" ria-label="fill form data" (click)="onMatIconClick()" [attr.aria-hidden]="_aria">unarchive</mat-icon>
+  <mat-menu #menu="matMenu">
+    @for (item of menuItems; track item; let i = $index) {
+      <button mat-menu-item (click)="onMenuItemClick(item)">
+        {{ item.name }} {{ item.date }}
+        <span class="spacer"></span>
+        <mat-icon (click)="onDeleteItem(i, $event)" aria-label="Delete Item">delete</mat-icon>
+      </button>
+    }
+  </mat-menu>
+</div>

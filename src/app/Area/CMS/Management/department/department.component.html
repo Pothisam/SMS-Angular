@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Department
+      <fw-download class="float-end" desc="Export department list" apiUrl="/File/ExportDepartmentDetails" icon="excel"></fw-download>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="department">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="departmentName" [(modelValue)]="request.departmentname" label="Department Name" Case="U" [isrequired]="true" min="3" (keydown)="onValueChange()"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="departmentCode" label="Department Code" [(modelValue)]="departmentcode" [isdisabled]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 pt-3">
+            <fw-button label="Add Department" apiUrl="/Department/AddDepartment" [parameter]="request" (apiResponseSuccess)="ClearFormAndReload()"></fw-button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.departmentList"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

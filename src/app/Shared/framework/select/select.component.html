@@ -1,0 +1,26 @@
+<mat-form-field class="MatInput">
+  <mat-label>
+    {{ label }}
+    @if (_required) {
+      <span class="text-danger">*</span>
+    }
+  </mat-label>
+  <mat-select [attr.required]="_required" [attr.ErrorMessage]="message" #input [attr.name]="entity" [disabled]="_disabled" [multiple]="_Multiple" [value]="_Multiple ? _modelValueArray : _modelValue" [attr.aria-selectedValue]="_modelValue" [attr.aria-selectedText]="selectedText" (valueChange)="onSelectoptionChange($event)" [attr.aria-required]="_required" [attr.aria-validationgroup]="validationgroup">
+    @if (_Multiple) {
+      <mat-select-trigger [matTooltip]="selectedText" [matTooltipShowDelay]="500" [matTooltipHideDelay]="3000" [matTooltipDisabled]="!_Multiple" matTooltipClass="custom-tooltip">
+        {{ selectedTextArray[0] || '' }}
+        @if (selectedTextArray.length > 1) {
+          <span class="additional-selection">(+{{ selectedTextArray.length - 1 }} {{ selectedTextArray.length === 2 ? 'other' : 'others' }})</span>
+        }
+      </mat-select-trigger>
+    }
+    @if (_isFirstOptionEmpty && !_Multiple) {
+      <mat-option></mat-option>
+    }
+    @if (arrayDate.length > 0) {
+      @for (item of arrayDate; track item) {
+        <mat-option [value]="item.value.toString().trim()">{{ item.text }}</mat-option>
+      }
+    }
+  </mat-select>
+</mat-form-field>

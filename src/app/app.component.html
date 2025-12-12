@@ -1,0 +1,31 @@
+@if (!isPrintLayout) {
+  <fw-errortag></fw-errortag>
+  <fw-toast></fw-toast>
+  <mat-drawer-container class="mat-drawer-content" hasBackdrop="true" (backdropClick)="onBackdropClicked()">
+    <mat-drawer #drawer mode="over" (closed)="onDrawerClosed()">
+      @if (IsCMSNavVisible()) {
+        <app-cms-left-menu></app-cms-left-menu>
+      }
+      @if (IsStaffNavVisible()) {
+        <app-staff-left-menu></app-staff-left-menu>
+      }
+    </mat-drawer>
+    <mat-drawer-content class="mat-drawer-content">
+      <!-- <mat-progress-bar mode="indeterminate" class="position-relative"></mat-progress-bar> -->
+      @if (IsCMSNavVisible()) {
+        <app-cms-nav></app-cms-nav>
+      }
+
+      @if (IsStaffNavVisible()) {
+        <app-staff-nav></app-staff-nav>
+      }
+      <div class="pt-1">
+        <router-outlet></router-outlet>
+        <fw-model id="delete-conformation"></fw-model>
+        <fw-historyrecord></fw-historyrecord>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+} @else {
+  <router-outlet></router-outlet>
+}

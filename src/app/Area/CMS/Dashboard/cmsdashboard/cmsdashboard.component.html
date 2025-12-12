@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>Dashboard</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="test">
+        <div class="row">
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tableStaffType" [jsonData]="this.staffTypeList" tableName="Total Staff In College"></fw-table>
+          </div>
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tabledepartment" [jsonData]="this.departmentNameList" tableName="Total Staff Count Department Wise"></fw-table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tablBatchWise" [jsonData]="this.ugBatchList" tableName="Total UG Student Batch Wise"></fw-table>
+          </div>
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tablBatchWise" [jsonData]="this.pgBatchList" tableName="Total PG Student Batch Wise"></fw-table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tableClasswise" [jsonData]="ugclassList" tableName="Total UG Student Class Wise"></fw-table>
+          </div>
+          <div class="col-lg-6">
+            <fw-table [tableSettings]="tableClasswise" [jsonData]="pgclassList" tableName="Total PG Student Class Wise"></fw-table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="Department" label="Department List" [isrequired]="true" [isMultiSelect]="false" (onSelectChange)="onModelValueChanges($event)" [apicache]="true" [apiUrl]="apiUrl" [(modelValue)]="SelectedValue" [(parameter)]="AutocompleteRequest" valueAndname="departmentCode,departmentName" [(triggerAPI)]="triggerApi"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-autocomplete entity="Auto" label="Auto List" apiUrl="/Student/GetStudentAutoComplete" valueAndname="column,column" [(modelValue)]="automodelValue" [(parameter)]="AutocompleteRequest" (isrequired)="(disable)"></fw-autocomplete>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-select entity="Theme" label="Theme" [isrequired]="true" [isMultiSelect]="false" (onSelectChange)="onThemeChange($event)" [(modelValue)]="SelectedValue" commaSeparatedString="pink-bluegrey,purple-green,indigo-pink,deeppurple-amber,cyan-orange,magenta-violet" [(triggerAPI)]="triggerApi"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-autocomplete entity="Caste" label="Caste" apiUrl="/Student/GetStudentAutoComplete" [showClearAll]="true" valueAndname="column,column" [(modelValue)]="automodelValue2" [parameter]="AutocompleteRequest2" [isrequired]="true"></fw-autocomplete>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <button (click)="buttonclick()" class="btn btn-primary">Change</button>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="Text" label="Test Textbox" [isrequired]="true" [(modelValue)]="automodelValue3" Case="T"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-autocomplete entity="Caste" label="Auto Complete Json" [jsonData]="jsondata" [showClearAll]="true" valueAndname="departmentCode,departmentName" [(selectedOptionValue)]="autoSelectedOption" [(modelValue)]="automodelValue2" [isrequired]="true"></fw-autocomplete>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-autocomplete entity="Caste" label="Auto Complete comma Separated String" commaSeparatedString="yes,no,maybe" [showClearAll]="true" valueAndname="departmentCode,departmentName" [(selectedOptionValue)]="autoSelectedOption" [(modelValue)]="automodelValue2" [isrequired]="true"></fw-autocomplete>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fw-button label="Submit" apiUrl="/Department/GetActiveDepartmentListDistinct" [parameter]="AutocompleteRequest3" [(apiResponse)]="departmentList"></fw-button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fw-table [tableSettings]="tableSettings" [(matDeleteClick)]="automodelValue2" [(matEditClick)]="automodelValue3" [jsonData]="this.departmentList"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

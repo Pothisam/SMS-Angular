@@ -1,0 +1,56 @@
+$CardaBackgroundColor: var(--mat-card-elevated-container-color);
+.MatInput {
+  width: 100%;
+  background-color: transparent;
+}
+
+mat-icon:focus-visible {
+  outline: 3px solid deepskyblue !important;
+  outline-offset: -1px !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  &.mdc-text-field--filled {
+    background-color: transparent !important;
+
+    &.mdc-text-field--focused {
+      background-color: transparent !important;
+    }
+  }
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+.mat-mdc-text-field-wrapper {
+  .mat-mdc-form-field-flex {
+    .mat-mdc-floating-label {
+      top: 45px;
+    }
+  }
+}
+
+//Multi Select
+.additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+.mdc-line-ripple{
+  z-index: 0;
+}
+// .mdc-text-field--filled {
+//   .mdc-floating-label--float-above {
+//     transform: translateY(-170%) scale(0.75) !important;
+//   }
+// }
+// .mat-input-element {
+//   height: 40px; // Set your desired height here
+// }
+.modal-body .mat-mdc-card-content{
+  background-color: $CardaBackgroundColor !important;
+}
+.modal-footer{
+  background-color: $CardaBackgroundColor !important;
+}

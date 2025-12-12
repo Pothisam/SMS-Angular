@@ -1,0 +1,36 @@
+.container-box{
+    height: 100%;
+    max-height: calc(100vh - 230px);
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 4px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px 1px #9c9c9c;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-list-item:hover{
+    background-color: #3f85d4;
+}
+
+.grid-row{
+    --animate-duration: 290ms;
+}
+
+.grid-row-s {
+    background-color: #5ca81e !important;
+}
+
+
+.grid-row-r{
+    background-color: #e94b4b !important;
+}
+
+.scrollable {
+    height: auto;
+    overflow: auto !important;
+}

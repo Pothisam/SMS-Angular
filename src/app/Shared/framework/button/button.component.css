@@ -1,0 +1,8 @@
+.matButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.mdc-circular-progress__indeterminate-circle-graphic {
+  color: white !important;
+}

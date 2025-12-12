@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>&nbsp;</mat-card-title>
+  </mat-card-header>
+
+  <div class="scrolldiv d-flex justify-content-center">
+    <mat-card-content>
+      <div class="shadow-lg h-100" style="width: 800px">
+        <div class="p-4 d-flex justify-content-between border-bottom">
+          <fw-history-info [Parameter]="_historyParameter" class="pt-3"></fw-history-info>
+          <h1 class="pt-3">Fees Settings</h1>
+          <div class="pt-3">
+            <button type="button" (click)="saveSettings()" [disabled]="!hasChanges" class="btn btn-primary d-flex justify-content-center align-items-center">
+              Save
+              <mat-icon class="p-0 m-0" style="font-size: 20px">save</mat-icon>
+            </button>
+          </div>
+        </div>
+        <form id="feesSettings" class="scrolldiv-settings">
+          @for (setting of settingsElements; track setting) {
+            <div class="row p-3 border-bottom">
+              <div class="col-10">
+                <h3 class="mb-0">{{ setting.settingName }}</h3>
+                <label class="text-secondary fst-italic">{{ setting.desc }}</label>
+              </div>
+              <div class="col-2 py-3">
+                <i class="fa-solid fa-2x cursor-pointer ps-1 float-end" [ngClass]="setting.value ? 'fa-toggle-on text-success' : 'fa-toggle-off text-danger'" matTooltipPosition="above" tabindex="0" (click)="UpdateSettings(setting.settingName, !setting.value)"></i>
+              </div>
+            </div>
+          }
+        </form>
+      </div>
+    </mat-card-content>
+  </div>
+</mat-card>
