@@ -17,7 +17,7 @@ import 'animate.css';
   standalone: false,
 })
 export class AppComponent {
-  title = 'CMS-Angular';
+  title = 'SMS-Angular';
   @ViewChild('drawer', { static: false }) drawer: MatDrawer | undefined;
   private subscription: Subscription = new Subscription();
   public isPrintLayout: boolean = false;

@@ -32,7 +32,6 @@ import { FrameworkModule } from './Shared/framework/framework.module';
 import { NoaccessComponent } from './Shared/common/noaccess/noaccess.component';
 import { LogErrorInterceptor } from './Shared/interceptor/log-error.interceptor';
 import { StaffLeftMenuComponent } from './Area/Staff/Shared/Layout/staff-left-menu/staff-left-menu.component';
-import { SmsLeftMenuComponent } from './School/SMS/Shared/Layout/sms-left-menu/sms-left-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,6 @@ import { SmsLeftMenuComponent } from './School/SMS/Shared/Layout/sms-left-menu/s
     CmsLeftMenuComponent,
     StaffLeftMenuComponent,
     NoaccessComponent,
-    SmsLeftMenuComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

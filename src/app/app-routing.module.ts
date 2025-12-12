@@ -13,10 +13,6 @@ const routes: Routes = [
     loadChildren: () => import('./Area/Staff/Shared/Staff.module').then((x) => x.StaffModule),
   },
   {
-    path: 'SMS',
-    loadChildren: () => import('./School/SMS/Shared/Layout/SMS.module').then((x) => x.SMSModule),
-  },
-  {
     path: '',
     redirectTo: 'CMS/Login',
     pathMatch: 'full',
