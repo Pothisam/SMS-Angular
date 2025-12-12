@@ -67,7 +67,7 @@ export class UnarchiveComponent implements OnInit {
       .catch((error: any) => {});
   }
   private GetAppendedvalue(): void {
-    const storedToken = localStorage.getItem('CMSToken');
+    const storedToken = localStorage.getItem('SMSToken');
     const institutionCode = storedToken ? JSON.parse(storedToken).institutionCode : null;
     this.idb
       .get('FormDataDB', 'FormData', this._key)

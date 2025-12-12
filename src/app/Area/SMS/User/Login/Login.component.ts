@@ -13,7 +13,7 @@ import { CaseType } from 'src/app/Shared/framework/framework.service';
   standalone: false,
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  CMSToken: string | null | undefined;
+  SMSToken: string | null | undefined;
   CaseType: CaseType = CaseType.U;
   public LoginRequest: ILoginRequest = {
     userName: '',

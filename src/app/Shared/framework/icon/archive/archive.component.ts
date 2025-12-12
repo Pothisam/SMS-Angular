@@ -42,7 +42,7 @@ export class ArchiveComponent implements OnInit {
   }
   onMatIconClick() {
     if (this.append) {
-      const storedToken = localStorage.getItem('CMSToken');
+      const storedToken = localStorage.getItem('SMSToken');
       const institutionCode = storedToken ? JSON.parse(storedToken).institutionCode : null;
 
       const transformedObject = {
