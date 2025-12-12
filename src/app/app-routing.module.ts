@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'no-access', component: NoaccessComponent },
   {
     path: 'SMS',
-    // loadChildren: () => import('./Area/SMS/Shared/Layout/SMS.module').then((x) => x.SMSModule),
+    loadChildren: () => import('./Area/SMS/Shared/Layout/SMS.module').then((x) => x.SMSModule),
   },
   {
     path: '',
