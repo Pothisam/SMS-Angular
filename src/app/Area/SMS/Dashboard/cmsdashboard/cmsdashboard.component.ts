@@ -8,7 +8,7 @@ import {
   IDepartmentNameResponse,
   IBatchResponse,
   IClassResponse,
-} from 'src/app/Modules/CMS/User/Request/login.model';
+} from 'src/app/Modules/SMS/User/Request/login.model';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { SelectInterface } from 'src/app/Global/Interface/common-interface';
 import { ITableSettings } from 'src/app/Shared/framework/table/table.model';

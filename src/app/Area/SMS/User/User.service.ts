@@ -5,7 +5,7 @@ import { GlobalService } from 'src/app/Global/Service/global.service';
 import {
   IChangeInstitutionRequest,
   ILoginRequest,
-} from 'src/app/Modules/CMS/User/Request/login.model';
+} from 'src/app/Modules/SMS/User/Request/login.model';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
 import { Cmspermission } from './Login/Permission/cmspermission';
 @Injectable({

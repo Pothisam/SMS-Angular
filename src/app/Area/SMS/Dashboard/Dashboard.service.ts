@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
-import { ILoginRequest } from 'src/app/Modules/CMS/User/Request/login.model';
 
 @Injectable({
   providedIn: 'root',

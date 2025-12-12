@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/Global/Service/global.service';
-import { ChangePasswordRequest } from 'src/app/Modules/CMS/User/Request/changepassword.model.ts';
+import { ChangePasswordRequest } from 'src/app/Modules/SMS/User/Request/changepassword.model';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
 
 @Component({

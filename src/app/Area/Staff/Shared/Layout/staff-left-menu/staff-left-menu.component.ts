@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cmspermission } from 'src/app/Area/CMS/User/Login/Permission/cmspermission';
-import { UserService } from 'src/app/Area/CMS/User/User.service';
+import { Cmspermission } from 'src/app/Area/SMS/User/Login/Permission/cmspermission';
+import { UserService } from 'src/app/Area/SMS/User/User.service';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { IMenuItem } from 'src/app/Shared/framework/accordion/accordion.model';
 import { StaffService } from '../../../User/Staff.service';

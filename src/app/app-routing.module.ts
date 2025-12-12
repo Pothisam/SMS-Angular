@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'no-access', component: NoaccessComponent },
   {
     path: 'CMS',
-    loadChildren: () => import('./Area/CMS/Shared/Layout/CMS.module').then((x) => x.CMSModule),
+    loadChildren: () => import('./Area/SMS/Shared/Layout/CMS.module').then((x) => x.CMSModule),
   },
   {
     path: 'Staff',

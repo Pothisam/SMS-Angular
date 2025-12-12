@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, ViewChild, DOCUMENT } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
-import { Cmspermission } from 'src/app/Area/CMS/User/Login/Permission/cmspermission';
+import { Cmspermission } from 'src/app/Area/SMS/User/Login/Permission/cmspermission';
 import { SelectInterface } from 'src/app/Global/Interface/common-interface';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';

@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/Global/Service/layout.service';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { FormValidationService } from 'src/app/Shared/formValidation.service';
-import { ILoginRequest } from 'src/app/Modules/CMS/User/Request/login.model';
-import { UserService } from 'src/app//Area/CMS/User/User.service';
+import { ILoginRequest } from 'src/app/Modules/SMS/User/Request/login.model';
+import { UserService } from 'src/app//Area/SMS/User/User.service';
 import { CaseType } from 'src/app/Shared/framework/framework.service';
 @Component({
   selector: 'app-Login',

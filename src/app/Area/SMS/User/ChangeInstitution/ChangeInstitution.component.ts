@@ -4,7 +4,7 @@ import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
 import {
   IChangeInstitutionRequest,
   IGtoupInstitutionResponse,
-} from 'src/app/Modules/CMS/User/Request/login.model';
+} from 'src/app/Modules/SMS/User/Request/login.model';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';

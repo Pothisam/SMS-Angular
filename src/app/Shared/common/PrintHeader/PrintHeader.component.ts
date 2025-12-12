@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InstitutionService } from 'src/app/Area/CMS/Management/Institution/Institution.service';
+import { InstitutionService } from 'src/app/Area/SMS/Management/Institution/Institution.service';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 
 @Component({

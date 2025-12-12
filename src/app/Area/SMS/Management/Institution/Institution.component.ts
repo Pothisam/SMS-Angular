@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { GlobalService } from 'src/app/Global/Service/global.service';
-import { IInstitutionRequest, IPostoffice } from 'src/app/Modules/CMS/Institution/Institution';
+import { IInstitutionRequest, IPostoffice } from 'src/app/Modules/SMS/Institution/Institution';
 import { InstitutionService } from './Institution.service';
 import { IHistoryRecordParameter } from 'src/app/Shared/framework/historyrecord/historyrecord';
 @Component({
