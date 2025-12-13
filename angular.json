@@ -171,7 +171,9 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "type": "component"
+      "type": "component",
+      "style": "scss",
+      "standalone": false
     },
     "@schematics/angular:directive": {
       "type": "directive"

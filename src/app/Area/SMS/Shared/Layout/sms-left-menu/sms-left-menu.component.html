@@ -1,3 +1,7 @@
-<p>
-  sms-left-menu works!
-</p>
+<div class="header-container pb-1">
+  <img id="LayoutImageLogoMenu" class="logo" width="330" alt="Logo" [src]="src" />
+  <button mat-icon-button class="close-button" (click)="closeMenu()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<fw-accordion [menuItems]="menu"></fw-accordion>

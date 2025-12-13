@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../../User/Login/Login.component';
 import { NoaccessComponent } from 'src/app/Shared/common/noaccess/noaccess.component';
+import { SmsDashboardComponent } from '../../Dashboard/SmsDashboard/SmsDashboard.component';
+import { SMSIsLogin } from '../../User/Login/gaurds';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -9,6 +11,11 @@ const CMSroutes: Routes = [
   {
     path: 'Login',
     component: LoginComponent,
+  },
+  {
+    path: 'Dashboard',
+    component: SmsDashboardComponent,
+    canActivate: [SMSIsLogin],
   },
 ];
 

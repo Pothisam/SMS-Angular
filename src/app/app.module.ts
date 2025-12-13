@@ -28,10 +28,14 @@ import { FormsModule } from '@angular/forms';
 import { FrameworkModule } from './Shared/framework/framework.module';
 import { NoaccessComponent } from './Shared/common/noaccess/noaccess.component';
 import { LogErrorInterceptor } from './Shared/interceptor/log-error.interceptor';
+import { SmsLeftMenuComponent } from './Area/SMS/Shared/Layout/sms-left-menu/sms-left-menu.component';
+import { SmsNavComponent } from './Area/SMS/Shared/Layout/sms-nav/sms-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
     NoaccessComponent,
+    SmsLeftMenuComponent,
+    SmsNavComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
