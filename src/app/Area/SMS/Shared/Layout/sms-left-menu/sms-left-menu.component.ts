@@ -24,11 +24,11 @@ export class SmsLeftMenuComponent implements OnInit {
     this.globalService.menutoggle();
   }
   generatemenu() {
-    this.menu.push({ name: 'Dashboard', link: 'CMS/Dashboard' });
+    this.menu.push({ name: 'Dashboard', link: 'SMS/Dashboard' });
     this.menu.push({
               name: 'Management',
               subMenu: [
-                { name: 'General Information', link: 'CMS/Institution' },
+                { name: 'General Information', link: 'SMS/Institution' },
                 { name: 'Department', link: 'CMS/Department' },
                 { name: 'Course', link: 'CMS/Course' },
                 { name: 'Section', link: 'CMS/Section' },

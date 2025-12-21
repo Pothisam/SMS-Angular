@@ -1,0 +1,25 @@
+.scrolldiv {
+  height: calc(100vh - 122px);
+}
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-align {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.mat-card-title {
+  margin: 0;
+  padding: 0;
+}

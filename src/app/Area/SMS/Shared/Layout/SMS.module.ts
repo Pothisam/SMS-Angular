@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../../User/Login/Login.component';
 import { FrameworkModule } from 'src/app/Shared/framework/framework.module';
 import { SMSRoutingModule } from './SMS-routing.module';
+import { InstitutionComponent } from '../../Management/Institution/Institution.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
+    InstitutionComponent
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })
