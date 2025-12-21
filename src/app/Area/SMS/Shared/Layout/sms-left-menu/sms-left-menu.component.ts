@@ -29,8 +29,7 @@ export class SmsLeftMenuComponent implements OnInit {
               name: 'Management',
               subMenu: [
                 { name: 'General Information', link: 'SMS/Institution' },
-                { name: 'Department', link: 'CMS/Department' },
-                { name: 'Course', link: 'CMS/Course' },
+                { name: 'Course', link: 'SMS/Class' },
                 { name: 'Section', link: 'CMS/Section' },
                 { name: 'Batch', link: 'CMS/Batch' },
                 { name: 'Holiday-Workingday', link: 'CMS/Holiday' },

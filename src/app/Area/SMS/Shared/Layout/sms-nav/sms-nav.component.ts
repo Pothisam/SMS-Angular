@@ -60,14 +60,23 @@ export class SmsNavComponent implements OnInit {
     }
   }
   loadmenu() {
-    this.filter.push({
-          text: 'Dashboard',
-          value: '/SMS/Dashboard',
-        });
-
+    this.filter.push(
+      {
+        text: 'Dashboard',
+        value: '/SMS/Dashboard',
+      },
+      {
+        text: 'Institution',
+        value: '/SMS/Institution',
+      },
+      {
+        text: 'Class',
+        value: '/SMS/Class',
+      },
+    );
   }
   ngOnInit() {}
-   darkMode() {
+  darkMode() {
     this.darkmode = !this.darkmode;
     if (this.darkmode) {
       this.globalService.switchTheme('cyan-orange');

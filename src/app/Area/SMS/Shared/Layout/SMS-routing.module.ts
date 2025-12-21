@@ -5,6 +5,7 @@ import { NoaccessComponent } from 'src/app/Shared/common/noaccess/noaccess.compo
 import { SmsDashboardComponent } from '../../Dashboard/SmsDashboard/SmsDashboard.component';
 import { SMSIsLogin } from '../../User/Login/gaurds';
 import { InstitutionComponent } from '../../Management/Institution/Institution.component';
+import { ClassComponent } from '../../Management/Class/Class.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -21,6 +22,11 @@ const CMSroutes: Routes = [
   {
     path: 'Institution',
     component: InstitutionComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'Class',
+    component: ClassComponent,
     canActivate: [SMSIsLogin],
   },
 ];
