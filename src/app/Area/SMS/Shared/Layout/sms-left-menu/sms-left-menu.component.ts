@@ -7,14 +7,13 @@ import { IMenuItem } from 'src/app/Shared/framework/accordion/accordion.model';
   selector: 'app-sms-left-menu',
   templateUrl: './sms-left-menu.component.html',
   styleUrls: ['./sms-left-menu.component.css'],
-  standalone: false
+  standalone: false,
 })
 export class SmsLeftMenuComponent implements OnInit {
   src: string = '';
   panelOpenState = false;
   private retryCount = 0;
-  constructor(private globalService: GlobalService,
-    private router: Router) { }
+  constructor(private globalService: GlobalService, private router: Router) {}
 
   ngOnInit() {
     this.setMenuLogo();
@@ -26,16 +25,15 @@ export class SmsLeftMenuComponent implements OnInit {
   generatemenu() {
     this.menu.push({ name: 'Dashboard', link: 'SMS/Dashboard' });
     this.menu.push({
-              name: 'Management',
-              subMenu: [
-                { name: 'General Information', link: 'SMS/Institution' },
-                { name: 'Course', link: 'SMS/Class' },
-                { name: 'Section', link: 'CMS/Section' },
-                { name: 'Batch', link: 'CMS/Batch' },
-                { name: 'Holiday-Workingday', link: 'CMS/Holiday' },
-              ],
-            });
-
+      name: 'Management',
+      subMenu: [
+        { name: 'General Information', link: 'SMS/Institution' },
+        { name: 'Class', link: 'SMS/Class' },
+        { name: 'Section', link: 'SMS/Section' },
+        { name: 'Batch', link: 'CMS/Batch' },
+        { name: 'Holiday-Workingday', link: 'CMS/Holiday' },
+      ],
+    });
   }
   public menu: IMenuItem[] = [
     // ... other menu items
@@ -58,5 +56,4 @@ export class SmsLeftMenuComponent implements OnInit {
       }
     }
   }
-
 }

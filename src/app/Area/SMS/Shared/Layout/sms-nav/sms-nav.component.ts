@@ -73,6 +73,10 @@ export class SmsNavComponent implements OnInit {
         text: 'Class',
         value: '/SMS/Class',
       },
+      {
+        text: 'Section',
+        value: '/SMS/Section',
+      },
     );
   }
   ngOnInit() {}

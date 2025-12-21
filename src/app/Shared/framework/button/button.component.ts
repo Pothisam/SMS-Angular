@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
+  output,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -143,6 +144,9 @@ export class ButtonComponent implements OnInit {
   // #endregion
 
   // #region outputdecarators (16)
+  @Input() isAPISuccess: boolean = false;
+  @Output()
+  isAPISuccessChange = new EventEmitter<boolean>();
   @Output()
   apiResponseSuccess = new EventEmitter<any>();
   @Output()
@@ -205,8 +209,10 @@ export class ButtonComponent implements OnInit {
               this._apiResponse = Response.data;
               this.apiResponseChange.emit(this._apiResponse);
               this.apiResponseSuccess.emit(true);
+              this.isAPISuccessChange.emit(true);
             } else if (Response.status == '200') {
               this.apiResponseSuccess.emit(true);
+              this.isAPISuccessChange.emit(true);
             } else {
             }
             setTimeout(() => {
@@ -228,8 +234,10 @@ export class ButtonComponent implements OnInit {
             this._apiResponse = Response.data;
             this.apiResponseChange.emit(this._apiResponse);
             this.apiResponseSuccess.emit(true);
+            this.isAPISuccessChange.emit(true);
           } else if (Response.status == '200') {
             this.apiResponseSuccess.emit(true);
+            this.isAPISuccessChange.emit(true);
           }
 
           setTimeout(() => {

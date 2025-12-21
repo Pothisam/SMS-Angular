@@ -6,6 +6,7 @@ import { SmsDashboardComponent } from '../../Dashboard/SmsDashboard/SmsDashboard
 import { SMSIsLogin } from '../../User/Login/gaurds';
 import { InstitutionComponent } from '../../Management/Institution/Institution.component';
 import { ClassComponent } from '../../Management/Class/Class.component';
+import { ClassSectionComponent } from '../../Management/ClassSection/ClassSection.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,6 +28,11 @@ const CMSroutes: Routes = [
   {
     path: 'Class',
     component: ClassComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'Section',
+    component: ClassSectionComponent,
     canActivate: [SMSIsLogin],
   },
 ];
