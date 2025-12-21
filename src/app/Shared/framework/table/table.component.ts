@@ -96,6 +96,8 @@ export class TableComponent implements OnInit {
   }
   @Output() matDeleteClickChange = new EventEmitter<any>();
   @Output() DeleteapiCalled = new EventEmitter<any>();
+  @Input() toggleStatus: boolean = false;
+  @Output() toggleStatusChange = new EventEmitter<boolean>();
   public _iconclick: string = '';
 
   @Input()
@@ -382,6 +384,9 @@ export class TableComponent implements OnInit {
       }
 
       this.CalltoggleAPI();
+      setTimeout(() => {
+        this.toggleStatusChange.emit(true);
+      }, 1000);
     }
   }
   //End Grid Button Click

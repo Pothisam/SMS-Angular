@@ -6,9 +6,16 @@ import { SMSRoutingModule } from './SMS-routing.module';
 import { InstitutionComponent } from '../../Management/Institution/Institution.component';
 import { ClassComponent } from '../../Management/Class/Class.component';
 import { ClassSectionComponent } from '../../Management/ClassSection/ClassSection.component';
+import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYear.component';
 
 @NgModule({
-  declarations: [LoginComponent, InstitutionComponent, ClassComponent, ClassSectionComponent],
+  declarations: [
+    LoginComponent,
+    InstitutionComponent,
+    ClassComponent,
+    ClassSectionComponent,
+    AcademicYearComponent,
+  ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })
 export class SMSModule {}

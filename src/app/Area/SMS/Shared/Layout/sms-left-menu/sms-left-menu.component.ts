@@ -30,7 +30,7 @@ export class SmsLeftMenuComponent implements OnInit {
         { name: 'General Information', link: 'SMS/Institution' },
         { name: 'Class', link: 'SMS/Class' },
         { name: 'Section', link: 'SMS/Section' },
-        { name: 'Batch', link: 'CMS/Batch' },
+        { name: 'AcademicYear', link: 'SMS/AcademicYear' },
         { name: 'Holiday-Workingday', link: 'CMS/Holiday' },
       ],
     });

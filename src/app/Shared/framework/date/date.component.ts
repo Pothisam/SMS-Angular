@@ -42,7 +42,19 @@ export const Type_Month = {
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
+export const Type_Year = {
+  parse: {
+    dateInput: 'YYYY',
+  },
+  display: {
+    dateInput: 'YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 // #endregion
+
 @Component({
   selector: 'fw-date',
   templateUrl: './date.component.html',
@@ -55,8 +67,18 @@ export const Type_Month = {
     },
     {
       provide: MAT_DATE_FORMATS,
-      useFactory: (component: DateComponent) =>
-        component.type === 'date' ? Type_Date : Type_Month,
+      useFactory: (component: DateComponent) => {
+        switch (component.type) {
+          case 'date':
+            return Type_Date;
+          case 'month':
+            return Type_Month;
+          case 'year':
+            return Type_Year;
+          default:
+            return Type_Date;
+        }
+      },
       deps: [DateComponent],
     },
   ],
@@ -69,6 +91,8 @@ export class DateComponent implements OnInit {
   id: string = '';
   message: string = '';
   outputValue: string = '';
+  panelClass = '';
+  startView: 'month' | 'year' | 'multi-year' = 'month';
   // #endregion
 
   // #region numbers (2)
@@ -356,6 +380,7 @@ export class DateComponent implements OnInit {
 
   ngOnInit() {
     this.message = 'Please Enter ' + this.label;
+    this.configurePicker();
   }
 
   clearInputValue() {
@@ -377,13 +402,29 @@ export class DateComponent implements OnInit {
 
     this._modelValue = `${formattedYear}-${formattedMonth}`;
     this.modelValueChange.emit(this._modelValue);
+    this.isSelectChangeChange.emit(true);
 
     if (this.type === 'month') {
       // Close the datepicker after selecting a month
       datepicker.close();
     }
   }
+  onYearSelected(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value ?? moment();
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
 
+    const formattedYear = normalizedYear.year();
+
+    this._modelValue = `${formattedYear}`;
+    this.modelValueChange.emit(this._modelValue);
+    this.isSelectChangeChange.emit(true);
+
+    if (this.type === 'year') {
+      // Close the datepicker after selecting a year
+      datepicker.close();
+    }
+  }
   async onDateSelect(event: any): Promise<void> {
     await this.getCurrentDate();
     const selectedDate: Date = event.value instanceof Date ? event.value : new Date(event.value);
@@ -466,6 +507,39 @@ export class DateComponent implements OnInit {
         response.data instanceof Date ? response.data : new Date(response.data);
       const formattedDate = this.formatDate(selectedDate);
       this.currentdate = new Date(formattedDate);
+    }
+  }
+  getComponentType(component: { type: string }) {
+    switch (component.type) {
+      case 'date':
+        return Type_Date;
+
+      case 'month':
+        return Type_Month;
+
+      case 'year':
+        return Type_Year;
+
+      default:
+        return null; // or throw error
+    }
+  }
+  configurePicker() {
+    switch (this.type) {
+      case 'month':
+        this.panelClass = 'month-picker';
+        this.startView = 'multi-year';
+        break;
+
+      case 'year':
+        this.panelClass = 'year-picker';
+        this.startView = 'multi-year';
+        break;
+
+      default: // date
+        this.panelClass = '';
+        this.startView = 'month';
+        break;
     }
   }
 }

@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>Academic Year</mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="AcademicYear">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-date [isrequired]="true" label="Select Year" [inputdisabled]="true" type="year"
+              [(modelValue)]="request.yearDate" (isSelectChangeChange)="onValueChage()"></fw-date>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-textbox label="Academic Year" [(modelValue)]="request.year" [isdisabled]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 pt-3">
+            <fw-button label="Add Academic Year" apiUrl="/AcademicYear/AddAcademicYear" [parameter]="request"
+              [(isAPISuccess)]="triggerTableAPI"></fw-button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.yearList" [(toggleStatus)]="triggerTableAPI"
+              apiUrl="/AcademicYear/GetAcademicYearList" [(triggerAPI)]="triggerTableAPI"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
