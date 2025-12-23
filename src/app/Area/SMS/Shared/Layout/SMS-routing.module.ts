@@ -8,6 +8,8 @@ import { InstitutionComponent } from '../../Management/Institution/Institution.c
 import { ClassComponent } from '../../Management/Class/Class.component';
 import { ClassSectionComponent } from '../../Management/ClassSection/ClassSection.component';
 import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYear.component';
+import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
+import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -39,6 +41,21 @@ const CMSroutes: Routes = [
   {
     path: 'AcademicYear',
     component: AcademicYearComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'AcademicYear',
+    component: AcademicYearComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'AddStaff',
+    component: AddStaffComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'ViewStaff',
+    component: ViewStaffComponent,
     canActivate: [SMSIsLogin],
   },
 ];

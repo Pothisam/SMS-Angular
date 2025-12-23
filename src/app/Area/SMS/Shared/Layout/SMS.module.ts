@@ -7,6 +7,8 @@ import { InstitutionComponent } from '../../Management/Institution/Institution.c
 import { ClassComponent } from '../../Management/Class/Class.component';
 import { ClassSectionComponent } from '../../Management/ClassSection/ClassSection.component';
 import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYear.component';
+import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
+import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYea
     ClassComponent,
     ClassSectionComponent,
     AcademicYearComponent,
+    AddStaffComponent,
+    ViewStaffComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })
