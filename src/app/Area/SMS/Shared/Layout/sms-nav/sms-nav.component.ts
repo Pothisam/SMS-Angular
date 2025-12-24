@@ -87,7 +87,7 @@ export class SmsNavComponent implements OnInit {
       },
       {
         text: 'View Staff',
-        value: '/SMS/ViewStaff',
+        value: '/SMS/ViewStaffs',
       },
     );
   }

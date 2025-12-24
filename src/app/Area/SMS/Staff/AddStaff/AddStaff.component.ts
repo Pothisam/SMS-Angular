@@ -86,7 +86,7 @@ export class AddStaffComponent implements OnInit {
     columns: [
       {
         title: 'Language Known',
-        data: 'Language',
+        data: 'language',
         short: true,
         width: 30,
       },
@@ -118,12 +118,12 @@ export class AddStaffComponent implements OnInit {
         buttongroup: [
           {
             button: true,
-            buttondata: 'Language',
+            buttondata: 'language',
             buttons: ['delete'],
             conditions: ['toggle|status|Active'],
           },
         ],
-        buttonlabel: 'Language',
+        buttonlabel: 'language',
       },
     ],
     columnSticky: [0, 1],
@@ -160,7 +160,7 @@ export class AddStaffComponent implements OnInit {
       },
       {
         title: 'Instituion Name',
-        data: 'instituionName',
+        data: 'institutionName',
         short: true,
       },
       {
@@ -206,7 +206,7 @@ export class AddStaffComponent implements OnInit {
     columns: [
       {
         title: 'Institution Name',
-        data: 'InstituionName',
+        data: 'institutionName',
         short: true,
         width: 30,
       },
@@ -435,7 +435,7 @@ export class AddStaffComponent implements OnInit {
   }
   ConvertLanguage() {
     this.ILanquageKnownList = this.LanguageknownList.map((item) => ({
-      languageKnow: item.language,
+      language: item.language,
       readLanguage: item.read ? 'Yes' : 'No',
       writeLanguage: item.write ? 'Yes' : 'No',
       speakLanguage: item.speake ? 'Yes' : 'No',
@@ -469,7 +469,7 @@ export class AddStaffComponent implements OnInit {
       degree: '',
       yearOfPassing: '',
       universityName: '',
-      instituionName: '',
+      institutionName: '',
       mode: '',
       passPercentage: '',
       specialization: '',
@@ -492,9 +492,10 @@ export class AddStaffComponent implements OnInit {
   AddExpirence() {
     const existingIndex = this.ExperienceDetailList.findIndex(
       (item) =>
-        item.instituionName.toLowerCase() ===
-          this.ExperienceDetailRequest.instituionName.toLowerCase() &&
-        item.position.toLowerCase() === this.ExperienceDetailRequest.position.toLowerCase(),
+        (item.institutionName ?? '').toLowerCase() ===
+          (this.ExperienceDetailRequest.institutionName ?? '').toLowerCase() &&
+        (item.position ?? '').toLowerCase() ===
+          (this.ExperienceDetailRequest.position ?? '').toLowerCase(),
     );
     if (existingIndex !== -1) {
       // Update the existing language entry
@@ -517,7 +518,7 @@ export class AddStaffComponent implements OnInit {
     if (remove != null) {
       this.ExperienceDetailList = this.ExperienceDetailList.filter(
         (item) =>
-          item.instituionName.toLowerCase() !== remove.instituionName.toLowerCase() ||
+          item.institutionName.toLowerCase() !== remove.institutionName.toLowerCase() ||
           item.position.toLowerCase() !== remove.position.toLowerCase(),
       );
     }
@@ -603,7 +604,7 @@ export class AddStaffComponent implements OnInit {
   }
   ReverseConvertLanguage() {
     this.LanguageknownList = this.ILanquageKnownList.map((item) => ({
-      language: item.languageKnow,
+      language: item.language,
       read: item.readLanguage === 'Yes',
       write: item.writeLanguage === 'Yes',
       speake: item.speakLanguage === 'Yes',

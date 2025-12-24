@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>
+      View Staff
+      <mat-chip-set>
+        <mat-chip class="cursor-pointer" (click)="onChipClick('', '')">
+          Total Staff
+          <span class="text-danger">{{ staffcount.totalStaff }}</span>
+        </mat-chip>
+        <mat-chip class="cursor-pointer" (click)="onChipClick('StaffType', 'Teaching')">
+          Total Teaching Staff
+          <span class="text-danger">{{ staffcount.teaching }}</span>
+        </mat-chip>
+        <mat-chip class="cursor-pointer" (click)="onChipClick('StaffType', 'Non-Teaching')">
+          Total Non-Teaching Staff
+          <span class="text-danger">{{ staffcount.nonTeaching }}</span>
+        </mat-chip>
+        <mat-chip class="cursor-pointer" (click)="onChipClick('Gender', 'Male')">
+          Male Staff
+          <span class="text-danger">{{ staffcount.male }}</span>
+        </mat-chip>
+        <mat-chip class="cursor-pointer" (click)="onChipClick('Gender', 'Female')">
+          Female Staff
+          <span class="text-danger">{{ staffcount.female }}</span>
+        </mat-chip>
+      </mat-chip-set>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="viewStaffList">
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <fw-select entity="DepartmentCode" label="Designation" (onSelectChange)="onDesignationhanges($event)"
+              [(modelValue)]="request.designation" [triggerAPIOnload]="true" [apicache]="true"
+              apiUrl="/Staff/GetStaffDesignationList" valueAndname="designationCode,designation"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <fw-autocomplete entity="name" label="Name" apiUrl="/Staff/GetStaffAutoComplete"
+              [(modelValue)]="request.name" valueAndname="column,column" [parameter]="nameRequest" min="0"
+              maxlength="20" (modelValueChange)="onNameChange()" (keydown)="onNameChange()"></fw-autocomplete>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.stafflist" apiUrl="/Staff/GetStaffDetailSearch"
+              [parameter]="staffsearch" [(triggerAPI)]="tiggertable"
+              (matEditClickChange)="onEditClick($event)"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

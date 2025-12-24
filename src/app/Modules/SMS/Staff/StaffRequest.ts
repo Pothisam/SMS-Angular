@@ -14,13 +14,13 @@ export class ILanguageKnown {
   }
 }
 export class ILanquageKnownRequest {
-  languageKnow: string;
+  language: string;
   readLanguage: string;
   writeLanguage: string;
   speakLanguage: string;
 
   constructor(init?: Partial<ILanquageKnownRequest>) {
-    this.languageKnow = init?.languageKnow ?? '';
+    this.language = init?.language ?? '';
     this.readLanguage = init?.readLanguage ?? '';
     this.writeLanguage = init?.writeLanguage ?? '';
     this.speakLanguage = init?.speakLanguage ?? '';
@@ -32,7 +32,7 @@ export class IEducationDetail {
   degree: string;
   yearOfPassing: string;
   universityName: string;
-  instituionName: string;
+  institutionName: string;
   mode: string;
   passPercentage: string;
   specialization: string;
@@ -42,7 +42,7 @@ export class IEducationDetail {
     this.degree = init?.degree ?? '';
     this.yearOfPassing = init?.yearOfPassing ?? '';
     this.universityName = init?.universityName ?? '';
-    this.instituionName = init?.instituionName ?? '';
+    this.institutionName = init?.institutionName ?? '';
     this.mode = init?.mode ?? '';
     this.passPercentage = init?.passPercentage ?? '';
     this.specialization = init?.specialization ?? '';
@@ -50,7 +50,7 @@ export class IEducationDetail {
 }
 
 export class IExperienceDetail {
-  instituionName: string;
+  institutionName: string;
   position: string;
   fromDate: string;
   toDate: string;
@@ -58,7 +58,7 @@ export class IExperienceDetail {
   salary: string;
 
   constructor(init?: Partial<IExperienceDetail>) {
-    this.instituionName = init?.instituionName ?? '';
+    this.institutionName = init?.institutionName ?? '';
     this.position = init?.position ?? '';
     this.fromDate = init?.fromDate ?? '';
     this.toDate = init?.toDate ?? '';
@@ -66,6 +66,7 @@ export class IExperienceDetail {
     this.salary = init?.salary ?? '';
   }
 }
+
 export class IStaffDetails {
   title: string;
   name: string;
@@ -155,6 +156,20 @@ export class IStaffDetails {
     this.guid = init?.guid ?? '';
   }
 }
+export class StaffDetailsUpdate extends IStaffDetails {
+  sysid: number;
+  staffID: string;
+  status: string;
+  dor: string; // ISO date string
+
+  constructor(init?: Partial<StaffDetailsUpdate>) {
+    super(init);
+    this.sysid = init?.sysid ?? 0;
+    this.staffID = init?.staffID ?? '';
+    this.status = init?.status ?? '';
+    this.dor = init?.dor ?? '';
+  }
+}
 export class IStaffAutocompleteRequest {
   tableName: string;
   columnName: string;
@@ -179,4 +194,77 @@ export interface IStaffRequest {
   educationRequests: IEducationDetail[];
   experienceRequests: IExperienceDetail[];
   documentRequests: IDocumentLibraryAdd[];
+}
+export class StaffDetailSearchResponse {
+  sysId: number;
+  name: string;
+  designation: string;
+  mobileNo: string;
+  staffType: string;
+  gender: string;
+  enteredBy: string;
+  entryDate?: Date;
+  modifiedBy: string;
+  modifiedDate?: Date;
+
+  constructor(init?: Partial<StaffDetailSearchResponse>) {
+    this.sysId = init?.sysId ?? 0;
+    this.name = init?.name ?? '';
+    this.designation = init?.designation ?? '';
+    this.mobileNo = init?.mobileNo ?? '';
+    this.staffType = init?.staffType ?? '';
+    this.gender = init?.gender ?? '';
+    this.enteredBy = init?.enteredBy ?? '';
+    this.entryDate = init?.entryDate;
+    this.modifiedBy = init?.modifiedBy ?? '';
+    this.modifiedDate = init?.modifiedDate;
+  }
+}
+export class StaffSearchRequest {
+  columnName: string;
+  searchParam: string;
+
+  constructor(init?: Partial<StaffSearchRequest>) {
+    this.columnName = init?.columnName ?? '';
+    this.searchParam = init?.searchParam ?? '';
+  }
+}
+export class StaffSearch {
+  designation: string;
+  name: string;
+
+  constructor(init?: Partial<StaffSearch>) {
+    this.designation = init?.designation ?? '';
+    this.name = init?.name ?? '';
+  }
+}
+export class StaffCountResponse {
+  totalStaff: number;
+  male: number;
+  female: number;
+  teaching: number;
+  nonTeaching: number;
+
+  constructor(init?: Partial<StaffCountResponse>) {
+    this.totalStaff = init?.totalStaff ?? 0;
+    this.male = init?.male ?? 0;
+    this.female = init?.female ?? 0;
+    this.teaching = init?.teaching ?? 0;
+    this.nonTeaching = init?.nonTeaching ?? 0;
+  }
+}
+export class StaffDetailsPKRequest {
+  sysId: number;
+
+  constructor(init?: Partial<StaffDetailsPKRequest>) {
+    this.sysId = init?.sysId ?? 0;
+  }
+}
+export class EducationAdd extends IEducationDetail {
+  sysId: number;
+
+  constructor(init?: Partial<EducationAdd>) {
+    super(init);
+    this.sysId = init?.sysId ?? 0;
+  }
 }

@@ -9,6 +9,7 @@ import { ClassSectionComponent } from '../../Management/ClassSection/ClassSectio
 import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYear.component';
 import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
 import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
+import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
     AcademicYearComponent,
     AddStaffComponent,
     ViewStaffComponent,
+    ViewStaffListComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })

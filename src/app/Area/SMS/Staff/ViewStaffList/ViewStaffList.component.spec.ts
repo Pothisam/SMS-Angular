@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ViewStaffComponent } from './ViewStaff.component';
+import { ViewStaffListComponent } from './ViewStaffList.component';
 
-describe('ViewStaffComponent', () => {
-  let component: ViewStaffComponent;
-  let fixture: ComponentFixture<ViewStaffComponent>;
+describe('ViewStaffListComponent', () => {
+  let component: ViewStaffListComponent;
+  let fixture: ComponentFixture<ViewStaffListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewStaffComponent],
+      declarations: [ViewStaffListComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewStaffComponent);
+    fixture = TestBed.createComponent(ViewStaffListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

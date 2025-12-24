@@ -38,7 +38,7 @@ export class SmsLeftMenuComponent implements OnInit {
       name: 'Staff',
       subMenu: [
         { name: 'Add Staff', link: 'SMS/AddStaff' },
-        { name: 'View Staff', link: 'SMS/ViewStaff' },
+        { name: 'View Staff', link: 'SMS/ViewStaffs' },
       ],
     });
   }
