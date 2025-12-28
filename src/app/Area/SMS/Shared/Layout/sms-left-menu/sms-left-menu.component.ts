@@ -41,6 +41,13 @@ export class SmsLeftMenuComponent implements OnInit {
         { name: 'View Staff', link: 'SMS/ViewStaffs' },
       ],
     });
+    this.menu.push({
+      name: 'Student',
+      subMenu: [
+        { name: 'Add Student', link: 'SMS/AddStudent' },
+        { name: 'View Staff', link: 'SMS/ViewStaffs' },
+      ],
+    });
   }
   public menu: IMenuItem[] = [
     // ... other menu items

@@ -10,6 +10,7 @@ import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYea
 import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
 import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.component';
+import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.
     AddStaffComponent,
     ViewStaffComponent,
     ViewStaffListComponent,
+    AddStudentComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })

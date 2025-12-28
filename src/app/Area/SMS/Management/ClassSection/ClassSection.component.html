@@ -7,7 +7,7 @@
       <form id="department">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-            <fw-select entity="DepartmentCode" label="Department Name" [isrequired]="true" [apicache]="true"
+            <fw-select entity="className" label="Class Name" [isrequired]="true" [apicache]="true"
               apiUrl="/Class/GetClassListActive" [(modelValue)]="request.classFkid" valueAndname="sysId,className"
               [triggerAPIOnload]="true" [(isSelectChange)]="triggerTableAPI"></fw-select>
           </div>

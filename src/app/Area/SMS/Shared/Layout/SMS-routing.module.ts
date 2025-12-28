@@ -11,6 +11,7 @@ import { AcademicYearComponent } from '../../Management/AcademicYear/AcademicYea
 import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
 import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.component';
+import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -62,6 +63,11 @@ const CMSroutes: Routes = [
   {
     path: 'ViewStaff',
     component: ViewStaffComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'AddStudent',
+    component: AddStudentComponent,
     canActivate: [SMSIsLogin],
   },
 ];

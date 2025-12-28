@@ -40,6 +40,7 @@ export class IDocumentLibraryList {
     this.fileSize = init?.fileSize ?? 0;
   }
 }
+
 export class ProfileRequest {
   guid: number;
 
