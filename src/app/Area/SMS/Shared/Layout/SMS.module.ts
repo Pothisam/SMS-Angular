@@ -11,6 +11,7 @@ import { AddStaffComponent } from '../../Staff/AddStaff/AddStaff.component';
 import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.component';
 import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.component';
+import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStudentList.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.compone
     ViewStaffComponent,
     ViewStaffListComponent,
     AddStudentComponent,
+    ViewStudentListComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })

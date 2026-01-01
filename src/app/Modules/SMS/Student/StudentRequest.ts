@@ -139,3 +139,19 @@ export class StudentDetailInsertRequest {
     this.imageData = init?.imageData ?? '';
   }
 }
+export class StudentShortRequest {
+  courseSysid: string;
+
+  constructor(courseSysid: string = '') {
+    this.courseSysid = courseSysid;
+  }
+}
+export class StudentSearchRequest {
+  columnName: string;
+  searchParam: string;
+
+  constructor(data?: Partial<StudentSearchRequest>) {
+    this.columnName = data?.columnName || '';
+    this.searchParam = data?.searchParam || '';
+  }
+}
