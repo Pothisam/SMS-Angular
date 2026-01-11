@@ -13,10 +13,12 @@ import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.
 import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.component';
 import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStudentList.component';
 import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.component';
+import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePassword.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
+    ChangePasswordComponent,
     InstitutionComponent,
     ClassComponent,
     ClassSectionComponent,
