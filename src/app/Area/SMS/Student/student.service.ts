@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalService } from 'src/app/Global/Service/global.service';
+import { IDocumentLibraryAddByFkid } from 'src/app/Modules/Document/documentlibrary';
+import { StaffDetailsPKRequest } from 'src/app/Modules/SMS/Staff/StaffRequest';
 import {
+  StudentDetailRequest,
   StudentSearchRequest,
   StudentShortRequest,
 } from 'src/app/Modules/SMS/Student/StudentRequest';
@@ -39,6 +42,36 @@ export class StudentService {
       this.http,
       this.baseurl + this.url,
       request,
+      this.Area,
+      false,
+    );
+  }
+  getStudentDetailsSysid(request: StudentDetailRequest): Observable<any> {
+    this.url = '/Student/GetStudentDetailBySysid';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      request,
+      this.Area,
+      false,
+    );
+  }
+  AddDocument(parameter: IDocumentLibraryAddByFkid): Observable<any> {
+    this.url = '/Student/AddStudentDocument';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      parameter,
+      this.Area,
+      false,
+    );
+  }
+  GetStudentDocument(parameter: StudentDetailRequest): Observable<any> {
+    this.url = '/Student/GetStudentDocument';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      parameter,
       this.Area,
       false,
     );

@@ -309,7 +309,7 @@ export class AddStudentComponent implements OnInit {
     }
   }
   onmodeOfTransportChange() {
-    if (this.request.modeOftransport == 'College bus') {
+    if (this.request.modeOftransport == 'School bus') {
       this.boardingPoint = true;
     } else {
       this.boardingPoint = false;

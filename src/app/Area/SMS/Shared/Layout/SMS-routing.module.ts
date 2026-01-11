@@ -13,6 +13,7 @@ import { ViewStaffComponent } from '../../Staff/ViewStaff/ViewStaff.component';
 import { ViewStaffListComponent } from '../../Staff/ViewStaffList/ViewStaffList.component';
 import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.component';
 import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStudentList.component';
+import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -74,6 +75,11 @@ const CMSroutes: Routes = [
   {
     path: 'ViewStudentList',
     component: ViewStudentListComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'ViewStudent',
+    component: ViewStudentComponent,
     canActivate: [SMSIsLogin],
   },
 ];
