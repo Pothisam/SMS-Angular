@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { GlobalService } from 'src/app/Global/Service/global.service';
-import { InstitutionRequest, Postoffice } from 'src/app/Modules/SMS/Institution/Institution';
+import {
+  InstitutionRequest,
+  Postoffice,
+  UpdateInstitutionFaviconRequest,
+  UpdateInstitutionLogoRequest,
+  UpdateInstitutionLogoWithTextRequest,
+} from 'src/app/Modules/SMS/Institution/Institution';
 import { IHistoryRecordParameter } from 'src/app/Shared/framework/historyrecord/historyrecord';
 import { ManagementService } from '../management.service';
 
@@ -9,13 +15,19 @@ import { ManagementService } from '../management.service';
   selector: 'app-Institution',
   templateUrl: './Institution.component.html',
   styleUrls: ['./Institution.component.scss'],
-  standalone: false
+  standalone: false,
 })
 export class InstitutionComponent implements OnInit {
   logoWithText: string = '';
   logo: string = '';
   favIcon: string = '';
   private isComponentLoaded = false;
+  public UpdateInstitutionLogoRequest: UpdateInstitutionLogoRequest =
+    new UpdateInstitutionLogoRequest();
+  public UpdateInstitutionLogoWithTextRequest: UpdateInstitutionLogoWithTextRequest =
+    new UpdateInstitutionLogoWithTextRequest();
+  public UpdateInstitutionFaviconRequest: UpdateInstitutionFaviconRequest =
+    new UpdateInstitutionFaviconRequest();
   public _historyrecordParameter: IHistoryRecordParameter = new IHistoryRecordParameter();
   public request: InstitutionRequest = new InstitutionRequest();
   public postalrequest: Postoffice = new Postoffice();
@@ -25,10 +37,7 @@ export class InstitutionComponent implements OnInit {
   onTabChange(event: MatTabChangeEvent): void {
     this.selectedTabIndex = event.index;
   }
-  constructor(
-    private globalService: GlobalService,
-    private managementService: ManagementService
-  ) {}
+  constructor(private globalService: GlobalService, private managementService: ManagementService) {}
 
   ngOnInit() {
     this.GetInstitutionDetails(true);
@@ -43,6 +52,9 @@ export class InstitutionComponent implements OnInit {
     this._historyrecordParameter.tableName = 'InstitutionDetails';
     const institutionCode = this.globalService.GLSKV('SMSToken', 'institutionCode');
     this._historyrecordParameter.fID = institutionCode !== null ? Number(institutionCode) : 0; // or any fallback number
+    this.UpdateInstitutionLogoRequest.sysid = this._historyrecordParameter.fID;
+    this.UpdateInstitutionLogoWithTextRequest.sysid = this._historyrecordParameter.fID;
+    this.UpdateInstitutionFaviconRequest.sysid = this._historyrecordParameter.fID;
   }
   ngAfterViewInit() {
     this.isComponentLoaded = true;
@@ -84,5 +96,4 @@ export class InstitutionComponent implements OnInit {
       this.GetInstitutionDetails(false);
     }
   }
-
 }

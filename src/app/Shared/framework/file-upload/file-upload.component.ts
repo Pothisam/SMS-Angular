@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FrameworkService } from '../framework.service';
+import { GlobalService } from 'src/app/Global/Service/global.service';
 
 @Component({
   selector: 'fw-file-upload',
@@ -19,6 +20,7 @@ import { FrameworkService } from '../framework.service';
 export class FileUploadComponent implements OnInit, AfterViewInit {
   _actualfileSizeInKB: number = 0;
   _buttonclass: string = '';
+  public area: string = this.globalService.getArea();
   @Input() buttontype: string = 'P';
   dynamicId: string = `fileInput-${Math.floor(Math.random() * 1000)}`;
 
@@ -91,8 +93,24 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
   @Input() accept: string = 'image';
 
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-
-  constructor(private frameworkService: FrameworkService) {}
+  @Input() apiUrl: string = '';
+  public _parameter: any;
+  get parameter() {
+    return this._parameter;
+  }
+  @Input()
+  set parameter(value: any) {
+    if (this._parameter === value) {
+      return;
+    }
+    this._parameter = value;
+    this.parameterChange.emit(this._parameter);
+  }
+  @Output()
+  parameterChange = new EventEmitter<any>();
+  @Output()
+  apiResponseSuccess = new EventEmitter<any>();
+  constructor(private frameworkService: FrameworkService, private globalService: GlobalService) {}
 
   ngOnInit() {
     this.setButtonClass();
@@ -152,6 +170,7 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
                 this.filenameChange.emit(this._filename);
                 this.dataChange.emit(this._data);
                 this.contenttypeChange.emit(this._contenttype);
+                this.callAPI();
               }
             });
         } else {
@@ -199,6 +218,24 @@ export class FileUploadComponent implements OnInit, AfterViewInit {
   UpdateValidation(): void {
     if (this.fileInput) {
       this.fileInput.nativeElement.setAttribute('aria-required', String(this._required));
+    }
+  }
+  callAPI() {
+    if (
+      this.apiUrl != '' &&
+      this._parameter != null &&
+      this._filename != '' &&
+      this.contenttype != '' &&
+      this.data != ''
+    ) {
+      this.frameworkService.callSelectAPI(this.apiUrl, this.parameter, this.area, false).subscribe({
+        next: (Response) => {
+          if (Response.status == '200') {
+            this.apiResponseSuccess.emit(true);
+          }
+        },
+        error: (err) => {},
+      });
     }
   }
 }

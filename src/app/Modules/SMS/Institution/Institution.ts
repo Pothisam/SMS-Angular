@@ -45,3 +45,42 @@ export class Postoffice {
     this.pincode = init?.pincode ?? '';
   }
 }
+export class UpdateInstitutionLogoRequest {
+  sysid: number;
+  logoFileName: string;
+  logoContentType: string;
+  logoData: Uint8Array | null;
+
+  constructor(init?: Partial<UpdateInstitutionLogoRequest>) {
+    this.sysid = init?.sysid ?? 0;
+    this.logoFileName = init?.logoFileName ?? '';
+    this.logoContentType = init?.logoContentType ?? '';
+    this.logoData = init?.logoData ?? null;
+  }
+}
+export class UpdateInstitutionLogoWithTextRequest {
+  sysid: number;
+  logoWithTextFileName: string;
+  logoWithTextContentType: string;
+  logoWithTextData: string;
+
+  constructor(init?: Partial<UpdateInstitutionLogoWithTextRequest>) {
+    this.sysid = init?.sysid ?? 0;
+    this.logoWithTextFileName = init?.logoWithTextFileName ?? '';
+    this.logoWithTextContentType = init?.logoWithTextContentType ?? '';
+    this.logoWithTextData = init?.logoWithTextData ?? '';
+  }
+}
+export class UpdateInstitutionFaviconRequest {
+  sysid: number;
+  faviconFileName: string;
+  faviconContentType: string;
+  faviconData: string;
+
+  constructor(init?: Partial<UpdateInstitutionFaviconRequest>) {
+    this.sysid = init?.sysid ?? 0;
+    this.faviconFileName = init?.faviconFileName ?? '';
+    this.faviconContentType = init?.faviconContentType ?? '';
+    this.faviconData = init?.faviconData ?? '';
+  }
+}

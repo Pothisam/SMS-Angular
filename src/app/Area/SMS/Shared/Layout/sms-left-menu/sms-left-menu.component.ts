@@ -31,7 +31,6 @@ export class SmsLeftMenuComponent implements OnInit {
         { name: 'Class', link: 'SMS/Class' },
         { name: 'Section', link: 'SMS/Section' },
         { name: 'AcademicYear', link: 'SMS/AcademicYear' },
-        { name: 'Holiday-Workingday', link: 'CMS/Holiday' },
       ],
     });
     this.menu.push({

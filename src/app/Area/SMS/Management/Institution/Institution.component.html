@@ -15,101 +15,135 @@
     <mat-card-content>
       <form id="test">
         @switch (selectedTabIndex) {
-          @case (0) {
-            <div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="institutionName" label="InstitutionName" [isrequired]="true" [(modelValue)]="request.institutionName"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="address1" label="Address1" [isrequired]="true" [(modelValue)]="request.address1"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="address2" label="Address2" [isrequired]="true" [(modelValue)]="request.address2"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="pincode" label="Postal Code" [isrequired]="true" [(modelValue)]="request.pincode" [isNumberOnly]="true" maxlength="6" (keydown)="onValueChange()"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-select entity="postofficeName" label="Post Office Name" apiUrl="/Common/GetPostOffice" [isrequired]="true" [isMultiSelect]="false" [(modelValue)]="request.postofficeName" valueAndname="officeName,officeName" (onSelectChange)="onModelValueChanges($event)" [(parameter)]="postalrequest" [(triggerAPI)]="triggerApi"></fw-select>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="districtname" label="District" [isrequired]="true" [(modelValue)]="request.districtname"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="stateName" label="State" [isrequired]="true" [(modelValue)]="request.stateName"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-email entity="emailid" label="Email Id" [isrequired]="true" [(modelValue)]="request.emailid"></fw-email>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="mobileNumer" label="Mobile No" maxlength="10" [isrequired]="true" [isNumberOnly]="true" [(modelValue)]="request.mobileNumer"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="alternateMobileNumer" label="Alternate Mobileno" maxlength="10" [isrequired]="true" [isNumberOnly]="true" [(modelValue)]="request.alternateMobileNumer"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="landline" label="Landline" [isrequired]="true" [isNumberOnly]="true" [(modelValue)]="request.landline"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="website" label="Website" [isrequired]="true" [(modelValue)]="request.website"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="institutionType" label="Institution Type" [isdisabled]="true" [(modelValue)]="request.institutionType"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="staffIdprefix" label="Staff-ID Prefix" [isrequired]="true" [(modelValue)]="request.staffIdprefix"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="entredBy" label="Entred By" [isdisabled]="true" [(modelValue)]="request.entredBy"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="modifiedby" label="Modified By" [isdisabled]="true" [(modelValue)]="request.modifiedBy"></fw-textbox>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                  <fw-textbox entity="modifieddate" label="Modified Date" [isdisabled]="true" [(modelValue)]="request.modifiedDate"></fw-textbox>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12 d-flex justify-content-center">
-                  <fw-button label="Save" apiUrl="/InstitutionDetails/UpdateInstitution" [parameter]="request" (apiResponseChange)="onRespons($event)"></fw-button>
-                </div>
-              </div>
+        @case (0) {
+        <div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="institutionName" label="InstitutionName" [isrequired]="true"
+                [(modelValue)]="request.institutionName"></fw-textbox>
             </div>
-          }
-          @case (1) {
-            <div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  Logo With Text (383x75)
-                  <br />
-                  <img alt="" id="IMGLogoWithText" CssClass="img-responsive" [src]="logoWithText" />
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                  Logo Only (100x100)
-                  <br />
-                  <img alt="" id="IMGLogoOnly" CssClass="img-responsive" [src]="logo" />
-                  <br />
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                  Fav Icon (32x32)
-                  <br />
-                  <img alt="" id="IMGFavIcon" CssClass="img-responsive" [src]="favIcon" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <input class="form-control" type="file" id="FileUploadLogoWithText" />
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                  <input class="form-control" type="file" id="FileUploadLogoOnly" />
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                  <input class="form-control" type="file" id="FileUploadFavIcon" />
-                </div>
-              </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="address1" label="Address1" [isrequired]="true"
+                [(modelValue)]="request.address1"></fw-textbox>
             </div>
-          }
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="address2" label="Address2" [isrequired]="true"
+                [(modelValue)]="request.address2"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="pincode" label="Postal Code" [isrequired]="true" [(modelValue)]="request.pincode"
+                [isNumberOnly]="true" maxlength="6" (keydown)="onValueChange()"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-select entity="postofficeName" label="Post Office Name" apiUrl="/Common/GetPostOffice"
+                [isrequired]="true" [isMultiSelect]="false" [(modelValue)]="request.postofficeName"
+                valueAndname="officeName,officeName" (onSelectChange)="onModelValueChanges($event)"
+                [(parameter)]="postalrequest" [(triggerAPI)]="triggerApi"></fw-select>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="districtname" label="District" [isrequired]="true"
+                [(modelValue)]="request.districtname"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="stateName" label="State" [isrequired]="true"
+                [(modelValue)]="request.stateName"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-email entity="emailid" label="Email Id" [isrequired]="true"
+                [(modelValue)]="request.emailid"></fw-email>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="mobileNumer" label="Mobile No" maxlength="10" [isrequired]="true"
+                [isNumberOnly]="true" [(modelValue)]="request.mobileNumer"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="alternateMobileNumer" label="Alternate Mobileno" maxlength="10" [isrequired]="true"
+                [isNumberOnly]="true" [(modelValue)]="request.alternateMobileNumer"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="landline" label="Landline" [isrequired]="true" [isNumberOnly]="true"
+                [(modelValue)]="request.landline"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="website" label="Website" [isrequired]="true"
+                [(modelValue)]="request.website"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="institutionType" label="Institution Type" [isdisabled]="true"
+                [(modelValue)]="request.institutionType"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="staffIdprefix" label="Staff-ID Prefix" [isrequired]="true"
+                [(modelValue)]="request.staffIdprefix"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="entredBy" label="Entred By" [isdisabled]="true"
+                [(modelValue)]="request.entredBy"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="modifiedby" label="Modified By" [isdisabled]="true"
+                [(modelValue)]="request.modifiedBy"></fw-textbox>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+              <fw-textbox entity="modifieddate" label="Modified Date" [isdisabled]="true"
+                [(modelValue)]="request.modifiedDate"></fw-textbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <fw-button label="Save" apiUrl="/InstitutionDetails/UpdateInstitution" [parameter]="request"
+                (apiResponseChange)="onRespons($event)"></fw-button>
+            </div>
+          </div>
+        </div>
+        }
+        @case (1) {
+        <div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+              Logo With Text (383x75)
+              <br />
+              <img alt="" id="IMGLogoWithText" CssClass="img-responsive" [src]="logoWithText" />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+              Logo Only (100x100)
+              <br />
+              <img alt="" id="IMGLogoOnly" CssClass="img-responsive" [src]="logo" />
+              <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+              Fav Icon (32x32)
+              <br />
+              <img alt="" id="IMGFavIcon" CssClass="img-responsive" [src]="favIcon" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+              <fw-file-upload [isrequired]="true" [filesize]="500" accept="image"
+                [(parameter)]="UpdateInstitutionLogoWithTextRequest"
+                [(filename)]="UpdateInstitutionLogoWithTextRequest.logoWithTextFileName"
+                [(data)]="UpdateInstitutionLogoWithTextRequest.logoWithTextData"
+                [(contenttype)]="UpdateInstitutionLogoWithTextRequest.logoWithTextContentType"
+                apiUrl="/InstitutionDetails/UpdateInstitutionLogoWithText"></fw-file-upload>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+              <fw-file-upload [isrequired]="true" [filesize]="500" accept="image"
+                [(parameter)]="UpdateInstitutionLogoRequest" [(filename)]="UpdateInstitutionLogoRequest.logoFileName"
+                [(data)]="UpdateInstitutionLogoRequest.logoData"
+                [(contenttype)]="UpdateInstitutionLogoRequest.logoContentType"
+                apiUrl="/InstitutionDetails/UpdateInstitutionLogo"></fw-file-upload>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+              <fw-file-upload [isrequired]="true" [filesize]="500" accept="image"
+                [(parameter)]="UpdateInstitutionFaviconRequest"
+                [(filename)]="UpdateInstitutionFaviconRequest.faviconFileName"
+                [(data)]="UpdateInstitutionFaviconRequest.faviconData"
+                [(contenttype)]="UpdateInstitutionFaviconRequest.faviconContentType"
+                apiUrl="/InstitutionDetails/UpdateInstitutionFavicon"></fw-file-upload>
+            </div>
+          </div>
+        </div>
+        }
         }
       </form>
     </mat-card-content>
