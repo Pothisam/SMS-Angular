@@ -6,6 +6,7 @@ export class ITableSettings {
   slno: boolean;
   profileImage?: boolean;
   checkbox: boolean;
+  checkboxcondition?: ICheckboxCondition;
   class?: string;
   columns: IColumnDef[];
   columnSticky: number[];
@@ -23,6 +24,7 @@ export class ITableSettings {
     this.slno = false;
     this.profileImage = false;
     this.checkbox = false;
+    this.checkboxcondition = { sysId: 'PK', column: 'ColumnName', value: 'MatchValue' };
     this.class = '';
     this.columns = [
       {
@@ -60,14 +62,14 @@ export class ITableSettings {
         buttonlabel: '',
       },
     ];
-    (this.columnSticky = [0, 1, 2]),
+    ((this.columnSticky = [0, 1, 2]),
       (this.headerSticky = false),
       (this.filter = false),
       (this.rowCallback = {
         columnname: 'status',
         value: 'Inactive',
         class: 'danger',
-      });
+      }));
   }
 }
 export type ConditionOperator = '>' | '<' | '=' | '!=' | '>=' | '<=';
@@ -76,6 +78,11 @@ export interface IConditionalClass {
   operator: ConditionOperator;
   value: any;
   cssClass: string;
+}
+export interface ICheckboxCondition {
+  sysId: any;
+  column: string;
+  value: any;
 }
 export interface IColumnDef {
   title: string;
@@ -94,6 +101,7 @@ export interface IColumnDef {
     dynamic?: string[];
     click?: string[] | ((row: any) => void);
     toggle?: string[];
+    checkbox?: string[];
   }[];
   conditionalClass?: IConditionalClass[];
   footergroup?: { sumfunction?: boolean }[];

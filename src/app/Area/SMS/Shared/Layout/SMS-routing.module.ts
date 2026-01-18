@@ -15,6 +15,7 @@ import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.compone
 import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStudentList.component';
 import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.component';
 import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePassword.component';
+import { TransferStudentComponent } from '../../Report/TransferStudent/TransferStudent.component';
 
 const CMSroutes: Routes = [
   { path: '', component: LoginComponent },
@@ -86,6 +87,11 @@ const CMSroutes: Routes = [
   {
     path: 'ViewStudent',
     component: ViewStudentComponent,
+    canActivate: [SMSIsLogin],
+  },
+  {
+    path: 'TransferStudent',
+    component: TransferStudentComponent,
     canActivate: [SMSIsLogin],
   },
 ];

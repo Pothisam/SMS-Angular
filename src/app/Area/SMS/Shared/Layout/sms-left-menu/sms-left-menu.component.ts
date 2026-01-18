@@ -13,7 +13,10 @@ export class SmsLeftMenuComponent implements OnInit {
   src: string = '';
   panelOpenState = false;
   private retryCount = 0;
-  constructor(private globalService: GlobalService, private router: Router) {}
+  constructor(
+    private globalService: GlobalService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.setMenuLogo();
@@ -46,6 +49,10 @@ export class SmsLeftMenuComponent implements OnInit {
         { name: 'Add Student', link: 'SMS/AddStudent' },
         { name: 'View Student', link: 'SMS/ViewStudentList' },
       ],
+    });
+    this.menu.push({
+      name: 'Report',
+      subMenu: [{ name: 'Student Transfer', link: 'SMS/TransferStudent' }],
     });
   }
   public menu: IMenuItem[] = [

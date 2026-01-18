@@ -5,7 +5,9 @@ import { GlobalService } from 'src/app/Global/Service/global.service';
 import { IDocumentLibraryAddByFkid } from 'src/app/Modules/Document/documentlibrary';
 import { StaffDetailsPKRequest } from 'src/app/Modules/SMS/Staff/StaffRequest';
 import {
+  AddStudentClassDetailRequest,
   StudentDetailRequest,
+  StudentDetailUpdateRequest,
   StudentSearchRequest,
   StudentShortRequest,
 } from 'src/app/Modules/SMS/Student/StudentRequest';
@@ -18,7 +20,10 @@ export class StudentService {
   private url = '';
   baseurl: string = '';
   Area: string = 'CMS';
-  constructor(private http: HttpClient, private globalService: GlobalService) {
+  constructor(
+    private http: HttpClient,
+    private globalService: GlobalService,
+  ) {
     this.baseurl = this.globalService.getAPIBaseUrl();
     this.Area = this.globalService.getArea();
   }
@@ -68,6 +73,16 @@ export class StudentService {
   }
   GetStudentDocument(parameter: StudentDetailRequest): Observable<any> {
     this.url = '/Student/GetStudentDocument';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      parameter,
+      this.Area,
+      false,
+    );
+  }
+  TranferStudent(parameter: AddStudentClassDetailRequest): Observable<any> {
+    this.url = '/Student/AddStudentClassDetails';
     return ApiCallService.PostwithAuth(
       this.http,
       this.baseurl + this.url,

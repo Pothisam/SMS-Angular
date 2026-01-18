@@ -14,6 +14,7 @@ import { AddStudentComponent } from '../../Student/AddStudent/AddStudent.compone
 import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStudentList.component';
 import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.component';
 import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePassword.component';
+import { TransferStudentComponent } from '../../Report/TransferStudent/TransferStudent.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePasswor
     AddStudentComponent,
     ViewStudentListComponent,
     ViewStudentComponent,
+    TransferStudentComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })

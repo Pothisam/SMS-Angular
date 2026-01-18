@@ -21,10 +21,14 @@
         @if (column.data == 'chSelect') {
         <ng-container ;else profile>
           <th mat-header-cell *matHeaderCellDef sticky>
-            <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"></mat-checkbox>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()"></mat-checkbox>
           </th>
           <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
+            @if(ShowCheckbox(row)){
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? onCheckboxChange(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
+            }
           </td>
         </ng-container>
         }
@@ -33,7 +37,8 @@
         <ng-container #profile ;else actionbutton>
           <th mat-header-cell *matHeaderCellDef sticky></th>
           <td mat-cell *matCellDef="let row">
-            <fw-Image-upload [fileupload]="false" [(guid)]="row[column.data]" size="35" [gender]="row[column.title]"></fw-Image-upload>
+            <fw-Image-upload [fileupload]="false" [(guid)]="row[column.data]" size="35"
+              [gender]="row[column.title]"></fw-Image-upload>
           </td>
         </ng-container>
         }
@@ -41,31 +46,68 @@
         <!--Action Button-->
         @if (column.data == 'Mat-Action') {
         <ng-container #actionbutton ;else others>
-          <th mat-header-cell *matHeaderCellDef sticky [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
+          <th mat-header-cell *matHeaderCellDef sticky
+            [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
             {{ column.title }}
           </th>
           <td mat-cell *matCellDef="let element">
             <div style="display: flex; flex-direction: row">
-              @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('info') && shouldShowButton(element, 'info', column.buttongroup[0].conditions)) {
-              <mat-icon mat-button [matTooltip]="getTooltipContent(element)" matTooltipClass="RecordInfo" class="text-info" tabindex="0" matTooltipPosition="left" [attr.aria-info]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']" [attr.aria-label]="getTooltipContent(element)">info</mat-icon>
-              } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('edit') && shouldShowButton(element, 'edit', column.buttongroup[0].conditions)) { @if (shouldShowButton(element, 'edit', column.buttongroup[0].visible)) {
-              <mat-icon #iconedit role="img" mat-button matTooltip="Edit" class="text-success" tabindex="0" matTooltipPosition="above" [attr.aria-edit]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']" (keydown.enter)="onMatIconEdit(element)" (click)="onMatIconEdit(element)" aria-label="Edit">edit</mat-icon>
+              @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('info')
+              && shouldShowButton(element, 'info', column.buttongroup[0].conditions)) {
+              <mat-icon mat-button [matTooltip]="getTooltipContent(element)" matTooltipClass="RecordInfo"
+                class="text-info" tabindex="0" matTooltipPosition="left"
+                [attr.aria-info]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']"
+                [attr.aria-label]="getTooltipContent(element)">info</mat-icon>
+              } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('edit') && shouldShowButton(element, 'edit',
+              column.buttongroup[0].conditions)) { @if (shouldShowButton(element, 'edit',
+              column.buttongroup[0].visible)) {
+              <mat-icon #iconedit role="img" mat-button matTooltip="Edit" class="text-success" tabindex="0"
+                matTooltipPosition="above"
+                [attr.aria-edit]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']"
+                (keydown.enter)="onMatIconEdit(element)" (click)="onMatIconEdit(element)"
+                aria-label="Edit">edit</mat-icon>
               } @if (!shouldShowButton(element, 'edit', column.buttongroup[0].visible)) {
               <i class="fa-solid fa-2x ps-1 d-inline-block d-none"></i>
-              } } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('delete')) { @if (shouldShowButton(element, 'delete', column.buttongroup[0].conditions)) {
-              <mat-icon #icondelete role="img" mat-button class="text-danger" tabindex="0" matTooltip="Delete" matTooltipPosition="above" [attr.aria-delete]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']" (keydown.enter)="onMatIconDelete(element, $event)" (click)="onMatIconDelete(element, $event)" aria-label="Delete">delete_forever</mat-icon>
+              } } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('delete')) { @if (shouldShowButton(element, 'delete',
+              column.buttongroup[0].conditions)) {
+              <mat-icon #icondelete role="img" mat-button class="text-danger" tabindex="0" matTooltip="Delete"
+                matTooltipPosition="above"
+                [attr.aria-delete]="element[column.buttongroup[0].buttondata ? column.buttongroup[0].buttondata : '']"
+                (keydown.enter)="onMatIconDelete(element, $event)" (click)="onMatIconDelete(element, $event)"
+                aria-label="Delete">delete_forever</mat-icon>
               } @if (!shouldShowButton(element, 'delete', column.buttongroup[0].conditions)) {
-              <mat-icon #icondelete role="img" mat-button class="text-secondary" tabindex="0" matTooltip="Delete" matTooltipPosition="above" aria-label="Delete">delete_forever</mat-icon>
-              } } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('history')) {
-              <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" matTooltip="View Change History" aria-label="View Change History" (keydown.enter)="onMatIconHistory(element, $event)" (click)="onMatIconHistory(element, $event)">history</mat-icon>
-              } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('toggle')) { @if (shouldShowButton(element, 'toggle', column.buttongroup[0].visible)) {
-              <i class="fa-solid fa-2x cursor-pointer ps-1" [ngClass]="toggleCondition(element, 'toggle', column.buttongroup[0].conditions) ? 'fa-toggle-on text-success' : 'fa-toggle-off text-danger'" matTooltipPosition="above" tabindex="0" [matTooltip]="toggleTooltip()" (click)="onClicktoggle(element, $event)"></i>
+              <mat-icon #icondelete role="img" mat-button class="text-secondary" tabindex="0" matTooltip="Delete"
+                matTooltipPosition="above" aria-label="Delete">delete_forever</mat-icon>
+              } } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('history')) {
+              <mat-icon #iconhistory role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0"
+                matTooltip="View Change History" aria-label="View Change History"
+                (keydown.enter)="onMatIconHistory(element, $event)"
+                (click)="onMatIconHistory(element, $event)">history</mat-icon>
+              } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('toggle')) { @if (shouldShowButton(element, 'toggle',
+              column.buttongroup[0].visible)) {
+              <i class="fa-solid fa-2x cursor-pointer ps-1"
+                [ngClass]="toggleCondition(element, 'toggle', column.buttongroup[0].conditions) ? 'fa-toggle-on text-success' : 'fa-toggle-off text-danger'"
+                matTooltipPosition="above" tabindex="0" [matTooltip]="toggleTooltip()"
+                (click)="onClicktoggle(element, $event)"></i>
               } @if (!shouldShowButton(element, 'toggle', column.buttongroup[0].visible)) {
               <i class="fa-solid fa-2x ps-1 d-inline-block d-none"></i>
-              } } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('download')) { @if (shouldShowButton(element, 'download', column.buttongroup[0].conditions)) {
-              <mat-icon #icondownload role="img" mat-button class="text-success" matTooltipPosition="above" tabindex="0" matTooltip="Download File" aria-label="Download File" (keydown.enter)="onMatIconDownload(element, $event)" (click)="onMatIconDownload(element, $event)">save_alt</mat-icon>
-              } } @if (column.buttongroup && column.buttongroup[0].buttons && column.buttongroup[0].buttons.includes('dynamic')) {
-              <mat-icon #icondynamic role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0" [matTooltip]="column?.buttongroup?.[0]?.dynamic?.[1]" [attr.aria-label]="column?.buttongroup?.[0]?.dynamic?.[1]" (keydown.enter)="onDynamicIconClick(element)" (click)="onDynamicIconClick(element)">{{ column?.buttongroup?.[0]?.dynamic?.[0] }}</mat-icon>
+              } } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('download')) { @if (shouldShowButton(element, 'download',
+              column.buttongroup[0].conditions)) {
+              <mat-icon #icondownload role="img" mat-button class="text-success" matTooltipPosition="above" tabindex="0"
+                matTooltip="Download File" aria-label="Download File"
+                (keydown.enter)="onMatIconDownload(element, $event)"
+                (click)="onMatIconDownload(element, $event)">save_alt</mat-icon>
+              } } @if (column.buttongroup && column.buttongroup[0].buttons &&
+              column.buttongroup[0].buttons.includes('dynamic')) {
+              <mat-icon #icondynamic role="img" mat-button class="text-warning" matTooltipPosition="above" tabindex="0"
+                [matTooltip]="column?.buttongroup?.[0]?.dynamic?.[1]"
+                [attr.aria-label]="column?.buttongroup?.[0]?.dynamic?.[1]" (keydown.enter)="onDynamicIconClick(element)"
+                (click)="onDynamicIconClick(element)">{{ column?.buttongroup?.[0]?.dynamic?.[0] }}</mat-icon>
               }
             </div>
           </td>
@@ -76,20 +118,24 @@
         @if (column.short && _tableSettings?.shorting) {
         <ng-container #others>
           <ng-container>
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sticky [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sticky
+              [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
               {{ column.title }}
             </th>
           </ng-container>
         </ng-container>
         } @else {
-        <th mat-header-cell *matHeaderCellDef sticky [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
+        <th mat-header-cell *matHeaderCellDef sticky
+          [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
           {{ column.title }}
         </th>
         }
         <!--End Column Header-->
         <!--Start Column data-->
         @if (column.render === undefined) {
-        <td mat-cell *matCellDef="let element" [ngClass]="getCellClass(element, column)" [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')" [innerHTML]="renderByType(column, element)">
+        <td mat-cell *matCellDef="let element" [ngClass]="getCellClass(element, column)"
+          [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')"
+          [innerHTML]="renderByType(column, element)">
           <!-- Display default data -->
         </td>
         } @else {
@@ -100,11 +146,13 @@
         <!--END Column data-->
         <!--Footer Start-->
         @if (isFootertrue()) { @if (column.footergroup && column.footergroup[0].sumfunction == true) {
-        <td mat-footer-cell *matFooterCellDef [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
+        <td mat-footer-cell *matFooterCellDef
+          [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
           {{ getTotalCost(column) }}
         </td>
         } @else {
-        <td mat-footer-cell *matFooterCellDef [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
+        <td mat-footer-cell *matFooterCellDef
+          [class]="(column.width !== undefined ? 'Mat-th-width-' + column.width : '') + ' ' + (column.class !== undefined ? column.class : '')">
           @if (i === 0) {
           <div>Total</div>
           }
@@ -114,9 +162,11 @@
       </ng-container>
       }
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isHeaderSticky() ? true : false"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="getRowClass(row)" [style.border-bottom]="isFootertrue() ? '1px solid' : ''"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" [ngClass]="getRowClass(row)"
+        [style.border-bottom]="isFootertrue() ? '1px solid' : ''"></tr>
       @if (isFootertrue()) {
-      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isFootertrue()" [hidden]="!isFootertrue() || dataSource.data.length === 0"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isFootertrue()"
+        [hidden]="!isFootertrue() || dataSource.data.length === 0"></tr>
       } @if (dataSource.data.length === 0) {
       <tr class="mat-row">
         <td class="mat-cell" [attr.colspan]="displayedColumns.length" style="text-align: center">No data available</td>

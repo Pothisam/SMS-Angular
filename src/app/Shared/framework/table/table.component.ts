@@ -1,6 +1,16 @@
 // #region import
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  input,
+  signal,
+  computed,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -112,6 +122,7 @@ export class TableComponent implements OnInit {
 
   public displayedColumns: string[] = [];
   selection = new SelectionModel<any>(true, []);
+  selectedItems = signal<any[]>([]);
   area: string = this.globalService.getArea();
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
@@ -158,6 +169,7 @@ export class TableComponent implements OnInit {
   // #endregion
   @Output()
   apiResponseChange = new EventEmitter<any>();
+  @Output() selectedItemsChange = new EventEmitter<any[]>();
   ngOnInit() {}
   ngAfterViewInit() {
     this.prepareTable();
@@ -411,16 +423,33 @@ export class TableComponent implements OnInit {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
+      this.selectedItems.set([]);
+      this.selectedItemsChange.emit(this.selection.selected);
       return;
     }
 
     this.selection.select(...this.dataSource.data);
+    this.selectedItems.set(this.selection.selected);
+
+    // 🔥 emit to parent
+    this.selectedItemsChange.emit(this.selection.selected);
   }
   checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  // Update signal when a row is selected/deselected
+  onRowSelectionChange(row: any) {
+    this.selection.toggle(row);
+    this.selectedItems.set([...this.selection.selected]);
+  }
+
+  // Get selected items as a signal
+  getSelectedItems() {
+    return this.selectedItems;
   }
 
   getTotalCost(column: any) {
@@ -461,6 +490,13 @@ export class TableComponent implements OnInit {
     }
     return true;
   }
+  ShowCheckbox(element: any): boolean {
+    if (this._tableSettings?.checkboxcondition) {
+      const { sysId, column, value } = this._tableSettings.checkboxcondition;
+      return element[column] === value;
+    }
+    return true;
+  }
   toggleCondition(element: any, button: string, conditions: string[] | undefined): boolean {
     if (!conditions || conditions.length === 0) {
       return true; // If no conditions are provided, always show the button
@@ -490,12 +526,12 @@ export class TableComponent implements OnInit {
   }
   getTooltipContent(element: any): string {
     const entryBy =
-      element.entredBy ?? element.enteredBy
+      (element.entredBy ?? element.enteredBy)
         ? `Entry By: ${element.entredBy ?? element.enteredBy}`
         : 'Entry By: N/A';
 
     const entryDate =
-      element.entrydate ?? element.entryDate
+      (element.entrydate ?? element.entryDate)
         ? `Entry Date: ${this.globalService.formatDateTime(element.entrydate ?? element.entryDate)}`
         : 'Entry Date: N/A';
 
@@ -659,5 +695,13 @@ export class TableComponent implements OnInit {
           },
         });
     }
+  }
+  onCheckboxChange(item: any) {
+    this.selection.toggle(item);
+
+    this.selectedItems.set(this.selection.selected);
+
+    // 🔥 emit to parent
+    this.selectedItemsChange.emit(this.selection.selected);
   }
 }

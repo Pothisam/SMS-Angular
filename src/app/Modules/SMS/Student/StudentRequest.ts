@@ -304,3 +304,14 @@ export class StudentDetailUpdateRequest {
     this.guid = init?.guid ?? '';
   }
 }
+export class AddStudentClassDetailRequest {
+  studentDetailsFkid: number[];
+  academicYearFkid: number;
+  classSectionFkid: number;
+
+  constructor(init?: Partial<AddStudentClassDetailRequest>) {
+    this.studentDetailsFkid = init?.studentDetailsFkid ?? [];
+    this.academicYearFkid = init?.academicYearFkid ?? 0;
+    this.classSectionFkid = init?.classSectionFkid ?? 0;
+  }
+}

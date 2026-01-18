@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title>
+      Tranfer Student
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content>
+      <form id="viewStudentList">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-select entity="CourseCode" label="Acadamic Year From" apiUrl="/AcademicYear/GetAcademicYearList"
+              [triggerAPIOnload]="true" valueAndname="sysId,year" [triggerAPIOnload]="true" [isrequired]="true"
+              [(modelValue)]="request.academicYearFrom"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-select entity="CourseCode" label="Class From" apiUrl="/ClassSection/GetClassSection"
+              [triggerAPIOnload]="true" valueAndname="sysId,classNameAndSection" [triggerAPIOnload]="true"
+              [(modelValue)]="request.classSectionFrom" [isrequired]="true"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-select entity="CourseCode" label="Acadamic Year To" apiUrl="/AcademicYear/GetAcademicYearList"
+              [triggerAPIOnload]="true" valueAndname="sysId,year" [triggerAPIOnload]="true"
+              [(modelValue)]="request.academicYearTo" [isrequired]="true"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <fw-select entity="CourseCode" label="Class To" apiUrl="/ClassSection/GetClassSection"
+              [triggerAPIOnload]="true" valueAndname="sysId,classNameAndSection" [triggerAPIOnload]="true"
+              [(modelValue)]="request.classSectionTo" [isrequired]="true"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 pt-3">
+            <div class="d-flex">
+              <fw-button label="View" buttontype="S" [loading]="_loading"
+                (formvalidationtrue)="calltableapi()"></fw-button>
+              @if(SelectedItems.length > 0){
+              <fw-button label="Move Student" class="ps-2" buttontype="S" [loading]="_loading"
+                (formvalidationtrue)="updateapi()"></fw-button>
+              }
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 pt-3">
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.gridlist" [(parameter)]="request"
+              apiUrl="/Report/GetStudentTransferDetails" [(triggerAPI)]="triggertableapi"
+              (selectedItemsChange)="onSelectedItems($event)"> </fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
