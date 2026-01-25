@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { IMenuItem } from 'src/app/Shared/framework/accordion/accordion.model';
+import { SMSService } from '../SMS.service';
+import { smspermission } from 'src/app/Modules/SMS/User/Permission/smspermission';
 
 @Component({
   selector: 'app-sms-left-menu',
@@ -16,6 +18,7 @@ export class SmsLeftMenuComponent implements OnInit {
   constructor(
     private globalService: GlobalService,
     private router: Router,
+    private smsservice: SMSService,
   ) {}
 
   ngOnInit() {
@@ -26,34 +29,48 @@ export class SmsLeftMenuComponent implements OnInit {
     this.globalService.menutoggle();
   }
   generatemenu() {
-    this.menu.push({ name: 'Dashboard', link: 'SMS/Dashboard' });
-    this.menu.push({
-      name: 'Management',
-      subMenu: [
-        { name: 'General Information', link: 'SMS/Institution' },
-        { name: 'Class', link: 'SMS/Class' },
-        { name: 'Section', link: 'SMS/Section' },
-        { name: 'AcademicYear', link: 'SMS/AcademicYear' },
-      ],
-    });
-    this.menu.push({
-      name: 'Staff',
-      subMenu: [
-        { name: 'Add Staff', link: 'SMS/AddStaff' },
-        { name: 'View Staff', link: 'SMS/ViewStaffs' },
-      ],
-    });
-    this.menu.push({
-      name: 'Student',
-      subMenu: [
-        { name: 'Add Student', link: 'SMS/AddStudent' },
-        { name: 'View Student', link: 'SMS/ViewStudentList' },
-      ],
-    });
-    this.menu.push({
-      name: 'Report',
-      subMenu: [{ name: 'Student Transfer', link: 'SMS/TransferStudent' }],
-    });
+    if (this.globalService.GLSG('SMSToken') != null) {
+      this.smsservice.getPermission().subscribe({
+        next: (response) => {
+          const permission: smspermission = response.data;
+          this.menu = [];
+          this.menu.push({ name: 'Dashboard', link: 'SMS/Dashboard' });
+          if (permission['Management']) {
+            this.menu.push({
+              name: 'Management',
+              subMenu: [
+                { name: 'General Information', link: 'SMS/Institution' },
+                { name: 'Class', link: 'SMS/Class' },
+                { name: 'Section', link: 'SMS/Section' },
+                { name: 'AcademicYear', link: 'SMS/AcademicYear' },
+              ],
+            });
+            this.menu.push({
+              name: 'Report',
+              subMenu: [{ name: 'Student Transfer', link: 'SMS/TransferStudent' }],
+            });
+          }
+          if (permission['Staff']) {
+            this.menu.push({
+              name: 'Staff',
+              subMenu: [
+                { name: 'Add Staff', link: 'SMS/AddStaff' },
+                { name: 'View Staff', link: 'SMS/ViewStaffs' },
+              ],
+            });
+          }
+          if (permission['Student']) {
+            this.menu.push({
+              name: 'Student',
+              subMenu: [
+                { name: 'Add Student', link: 'SMS/AddStudent' },
+                { name: 'View Student', link: 'SMS/ViewStudentList' },
+              ],
+            });
+          }
+        },
+      });
+    }
   }
   public menu: IMenuItem[] = [
     // ... other menu items

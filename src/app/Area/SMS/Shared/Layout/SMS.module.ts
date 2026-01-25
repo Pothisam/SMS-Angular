@@ -15,6 +15,7 @@ import { ViewStudentListComponent } from '../../Student/ViewStudentList/ViewStud
 import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.component';
 import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePassword.component';
 import { TransferStudentComponent } from '../../Report/TransferStudent/TransferStudent.component';
+import { AddAdminUsersComponent } from '../../User/AddAdminUsers/AddAdminUsers.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TransferStudentComponent } from '../../Report/TransferStudent/TransferS
     ViewStudentListComponent,
     ViewStudentComponent,
     TransferStudentComponent,
+    AddAdminUsersComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule],
 })

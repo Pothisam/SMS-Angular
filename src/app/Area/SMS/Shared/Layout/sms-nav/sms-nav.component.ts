@@ -5,6 +5,8 @@ import { SelectInterface } from 'src/app/Global/Interface/common-interface';
 import { GlobalService } from 'src/app/Global/Service/global.service';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
 import { FrameworkService } from 'src/app/Shared/framework/framework.service';
+import { SMSService } from '../SMS.service';
+import { smspermission } from 'src/app/Modules/SMS/User/Permission/smspermission';
 
 @Component({
   selector: 'app-sms-nav',
@@ -29,6 +31,7 @@ export class SmsNavComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService,
     private frameworkService: FrameworkService,
+    private smsService: SMSService,
     @Inject(DOCUMENT) private document: Document,
   ) {
     if (this.globalService.GLSG('SMSToken') != null) {
@@ -60,48 +63,74 @@ export class SmsNavComponent implements OnInit {
     }
   }
   loadmenu() {
-    this.filter.push(
-      {
-        text: 'Dashboard',
-        value: '/SMS/Dashboard',
+    this.smsService.getPermission().subscribe({
+      next: (response) => {
+        const permission: smspermission = response.data;
+        this.filter = [];
+        this.filter.push({
+          text: 'Dashboard',
+          value: '/SMS/Dashboard',
+        });
+
+        if (permission['Management']) {
+          this.filter.push(
+            {
+              text: 'Institution',
+              value: '/SMS/Institution',
+            },
+            {
+              text: 'Class',
+              value: '/SMS/Class',
+            },
+            {
+              text: 'Section',
+              value: '/SMS/Section',
+            },
+            {
+              text: 'Academic Year',
+              value: '/SMS/AcademicYear',
+            },
+            {
+              text: 'Transfer Student',
+              value: '/SMS/TransferStudent',
+            },
+          );
+        }
+        if (permission['Staff']) {
+          this.filter.push(
+            {
+              text: 'Add Staff',
+              value: '/SMS/AddStaff',
+            },
+            {
+              text: 'View Staff',
+              value: '/SMS/ViewStaffs',
+            },
+          );
+        }
+        if (permission['Student']) {
+          this.filter.push(
+            {
+              text: 'Add Student',
+              value: '/SMS/AddStudent',
+            },
+            {
+              text: 'View Student',
+              value: '/SMS/ViewStudentList',
+            },
+          );
+        }
+
+        if (permission['Application Settings']) {
+          this.showAppSettings = true;
+          this.filter.push({
+            text: 'Add Admin',
+            value: 'SMS/AddAdminUsers',
+          });
+        }
       },
-      {
-        text: 'Institution',
-        value: '/SMS/Institution',
-      },
-      {
-        text: 'Class',
-        value: '/SMS/Class',
-      },
-      {
-        text: 'Section',
-        value: '/SMS/Section',
-      },
-      {
-        text: 'Academic Year',
-        value: '/SMS/AcademicYear',
-      },
-      {
-        text: 'Add Staff',
-        value: '/SMS/AddStaff',
-      },
-      {
-        text: 'View Staff',
-        value: '/SMS/ViewStaffs',
-      },
-      {
-        text: 'Add Student',
-        value: '/SMS/AddStudent',
-      },
-      {
-        text: 'View Student',
-        value: '/SMS/ViewStudentList',
-      },
-      {
-        text: 'Transfer Student',
-        value: '/SMS/TransferStudent',
-      },
-    );
+    });
+    this.filter.push();
   }
   ngOnInit() {}
   darkMode() {

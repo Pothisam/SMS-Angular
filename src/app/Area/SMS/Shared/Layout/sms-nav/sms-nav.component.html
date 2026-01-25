@@ -17,7 +17,7 @@
     </mat-autocomplete>
   </span>
   <span class="example-spacer"></span>
-  <button mat-icon-button aria-label="go to Dashboard" routerLink="/CMS/Dashboard">
+  <button mat-icon-button aria-label="go to Dashboard" routerLink="/SMS/Dashboard">
     <mat-icon>home</mat-icon>
   </button>
   <button mat-icon-button (click)="darkMode()">
@@ -33,7 +33,12 @@
     </div>
   </button>
   <mat-menu #Matmenunav="matMenu">
-
+    @if (showAppSettings) {
+    <button mat-menu-item [matMenuTriggerFor]="Settings">Settings</button>
+    <mat-menu #Settings="matMenu">
+      <button mat-menu-item [routerLink]="'SMS/AddAdminUsers'">Add Admin</button>
+    </mat-menu>
+    }
     @if (showChangePassword) {
     <button mat-menu-item [routerLink]="'SMS/ChangePassword'" aria-label="Change Password">Change Password</button>
     }
