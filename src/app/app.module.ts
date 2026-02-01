@@ -30,12 +30,16 @@ import { NoaccessComponent } from './Shared/common/noaccess/noaccess.component';
 import { LogErrorInterceptor } from './Shared/interceptor/log-error.interceptor';
 import { SmsLeftMenuComponent } from './Area/SMS/Shared/Layout/sms-left-menu/sms-left-menu.component';
 import { SmsNavComponent } from './Area/SMS/Shared/Layout/sms-nav/sms-nav.component';
+import { FeesLeftMenuComponent } from './Area/Fees/Shared/fees-left-menu/fees-left-menu.component';
+import { FeesNavComponent } from './Area/Fees/Shared/fees-nav/fees-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
     NoaccessComponent,
     SmsLeftMenuComponent,
-    SmsNavComponent
+    SmsNavComponent,
+    FeesLeftMenuComponent,
+    FeesNavComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

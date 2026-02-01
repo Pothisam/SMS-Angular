@@ -184,8 +184,8 @@ export class ApiCallService {
         return JSON.parse(Storage).token;
       }
     }
-    if (area == 'Staff') {
-      const Storage = localStorage.getItem('StaffToken');
+    if (area == 'Fees') {
+      const Storage = localStorage.getItem('FeesToken');
       if (Storage !== null) {
         // Parse the JSON string to an object
         return JSON.parse(Storage).token;
@@ -198,9 +198,9 @@ export class ApiCallService {
       localStorage.removeItem('SMSToken');
       window.location.href = '/SMS/Login';
     }
-    if (area == 'Staff') {
-      localStorage.removeItem('StaffToken');
-      window.location.href = '/Staff/Login';
+    if (area == 'Fees') {
+      localStorage.removeItem('FeesToken');
+      window.location.href = '/Fees/Login';
     }
   }
   public static downloadFile(

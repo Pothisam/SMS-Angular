@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LayoutService {
   IsSMSNavVisible: boolean = false;
   IsStaffNavVisible: boolean = false;
+  IsFeesNavVisible: boolean = false;
   constructor() {}
   updateSMSNavVisibility(isVisible: boolean) {
     this.IsSMSNavVisible = isVisible;
@@ -13,5 +14,7 @@ export class LayoutService {
   updateStaffNavVisible(isVisible: boolean) {
     this.IsStaffNavVisible = isVisible;
   }
-
+  updateFeesNavVisible(isVisible: boolean) {
+    this.IsFeesNavVisible = isVisible;
+  }
 }

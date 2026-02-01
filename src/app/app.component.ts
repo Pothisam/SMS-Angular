@@ -37,8 +37,8 @@ export class AppComponent {
     if (this.Location.path() == '' || this.Location.path() == '/sms') {
       this.router.navigate(['SMS/Login']);
     }
-    if (this.Location.path().toLowerCase() == '/staff') {
-      this.router.navigate(['Staff/Login']);
+    if (this.Location.path().toLowerCase() == '/fees') {
+      this.router.navigate(['Fees/Login']);
     }
 
     this.CheckLocalStorage(this.Location.path().split('/')[1]);
@@ -76,9 +76,16 @@ export class AppComponent {
   IsSMSNavVisible() {
     return this.layout.IsSMSNavVisible;
   }
+  IsFeesNavVisible() {
+    return this.layout.IsFeesNavVisible;
+  }
   public CheckLocalStorage(Area: string) {
     if (Area == 'SMS') {
       this.layout.IsSMSNavVisible = true;
+    } else if (Area == 'Staff') {
+      this.layout.IsStaffNavVisible = true;
+    } else if (Area == 'Fees') {
+      this.layout.IsFeesNavVisible = true;
     }
   }
   ngOnDestroy(): void {

@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./Area/SMS/Shared/Layout/SMS.module').then((x) => x.SMSModule),
   },
   {
+    path: 'Fees',
+    loadChildren: () => import('./Area/Fees/Shared/fees.module').then((x) => x.FeesModule),
+  },
+  {
     path: '',
     redirectTo: 'SMS/Login',
     pathMatch: 'full',

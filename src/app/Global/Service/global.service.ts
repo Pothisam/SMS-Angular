@@ -96,10 +96,13 @@ export class GlobalService {
   HandleArea(area: string) {
     this.layout.IsSMSNavVisible = false;
     this.layout.IsStaffNavVisible = false;
+    this.layout.IsFeesNavVisible = false;
     if (area == 'SMS') {
       if (this.GLSG('SMSToken')) this.layout.IsSMSNavVisible = true;
     } else if (area == 'Staff') {
       if (this.GLSG('StaffToken')) this.layout.IsStaffNavVisible = true;
+    } else if (area == 'Fees') {
+      if (this.GLSG('FeesToken')) this.layout.IsFeesNavVisible = true;
     }
   }
   getArea(): string {

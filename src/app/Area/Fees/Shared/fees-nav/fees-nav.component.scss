@@ -1,0 +1,37 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 2px;
+  margin: 5px 0;
+
+  border-radius: 10px;
+  background-color: rgb(212, 229, 244)
+}
+
+.custom-input:focus {
+  outline: none;
+}
+
+#IDLayoutSerach {
+  color: black;
+}
+
+.user-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Adjust spacing between text and image */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Space between text and image */
+}

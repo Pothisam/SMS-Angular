@@ -1,0 +1,77 @@
+.login-card {
+  max-width: 400px;
+  margin: 1em auto;
+  height: calc(100vh - 100px);
+  border-radius: 5%;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(5px);
+
+  /* background-image:
+  radial-gradient(ellipse at bottom left, rgba(0,163,203,1) 40%, rgba(0,163,203,0) 40%),
+  radial-gradient(ellipse at top right, rgba(0,163,203,1) 30%, rgba(0,163,203,0) 30%),
+  linear-gradient(to right, rgba(98,87,147,1) 0%, rgba(98,87,147,1) 33%, rgba(213,93,100,1) 33%, rgba(213,93,100,1) 66%, rgba(228,145,41,1) 66%);
+background-size: 50% 100%; */
+
+}
+
+.FullBg {
+  background-image: url("../../../../../assets/Images/pexels-veeterzy-303383.jpg");
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.sub-title {
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+.mat-card-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-card-avatar {
+  width: 100px;
+  /* or the size you want */
+  height: 100px;
+  /* or the size you want */
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  box-shadow:
+    /* logo shadow */
+    0px 0px 2px #5f5f5f,
+    /* offset */
+    0px 0px 0px 5px #ecf0f3,
+    /*bottom right */
+    8px 8px 15px #a7aaaf,
+    /* top left */
+    -8px -8px 15px #ffffff;
+
+
+}
