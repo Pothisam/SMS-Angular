@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Add Fees Type
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Course">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <fw-textbox entity="feesTypeDescription" label="Fees Type" Case="U" [isrequired]="true" min="0"
+              maxlength="30" [(modelValue)]="request.feesTypeDescription" placeholder="Tution Fees"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 pt-3">
+            <fw-button label="Add Fees Type" apiUrl="/FeesType/SaveFeesType" [parameter]="request"
+              (apiResponseSuccess)="ClearFormAndReload()"></fw-button>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.feestypelist" apiUrl="/FeesType/GetFeesType"
+              [(triggerAPI)]="triggerTableAPI" (apiResponseChange)="onTableResponse($event)"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

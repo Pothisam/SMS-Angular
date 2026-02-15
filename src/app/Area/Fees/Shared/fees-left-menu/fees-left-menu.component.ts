@@ -25,7 +25,10 @@ export class FeesLeftMenuComponent implements OnInit {
   public menu: IMenuItem[] = [
     // ... other menu items
   ];
-  ngOnInit() {}
+  ngOnInit() {
+    this.setMenuLogo();
+    this.generatemenu();
+  }
   private setMenuLogo() {
     if (this.globalService.GLSG('FeesToken') != null) {
       let userJSON = localStorage.getItem('FeesToken');
@@ -42,5 +45,12 @@ export class FeesLeftMenuComponent implements OnInit {
         }
       }
     }
+  }
+  generatemenu() {
+    this.menu.push({ name: 'Dashboard', link: 'Fees/Dashboard' });
+    this.menu.push({
+      name: 'Manage Fees',
+      subMenu: [{ name: 'Add Fees Type', link: 'Fees/AddFeesType' }],
+    });
   }
 }

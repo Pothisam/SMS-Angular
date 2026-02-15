@@ -58,10 +58,16 @@ export class FeesNavComponent implements OnInit {
 
   ngOnInit() {}
   loadmenu() {
-    this.filter.push({
-      text: 'Dashboard',
-      value: '/Fees/Dashboard',
-    });
+    this.filter.push(
+      {
+        text: 'Dashboard',
+        value: '/Fees/Dashboard',
+      },
+      {
+        text: 'Add Fees Type',
+        value: '/Fees/AddFeesType',
+      },
+    );
   }
   private getStaffProfileimage() {
     let userJSON = localStorage.getItem('FeesToken');
