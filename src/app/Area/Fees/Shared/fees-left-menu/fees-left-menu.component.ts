@@ -50,7 +50,10 @@ export class FeesLeftMenuComponent implements OnInit {
     this.menu.push({ name: 'Dashboard', link: 'Fees/Dashboard' });
     this.menu.push({
       name: 'Manage Fees',
-      subMenu: [{ name: 'Add Fees Type', link: 'Fees/AddFeesType' }],
+      subMenu: [
+        { name: 'Add Fees Type', link: 'Fees/AddFeesType' },
+        { name: 'Generate Fees', link: 'Fees/GenerateFees' },
+      ],
     });
   }
 }

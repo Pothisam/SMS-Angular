@@ -170,6 +170,8 @@ export class TableComponent implements OnInit {
   @Output()
   apiResponseChange = new EventEmitter<any>();
   @Output() selectedItemsChange = new EventEmitter<any[]>();
+  @Output()
+  isAPISuccessChange = new EventEmitter<boolean>();
   ngOnInit() {}
   ngAfterViewInit() {
     this.prepareTable();
@@ -692,6 +694,7 @@ export class TableComponent implements OnInit {
               this.triggerAPIChange.emit(this._triggerAPI);
             });
             this.apiResponseChange.emit(Response.data);
+            this.isAPISuccessChange.emit(true);
           },
         });
     }

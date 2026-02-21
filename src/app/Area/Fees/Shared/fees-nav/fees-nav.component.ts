@@ -67,6 +67,10 @@ export class FeesNavComponent implements OnInit {
         text: 'Add Fees Type',
         value: '/Fees/AddFeesType',
       },
+      {
+        text: 'Gentrate Fees',
+        value: '/Fees/GenerateFees',
+      },
     );
   }
   private getStaffProfileimage() {
