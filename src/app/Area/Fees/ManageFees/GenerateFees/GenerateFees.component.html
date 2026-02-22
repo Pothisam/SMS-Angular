@@ -33,14 +33,22 @@
             <fw-textbox entity="amount" label="Amount" min="3" [isrequired]="true" [(modelValue)]="request.amount"
               [isNumberOnly]="true"></fw-textbox>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-2 pt-3">
-            <fw-button label="View" [loading]="_loading" (formvalidationtrue)="calltableapi()"></fw-button>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 pt-3">
+            <div class="d-flex">
+              <fw-button label="View" [loading]="_loading" (formvalidationtrue)="calltableapi()"></fw-button>
+              @if(SelectedItems.length > 0){
+              <fw-button label="Gentrate Fees" class="ps-2" buttontype="S" [loading]="_loading2"
+                (formvalidationtrue)="GentrateFees()"></fw-button>
+              }
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+
             <fw-table [tableSettings]="tableSettings" [jsonData]="this.datalist" [parameter]="request"
-              apiUrl="/FeesType/GetFeesListView" [(triggerAPI)]="triggerTableAPI"></fw-table>
+              apiUrl="/FeesType/GetFeesListView" [(triggerAPI)]="triggerTableAPI"
+              (selectedItemsChange)="onSelectedItems($event)"></fw-table>
           </div>
         </div>
       </form>

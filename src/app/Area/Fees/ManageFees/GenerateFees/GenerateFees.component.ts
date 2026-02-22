@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  GentrationFeesRequest,
   GetFeesGentrationRequest,
   StudentFeeGenerateStatusResponse,
 } from 'src/app/Modules/Fees/Managefees/FeesType';
 import { ClassSectionRequest } from 'src/app/Modules/SMS/ClassSection/ClassSection.Request';
 import { FrameworkService } from 'src/app/Shared/framework/framework.service';
 import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
+import { FeesService } from '../../Shared/fees.service';
 
 @Component({
   selector: 'app-GenerateFees',
@@ -14,13 +16,19 @@ import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
   standalone: false,
 })
 export class GenerateFeesComponent implements OnInit {
-  constructor(private fws: FrameworkService) {}
+  constructor(
+    private fws: FrameworkService,
+    private feesservice: FeesService,
+  ) {}
   _loading: boolean = false;
+  _loading2: boolean = false;
   public request = new GetFeesGentrationRequest();
+  public insertrequest = new GentrationFeesRequest();
   public triggerTableAPI: boolean = false;
   public triggerSectionAPI: boolean = false;
   sectionrequest: ClassSectionRequest = new ClassSectionRequest();
   public datalist: StudentFeeGenerateStatusResponse[] = [];
+  public SelectedItems: number[] = [];
   public tableSettings: ITableSettings = {
     showFotter: false,
     showPagination: true,
@@ -91,6 +99,7 @@ export class GenerateFeesComponent implements OnInit {
       this.fws.loadFromSessionStorage('filter', this.request);
       this.sectionrequest.classFkid = this.request.classfkid;
       this.triggerSectionAPI = true;
+      this.SelectedItems = [];
       // this.triggerSectionAPI = true;
     }
   }
@@ -101,5 +110,24 @@ export class GenerateFeesComponent implements OnInit {
   calltableapi() {
     this.fws.SSSV('filter', this.request);
     this.triggerTableAPI = true;
+    this.SelectedItems = [];
+  }
+  onSelectedItems(items: any[]) {
+    this.SelectedItems = items.map((i) => i.sysid);
+  }
+  GentrateFees() {
+    this.insertrequest.studentdetailsfkid = this.SelectedItems;
+    this.insertrequest.academicYearFkid = this.request.acadamicYear;
+    this.insertrequest.amount = this.request.amount;
+    this.insertrequest.feestypefkid = this.request.feestypefkid;
+    this.insertrequest.sectionfkid = this.request.sectionfkid;
+    this.feesservice.getStaffDetails(this.insertrequest).subscribe({
+      next: (Response) => {
+        this.SelectedItems = [];
+        this.triggerTableAPI = true;
+        if (Response.data != null) {
+        }
+      },
+    });
   }
 }

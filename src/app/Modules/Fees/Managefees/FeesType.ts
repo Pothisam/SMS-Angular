@@ -60,3 +60,18 @@ export class StudentFeeGenerateStatusResponse {
     this.status = init?.status ?? '';
   }
 }
+export class GentrationFeesRequest {
+  studentdetailsfkid: number[];
+  sectionfkid: number;
+  academicYearFkid: number;
+  feestypefkid: number;
+  amount: number;
+
+  constructor(init?: Partial<GentrationFeesRequest>) {
+    this.studentdetailsfkid = init?.studentdetailsfkid ?? [];
+    this.sectionfkid = init?.sectionfkid ?? 0;
+    this.academicYearFkid = init?.academicYearFkid ?? 0;
+    this.feestypefkid = init?.feestypefkid ?? 0;
+    this.amount = init?.amount ?? 0;
+  }
+}
