@@ -149,6 +149,7 @@ export class ApproveFeesComponent implements OnInit {
   onRespons2(Response: any) {
     if (Response != null) {
       this.table2Data = Response;
+      this.SelectedItems = [];
     }
     if (this.table2Data.length === 0) {
       this.SelectedItems = [];

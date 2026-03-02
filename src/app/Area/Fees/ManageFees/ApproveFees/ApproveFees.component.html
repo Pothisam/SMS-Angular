@@ -23,6 +23,7 @@
         }
         @if(selectedfeesobject.sysid !== 0)
         {
+        {{SelectedItems}}
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="d-flex">
@@ -35,9 +36,9 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <fw-table [tableSettings]="tableSettings2" [jsonData]="this.table2Data" [parameter]="table2request"
-              apiUrl="/FeesType/GetApproveFeesView" [(triggerAPI)]="triggerTable2API"
-              (apiResponseChange)="onRespons2($event)" (selectedItemsChange)="onSelectedItems($event)"></fw-table>
+              <fw-table [tableSettings]="tableSettings2" [jsonData]="this.table2Data" [parameter]="table2request"
+                apiUrl="/FeesType/GetApproveFeesView" [(triggerAPI)]="triggerTable2API"
+                (apiResponseChange)="onRespons2($event)" (selectedItemsChange)="onSelectedItems($event)"></fw-table>
           </div>
         </div>
         }

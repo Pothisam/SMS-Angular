@@ -688,7 +688,9 @@ export class TableComponent implements OnInit {
               this._tableSettings!.jsonData = []; // Reset to an empty array if no data
               this.prepareTable();
             }
-
+            this.selectedItems.set([]);
+            this.selection.clear();
+            this.selectedItemsChange.emit(this.selection.selected);
             Promise.resolve().then(() => {
               this._triggerAPI = false; // Change your value here
               this.triggerAPIChange.emit(this._triggerAPI);
