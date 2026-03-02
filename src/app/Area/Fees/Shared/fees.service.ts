@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalService } from 'src/app/Global/Service/global.service';
+import { UpdateFeesApproveRequest } from 'src/app/Modules/Fees/Managefees/ApproveFees';
 import { GentrationFeesRequest } from 'src/app/Modules/Fees/Managefees/FeesType';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
 
@@ -21,6 +22,16 @@ export class FeesService {
   }
   getStaffDetails(parameter: GentrationFeesRequest): Observable<any> {
     this.url = '/FeesType/InsertStudentFees';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      parameter,
+      this.Area,
+      false,
+    );
+  }
+  ApporveFees(parameter: UpdateFeesApproveRequest): Observable<any> {
+    this.url = '/FeesType/UpdateFeesApprove';
     return ApiCallService.PostwithAuth(
       this.http,
       this.baseurl + this.url,

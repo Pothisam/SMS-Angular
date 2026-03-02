@@ -53,6 +53,7 @@ export class FeesLeftMenuComponent implements OnInit {
       subMenu: [
         { name: 'Add Fees Type', link: 'Fees/AddFeesType' },
         { name: 'Generate Fees', link: 'Fees/GenerateFees' },
+        { name: 'Approve Fees', link: 'Fees/ApproveFees' },
       ],
     });
   }

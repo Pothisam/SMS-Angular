@@ -6,6 +6,7 @@ import { LoginComponent } from '../User/Login/Login.component';
 import { FeesDashboardComponent } from '../Dashboard/feesDashboard/feesDashboard.component';
 import { AddFeesTypeComponent } from '../ManageFees/AddFeesType/AddFeesType.component';
 import { GenerateFeesComponent } from '../ManageFees/GenerateFees/GenerateFees.component';
+import { ApproveFeesComponent } from '../ManageFees/ApproveFees/ApproveFees.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { GenerateFeesComponent } from '../ManageFees/GenerateFees/GenerateFees.c
     FeesDashboardComponent,
     AddFeesTypeComponent,
     GenerateFeesComponent,
+    ApproveFeesComponent,
   ],
   imports: [CommonModule, FeesRoutingModule, FrameworkModule],
 })

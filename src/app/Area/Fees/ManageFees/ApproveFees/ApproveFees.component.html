@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Approve Fees
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Course">
+        @if(selectedfeesobject.sysid === 0 && table2Data.length === 0)
+        {
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.StudentFeeGenerationList"
+              apiUrl="/FeesType/GetApproveFees" [(triggerAPI)]="triggerTableAPI"
+              (matEditClickChange)="onEditClick($event)" (apiResponseChange)="onRespons($event)"></fw-table>
+
+
+          </div>
+        </div>
+        }
+        @if(selectedfeesobject.sysid !== 0)
+        {
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="d-flex">
+              <fw-button label="Approve Fees" class="ps-2" buttontype="S" (click)="approveSelected()"
+                [isdisabled]="SelectedItems.length ===0"></fw-button>
+              <fw-button label="Cancel Fees" class="ps-2" buttontype="D" (click)="rejectSelected()"
+                [isdisabled]="SelectedItems.length ===0"></fw-button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <fw-table [tableSettings]="tableSettings2" [jsonData]="this.table2Data" [parameter]="table2request"
+              apiUrl="/FeesType/GetApproveFeesView" [(triggerAPI)]="triggerTable2API"
+              (apiResponseChange)="onRespons2($event)" (selectedItemsChange)="onSelectedItems($event)"></fw-table>
+          </div>
+        </div>
+        }
+      </form>
+
+    </mat-card-content>
+  </div>
+</mat-card>
