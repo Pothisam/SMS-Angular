@@ -614,13 +614,17 @@ export class TableComponent implements OnInit {
       });
   }
   getRowClass(row: any): string {
-    const callback = this._tableSettings?.rowCallback;
-
-    if (callback && callback.columnname && callback.class && callback.value) {
-      const cellValue = row[callback.columnname].toLowerCase();
-      return cellValue === callback.value.toLowerCase() ? callback.class : '';
+    const callbacks = this._tableSettings?.rowCallback;
+    if (Array.isArray(callbacks)) {
+      for (const cb of callbacks) {
+        if (cb && cb.columnname && cb.class && cb.value) {
+          const cellValue = (row[cb.columnname] || '').toString().toLowerCase();
+          if (cellValue === cb.value.toLowerCase()) {
+            return cb.class;
+          }
+        }
+      }
     }
-
     return '';
   }
   getCellClass(element: any, column: any): string {
@@ -670,6 +674,9 @@ export class TableComponent implements OnInit {
     } else if (type.toLowerCase() === 'decimal') {
       const value = element[column.data];
       return this.globalService.ConverToDecimal(value).toString();
+    } else if (type.toLowerCase() === 'datetime') {
+      const value = element[column.data];
+      return this.globalService.formatDateTime(value);
     }
     return element[column.data] ?? '';
   }

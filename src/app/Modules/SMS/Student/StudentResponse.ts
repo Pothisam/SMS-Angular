@@ -44,3 +44,26 @@ export class StudentCountResponse {
     this.pg = init?.pg ?? 0;
   }
 }
+export class StudentMasterDetailsViewResponse {
+  sysid: number;
+  acadamicYear: string;
+  stdid: string;
+  name: string;
+  className: string;
+  classSection: string;
+  rollNo: string;
+  dob: Date;
+  guid: string | null;
+
+  constructor(init?: Partial<StudentMasterDetailsViewResponse>) {
+    this.sysid = init?.sysid ?? 0;
+    this.acadamicYear = init?.acadamicYear ?? '';
+    this.stdid = init?.stdid ?? '';
+    this.name = init?.name ?? '';
+    this.className = init?.className ?? '';
+    this.classSection = init?.classSection ?? '';
+    this.rollNo = init?.rollNo ?? '';
+    this.dob = init?.dob ? new Date(init.dob) : new Date();
+    this.guid = init?.guid ?? null;
+  }
+}

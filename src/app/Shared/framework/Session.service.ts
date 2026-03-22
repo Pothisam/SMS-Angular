@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SessionClass } from 'src/app/Modules/Fees/CollectFees/ViewDetails';
 
 @Injectable({
   providedIn: 'root',
@@ -27,4 +28,5 @@ export class SessionService {
     return this.studentEditIdSubject.getValue();
   }
   // #endregion
+  viewfeesSignal = signal<SessionClass>(new SessionClass());
 }

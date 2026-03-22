@@ -56,5 +56,6 @@ export class FeesLeftMenuComponent implements OnInit {
         { name: 'Approve Fees', link: 'Fees/ApproveFees' },
       ],
     });
+    this.menu.push({ name: 'Collect Fees', link: 'Fees/ViewFees' });
   }
 }

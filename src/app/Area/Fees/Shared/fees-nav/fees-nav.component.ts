@@ -75,6 +75,10 @@ export class FeesNavComponent implements OnInit {
         text: 'Approve Fees',
         value: '/Fees/ApproveFees',
       },
+      {
+        text: 'Collect Fees',
+        value: '/Fees/ViewFees',
+      },
     );
   }
   private getStaffProfileimage() {

@@ -5,6 +5,8 @@ import { LoginComponent } from '../User/Login/Login.component';
 import { AddFeesTypeComponent } from '../ManageFees/AddFeesType/AddFeesType.component';
 import { GenerateFeesComponent } from '../ManageFees/GenerateFees/GenerateFees.component';
 import { ApproveFeesComponent } from '../ManageFees/ApproveFees/ApproveFees.component';
+import { ViewFeesListComponent } from '../CollectFees/ViewFeesList/ViewFeesList.component';
+import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.component';
 
 const feesroutes: Routes = [
   {
@@ -30,6 +32,14 @@ const feesroutes: Routes = [
   {
     path: 'ApproveFees',
     component: ApproveFeesComponent,
+  },
+  {
+    path: 'ViewFees',
+    component: ViewFeesListComponent,
+  },
+  {
+    path: 'ViewDetails',
+    component: ViewDetailComponent,
   },
 ];
 @NgModule({

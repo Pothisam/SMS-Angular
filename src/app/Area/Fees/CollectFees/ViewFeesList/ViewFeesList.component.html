@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Collect Fees
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Course">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="acadamicYear" label="Acadamic Year" apiUrl="/AcademicYear/GetAcademicYearList"
+              [triggerAPIOnload]="true" [(modelValue)]="request.batch" valueAndname="sysId,year" [isrequired]="true"
+              [triggerAPIOnload]="true" [apicache]="true"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="classfkid" label="Class" [isrequired]="true" [apicache]="true"
+              apiUrl="/Class/GetClassListActive" [(modelValue)]="request.class" valueAndname="sysId,className"
+              [triggerAPIOnload]="true" (onSelectChange)="onClassChange()"
+              [(isSelectChange)]="triggerSectionAPI"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="sectionfkid" label="Section" [isrequired]="true" [(parameter)]="sectionrequest"
+              apiUrl="/ClassSection/GetActiveSections" [(modelValue)]="request.section" valueAndname="sysId,sectionName"
+              [(triggerAPI)]="triggerSectionAPI"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 pt-3">
+            <fw-button label="View" apiUrl="/StudentFeesTransaction/GetFeesDetailsByclass" [parameter]="request"
+              (apiResponseChange)="onRespons($event)" [triggerbutton]="triggerbutton"></fw-button>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <fw-autocomplete entity="studentName" label="Name / Roll no / stdid"
+              apiUrl="/Student/GetStudentAutoComplete" [(modelValue)]="namerequest.studentName"
+              valueAndname="column,column" [parameter]="namerequestp" min="0" maxlength="50"
+              (selectedOptionValueChange)="onNameChange()"></fw-autocomplete>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="this.list"
+              (matEditClickChange)="onEditClick($event)"></fw-table>
+          </div>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

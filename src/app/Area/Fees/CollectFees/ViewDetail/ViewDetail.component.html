@@ -1,0 +1,165 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      View Details
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="feesdetails">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <fw-textbox entity="rollNo" label="Roll No" [isdisabled]="true"
+                  [(modelValue)]="request.rollNo"></fw-textbox>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <fw-textbox entity="name" label="Student Name" [isdisabled]="true"
+                  [(modelValue)]="request.name"></fw-textbox>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <fw-textbox entity="className" label="Class Name" [isdisabled]="true"
+                  [(modelValue)]="request.className"></fw-textbox>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <fw-textbox entity="acadamicYear" label="Academic Year" [isdisabled]="true"
+                  [(modelValue)]="request.acadamicYear"></fw-textbox>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <fw-date entity="dob" label="Date of Birth" [isdisabled]="true" [(modelValue)]="request.dob"></fw-date>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-Image-upload [size]="150" [(guid)]="request.guid" [fileupload]="false"></fw-Image-upload>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <fw-table [tableSettings]="tabledebit" [jsonData]="this.debitlist"></fw-table>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <fw-table [tableSettings]="tablecredit" [jsonData]="this.creditlist"></fw-table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="display table compact nowrap table-bordered dt-responsive " style="width:100%">
+                  <tr>
+                    <td style="width:30%">Total</td>
+                    <td style="width:50%"></td>
+                    <td style="width:20%" cla>
+                      <div class="text-end form-control-sm float-end pe-3">{{ debit | number:'1.2-2' }}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="display table compact nowrap table-bordered dt-responsive " style="width:100%">
+                  <tr>
+                    <td style="width:30%">Total</td>
+                    <td style="width:50%"></td>
+                    <td style="width:20%">
+                      <div class="text-end form-control-sm float-end pe-3">{{ credit | number:'1.2-2' }}</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="debit" label="Total Fees" [isdisabled]="true" [(modelValue)]="debit"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="credit" label="Already Paid" [isdisabled]="true" [(modelValue)]="credit"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="dueAmount" label="Due Amount" [isdisabled]="true"
+              [(modelValue)]="dueAmount"></fw-textbox>
+          </div>
+
+        </div>
+        @if(dueAmount > 0){
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-select entity="paymenttype" label="Payment Type" [isrequired]="true"
+              commaSeparatedString="Cash,Cheque,Demand Draft,Online Transfer "
+              [(modelValue)]="AddRequest.paymentMode"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="Description" label="Description" [(modelValue)]="AddRequest.description" maxlength="30"
+              [isrequired]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="amount" label="Amount" [(modelValue)]="AddRequest.amount" maxlength="30"
+              [isNumberOnly]="true" [isrequired]="true"></fw-textbox>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-select entity="feestypefkid" label="Fees Type" [isrequired]="true" apiUrl="/FeesType/GetFeesType"
+              valueAndname="sysid,feesDescription" [triggerAPIOnload]="true" [apicache]="true"
+              [(modelValue)]="AddRequest.feesTypeFkid"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-date entity="generateDate" label="Payment Date" [(modelValue)]="AddRequest.generateDate"
+              [isrequired]="true"></fw-date>
+          </div>
+
+        </div>
+        @if(AddRequest.paymentMode === 'Cheque' || AddRequest.paymentMode === 'Demand Draft' ||
+        AddRequest.paymentMode ===
+        'Online Transfer'){
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <fw-select entity="bankName" label="Bank Name" [isrequired]="true" apiUrl="/Common/GetBankDetails"
+              valueAndname="bankName,bankName" [triggerAPIOnload]="true" [apicache]="true"
+              [(modelValue)]="AddRequest.bankName"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-date entity="chequeDate" label="Cheque/DD/UPI Date" [(modelValue)]="AddRequest.chequeDate"
+              [isrequired]="true"></fw-date>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+            <fw-textbox entity="chequeNo" label="Cheque/DD/UPI Number" [(modelValue)]="AddRequest.chequeNo"
+              maxlength="15" [isrequired]="true"></fw-textbox>
+          </div>
+        </div>
+        }
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <fw-button label="Pay Fees" buttontype="S" [loading]="loading"
+              (formvalidationtrue)="SaveFees()"></fw-button>
+          </div>
+        </div>
+        }
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

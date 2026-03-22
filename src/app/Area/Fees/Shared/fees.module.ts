@@ -7,6 +7,8 @@ import { FeesDashboardComponent } from '../Dashboard/feesDashboard/feesDashboard
 import { AddFeesTypeComponent } from '../ManageFees/AddFeesType/AddFeesType.component';
 import { GenerateFeesComponent } from '../ManageFees/GenerateFees/GenerateFees.component';
 import { ApproveFeesComponent } from '../ManageFees/ApproveFees/ApproveFees.component';
+import { ViewFeesListComponent } from '../CollectFees/ViewFeesList/ViewFeesList.component';
+import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { ApproveFeesComponent } from '../ManageFees/ApproveFees/ApproveFees.comp
     AddFeesTypeComponent,
     GenerateFeesComponent,
     ApproveFeesComponent,
+    ViewFeesListComponent,
+    ViewDetailComponent,
   ],
   imports: [CommonModule, FeesRoutingModule, FrameworkModule],
 })

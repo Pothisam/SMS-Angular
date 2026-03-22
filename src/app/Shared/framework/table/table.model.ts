@@ -12,11 +12,11 @@ export class ITableSettings {
   columnSticky: number[];
   headerSticky: boolean;
   filter: boolean;
-  rowCallback?: {
+  rowCallback?: Array<{
     columnname: string;
     value: string;
     class: string;
-  };
+  }>;
   constructor() {
     this.showFotter = true;
     this.showPagination = true;
@@ -65,11 +65,13 @@ export class ITableSettings {
     ((this.columnSticky = [0, 1, 2]),
       (this.headerSticky = false),
       (this.filter = false),
-      (this.rowCallback = {
-        columnname: 'status',
-        value: 'Inactive',
-        class: 'danger',
-      }));
+      (this.rowCallback = [
+        {
+          columnname: 'status',
+          value: 'Inactive',
+          class: 'danger',
+        },
+      ]));
   }
 }
 export type ConditionOperator = '>' | '<' | '=' | '!=' | '>=' | '<=';
