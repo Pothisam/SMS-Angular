@@ -1,0 +1,109 @@
+<div style="width: 95%; align-content: center; margin: 0 auto">
+  <table style="width: 100%; text-align: center; align-content: center" class="Border" id="headt">
+    <tr>
+      <td class="Border">
+        <app-PrintHeader></app-PrintHeader>
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span style="font-weight:bold;font-size:15px">{{ heading }}</span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <table style="width:100%;text-align:left" class="Border">
+          <tr>
+            <td style="width:25%;">Student Name</td>
+            <td style="width:25%;">Class</td>
+            <td style="width:25%;">Section
+            </td>
+            <td style="width:25%;">Date</td>
+          </tr>
+          <tr>
+            <td style="width:25%;font-weight:bold">
+              {{ data.name }}
+            </td>
+            <td style="width:25%;font-weight:bold">
+              {{ data.className }}
+            </td>
+            <td style="width:25%;font-weight:bold">
+              {{ data.sectionName }}
+            </td>
+            <td style="width:25%;font-weight:bold">
+              {{ data.generateDate | date: 'dd-MM-yyyy' }}
+            </td>
+          </tr>
+          <tr>
+            <td style="width:25%;">Date of Birth</td>
+            <td style="width:25%;">Student id</td>
+            <td style="width:25%;">Receipt No </td>
+          </tr>
+          <tr>
+            <td style="width:25%;font-weight:bold">
+              {{ data.dob | date: 'dd-MM-yyyy' }}
+            </td>
+            <td style="width:25%;font-weight:bold">
+              {{ data.stdid }}
+            </td>
+            <td style="width:25%;font-weight:bold">
+              {{ data.recicptNo }}
+
+            </td>
+
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table style="width:100%;" class="Border">
+          <tr>
+            <td style="width:70%;text-align:left">Particulars</td>
+            <td style="width:30%;text-align:right">Amount</td>
+          </tr>
+          <tr style="height:50px;vertical-align:top">
+            <td style="width:70%;text-align:left">
+              {{ data.feesDescription }}
+            </td>
+            <td style="width:30%;text-align:right">
+              {{ data.credit }}&nbsp;
+            </td>
+          </tr>
+          <tr class="Border">
+            <td style="width:70%;text-align:left" class="Border">Total </td>
+            <td style="width:30%;text-align:right;font-weight:bold" class="Border">
+              {{ data.credit }}&nbsp;
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <span style="font-weight:bold;">RS : {{ convertAmountToWords(data.credit) }}</span>
+      </td>
+    <tr>
+      <td>
+        <table style="width:100%;">
+          <tr>
+
+            <td style="width:70%;"></td>
+            <td style="width:30%;font-weight:bold;text-align:center">Authorised Signator</td>
+          </tr>
+          <tr>
+
+            <td style="width:70%;"></td>
+            <td style="width:30%;font-weight:bold;text-align:center">({{ data.createdby }})</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

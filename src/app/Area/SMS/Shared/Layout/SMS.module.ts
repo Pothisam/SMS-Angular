@@ -16,6 +16,7 @@ import { ViewStudentComponent } from '../../Student/viewStudent/viewStudent.comp
 import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePassword.component';
 import { TransferStudentComponent } from '../../Report/TransferStudent/TransferStudent.component';
 import { AddAdminUsersComponent } from '../../User/AddAdminUsers/AddAdminUsers.component';
+import { SharedCommonModule } from 'src/app/Shared/common/common.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,6 @@ import { AddAdminUsersComponent } from '../../User/AddAdminUsers/AddAdminUsers.c
     TransferStudentComponent,
     AddAdminUsersComponent,
   ],
-  imports: [CommonModule, SMSRoutingModule, FrameworkModule],
+  imports: [CommonModule, SMSRoutingModule, FrameworkModule, SharedCommonModule],
 })
 export class SMSModule {}

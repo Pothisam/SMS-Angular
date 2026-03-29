@@ -7,4 +7,4 @@ import { MaterialModule } from '../material.module';
   declarations: [PrintHeaderComponent],
   exports: [PrintHeaderComponent, MaterialModule],
 })
-export class commonModule {}
+export class SharedCommonModule {}

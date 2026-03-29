@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Date Wise Report
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="Course">
+        <div class="row">
+          <div class="col-lg-2">
+            <fw-date label="From Date" [isrequired]="true" [(modelValue)]="request.fromDate"></fw-date>
+          </div>
+          <div class="col-lg-2">
+            <fw-date label="To Date" [isrequired]="true" [(modelValue)]="request.toDate"></fw-date>
+          </div>
+          <div class="col-lg-2">
+            <fw-select entity="feesTypeFkid" label="Fees Type" [isrequired]="true" apiUrl="/FeesType/GetFeesType"
+              [(modelValue)]="request.feesTypeFkid" valueAndname="sysid,feesDescription"
+              [triggerAPIOnload]="true"></fw-select>
+          </div>
+          <div class="col-lg-2 pt-4">
+            <fw-button label="View" apiUrl="/StudentFeesTransaction/GetFeesReportDateWise" [parameter]="request"
+              (apiResponseChange)="onRespons($event)"></fw-button>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+
+              <fw-table [tableSettings]="tableSettings" [jsonData]="this.list"
+                (matdynamicClickChange)="ondynamicClick($event)"></fw-table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

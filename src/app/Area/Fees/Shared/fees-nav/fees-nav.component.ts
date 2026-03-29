@@ -68,7 +68,7 @@ export class FeesNavComponent implements OnInit {
         value: '/Fees/AddFeesType',
       },
       {
-        text: 'Gentrate Fees',
+        text: 'Generate Fees',
         value: '/Fees/GenerateFees',
       },
       {
@@ -78,6 +78,10 @@ export class FeesNavComponent implements OnInit {
       {
         text: 'Collect Fees',
         value: '/Fees/ViewFees',
+      },
+      {
+        text: 'Date Wise Report',
+        value: '/Fees/DateWiseReport',
       },
     );
   }

@@ -7,6 +7,8 @@ import { GenerateFeesComponent } from '../ManageFees/GenerateFees/GenerateFees.c
 import { ApproveFeesComponent } from '../ManageFees/ApproveFees/ApproveFees.component';
 import { ViewFeesListComponent } from '../CollectFees/ViewFeesList/ViewFeesList.component';
 import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.component';
+import { DateWiseReportComponent } from '../Report/DateWiseReport/DateWiseReport.component';
+import { PrintCashReceiptComponent } from '../Report/PrintCashReceipt/PrintCashReceipt.component';
 
 const feesroutes: Routes = [
   {
@@ -40,6 +42,15 @@ const feesroutes: Routes = [
   {
     path: 'ViewDetails',
     component: ViewDetailComponent,
+  },
+  {
+    path: 'DateWiseReport',
+    component: DateWiseReportComponent,
+  },
+  {
+    path: 'PrintCashReceipt',
+    component: PrintCashReceiptComponent,
+    data: { isprint: true },
   },
 ];
 @NgModule({
