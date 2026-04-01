@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { FeesReportRequest, FeesReportResponse } from 'src/app/Modules/Fees/Report/DateWiseReport';
 import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
 
@@ -92,7 +94,7 @@ export class DateWiseReportComponent implements OnInit {
   public list: FeesReportResponse[] = [];
   public request: FeesReportRequest = new FeesReportRequest();
   public triggerTableAPI = false;
-  constructor() {}
+  constructor(private router: Router, private location: Location) {}
 
   ngOnInit() {}
   onRespons(Response: any) {
@@ -109,8 +111,10 @@ export class DateWiseReportComponent implements OnInit {
       h = 700,
       left = (screen.width - w) / 2,
       top = (screen.height - h) / 2;
+    const urlTree = this.router.createUrlTree(['/Fees/PrintCashReceipt']);
+    const path = this.location.prepareExternalUrl(this.router.serializeUrl(urlTree));
     window.open(
-      `../Fees/PrintCashReceipt`,
+      path,
       '_blank',
       `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`,
     );
