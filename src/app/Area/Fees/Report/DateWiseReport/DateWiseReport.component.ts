@@ -110,7 +110,7 @@ export class DateWiseReportComponent implements OnInit {
       left = (screen.width - w) / 2,
       top = (screen.height - h) / 2;
     window.open(
-      `/Fees/PrintCashReceipt`,
+      `../Fees/PrintCashReceipt`,
       '_blank',
       `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`,
     );

@@ -16,6 +16,7 @@ export class PrintCashReceiptComponent implements OnInit {
     const jsonValue = localStorage.getItem('PrintCashReceipt');
     if (jsonValue) {
       this.data = JSON.parse(jsonValue);
+      setTimeout(() => window.print(), 500);
     }
   }
   public convertAmountToWords(amount: number): string {
