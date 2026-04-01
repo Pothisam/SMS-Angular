@@ -94,7 +94,10 @@ export class DateWiseReportComponent implements OnInit {
   public list: FeesReportResponse[] = [];
   public request: FeesReportRequest = new FeesReportRequest();
   public triggerTableAPI = false;
-  constructor(private router: Router, private location: Location) {}
+  constructor(
+    private router: Router,
+    private location: Location,
+  ) {}
 
   ngOnInit() {}
   onRespons(Response: any) {
