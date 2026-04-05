@@ -232,6 +232,7 @@ export class StudentDetailUpdateRequest {
   imageContentType: string;
   imageData: string;
   guid: string;
+  concession: number;
   constructor(init?: Partial<StudentDetailUpdateRequest>) {
     this.sysid = init?.sysid ?? 0;
     this.applicationNumber = init?.applicationNumber ?? '';
@@ -302,6 +303,7 @@ export class StudentDetailUpdateRequest {
     this.imageContentType = init?.imageContentType ?? '';
     this.imageData = init?.imageData ?? '';
     this.guid = init?.guid ?? '';
+    this.concession = init?.concession ?? 0;
   }
 }
 export class AddStudentClassDetailRequest {

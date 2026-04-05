@@ -83,6 +83,10 @@ export class FeesNavComponent implements OnInit {
         text: 'Date Wise Report',
         value: '/Fees/DateWiseReport',
       },
+      {
+        text: 'Generate Concession',
+        value: '/Fees/DateWiseReport',
+      },
     );
   }
   private getStaffProfileimage() {

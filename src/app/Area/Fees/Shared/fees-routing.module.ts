@@ -9,6 +9,7 @@ import { ViewFeesListComponent } from '../CollectFees/ViewFeesList/ViewFeesList.
 import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.component';
 import { DateWiseReportComponent } from '../Report/DateWiseReport/DateWiseReport.component';
 import { PrintCashReceiptComponent } from '../Report/PrintCashReceipt/PrintCashReceipt.component';
+import { GentrateConcessionComponent } from '../ManageFees/GentrateConcession/GentrateConcession.component';
 
 const feesroutes: Routes = [
   {
@@ -51,6 +52,10 @@ const feesroutes: Routes = [
     path: 'PrintCashReceipt',
     component: PrintCashReceiptComponent,
     data: { isprint: true },
+  },
+  {
+    path: 'GenerateConcession',
+    component: GentrateConcessionComponent,
   },
 ];
 @NgModule({

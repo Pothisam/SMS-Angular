@@ -75,3 +75,52 @@ export class GentrationFeesRequest {
     this.amount = init?.amount ?? 0;
   }
 }
+export class GetConcessionGentrationRequest {
+  public acadamicYear: number;
+  public classfkid: number;
+  public sectionfkid: number;
+  public feestypefkid: number;
+
+  constructor(init?: Partial<GetConcessionGentrationRequest>) {
+    this.acadamicYear = init?.acadamicYear ?? 0;
+    this.classfkid = init?.classfkid ?? 0;
+    this.sectionfkid = init?.sectionfkid ?? 0;
+    this.feestypefkid = init?.feestypefkid ?? 0;
+  }
+}
+export class GentrationConcessionRequest {
+  studentdetailsfkid: number[];
+  sectionfkid: number;
+  academicYearFkid: number;
+  feestypefkid: number;
+
+  constructor(init?: Partial<GentrationFeesRequest>) {
+    this.studentdetailsfkid = init?.studentdetailsfkid ?? [];
+    this.sectionfkid = init?.sectionfkid ?? 0;
+    this.academicYearFkid = init?.academicYearFkid ?? 0;
+    this.feestypefkid = init?.feestypefkid ?? 0;
+  }
+}
+export class StudentConcessionGenerateStatusResponse {
+  public sysid: number;
+  public studentName: string;
+  public stdid: string;
+  public className: string;
+  public sectionName: string;
+  public hostel: string;
+  public year: string;
+  public amount: number;
+  public status: string;
+
+  constructor(init?: Partial<StudentConcessionGenerateStatusResponse>) {
+    this.sysid = init?.sysid ?? 0;
+    this.studentName = init?.studentName ?? '';
+    this.stdid = init?.stdid ?? '';
+    this.className = init?.className ?? '';
+    this.sectionName = init?.sectionName ?? '';
+    this.hostel = init?.hostel ?? '';
+    this.year = init?.year ?? '';
+    this.amount = init?.amount ?? 0;
+    this.status = init?.status ?? '';
+  }
+}

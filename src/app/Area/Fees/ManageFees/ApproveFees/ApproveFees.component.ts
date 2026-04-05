@@ -186,10 +186,12 @@ export class ApproveFeesComponent implements OnInit {
       (res) => {
         this.SelectedItems = [];
         this.triggerTable2API = true;
+        this.triggerTableAPI = true;
         //this.triggerTableAPI = true;
       },
       (err) => {
         this.triggerTable2API = true;
+        this.triggerTableAPI = true;
       },
     );
   }

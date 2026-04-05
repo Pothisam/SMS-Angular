@@ -8,7 +8,11 @@ import {
   StudentFeesTransactionByNameRequest,
 } from 'src/app/Modules/Fees/CollectFees/ViewDetails';
 import { UpdateFeesApproveRequest } from 'src/app/Modules/Fees/Managefees/ApproveFees';
-import { GentrationFeesRequest } from 'src/app/Modules/Fees/Managefees/FeesType';
+import {
+  GentrationConcessionRequest,
+  GentrationFeesRequest,
+  GetConcessionGentrationRequest,
+} from 'src/app/Modules/Fees/Managefees/FeesType';
 import { ApiCallService } from 'src/app/Shared/apiCall.service';
 
 @Injectable({
@@ -87,6 +91,16 @@ export class FeesService {
   }
   AddFees(parameter: StudentFeesTransactionAddRequest): Observable<any> {
     this.url = '/StudentFeesTransaction/AddStudentFeesTransaction';
+    return ApiCallService.PostwithAuth(
+      this.http,
+      this.baseurl + this.url,
+      parameter,
+      this.Area,
+      false,
+    );
+  }
+  CreateConcession(parameter: GentrationConcessionRequest): Observable<any> {
+    this.url = '/FeesType/InsertStudentConcession';
     return ApiCallService.PostwithAuth(
       this.http,
       this.baseurl + this.url,

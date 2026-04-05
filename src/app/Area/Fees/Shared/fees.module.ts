@@ -12,6 +12,7 @@ import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.compon
 import { DateWiseReportComponent } from '../Report/DateWiseReport/DateWiseReport.component';
 import { PrintCashReceiptComponent } from '../Report/PrintCashReceipt/PrintCashReceipt.component';
 import { SharedCommonModule } from 'src/app/Shared/common/common.module';
+import { GentrateConcessionComponent } from '../ManageFees/GentrateConcession/GentrateConcession.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SharedCommonModule } from 'src/app/Shared/common/common.module';
     ViewDetailComponent,
     DateWiseReportComponent,
     PrintCashReceiptComponent,
+    GentrateConcessionComponent,
   ],
   imports: [CommonModule, FeesRoutingModule, FrameworkModule, SharedCommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

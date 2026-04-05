@@ -54,6 +54,7 @@ export class FeesLeftMenuComponent implements OnInit {
         { name: 'Add Fees Type', link: 'Fees/AddFeesType' },
         { name: 'Generate Fees', link: 'Fees/GenerateFees' },
         { name: 'Approve Fees', link: 'Fees/ApproveFees' },
+        { name: 'Generate Concession', link: 'Fees/GenerateConcession' },
       ],
     });
     this.menu.push({ name: 'Collect Fees', link: 'Fees/ViewFees' });
