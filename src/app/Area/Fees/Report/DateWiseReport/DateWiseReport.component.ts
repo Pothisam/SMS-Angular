@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FeesReportRequest, FeesReportResponse } from 'src/app/Modules/Fees/Report/DateWiseReport';
 import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
+import { GlobalService } from 'src/app/Global/Service/global.service';
+import { IModalSettings } from 'src/app/Shared/framework/model/model';
 
 @Component({
   selector: 'app-DateWiseReport',
@@ -80,7 +82,9 @@ export class DateWiseReportComponent implements OnInit {
           {
             button: true,
             buttondata: 'sysId',
-            buttons: ['dynamic'],
+            buttons: ['dynamic', 'delete', 'history'],
+            click: ['delete|sysId', 'history|StudentFeesTransaction|sysId|'],
+            conditions: ['delete|status|Approved'],
             dynamic: ['print', 'Print Receipt'],
           },
         ],
@@ -90,13 +94,28 @@ export class DateWiseReportComponent implements OnInit {
     columnSticky: [0, 1, 2],
     headerSticky: true,
     filter: true,
+    rowCallback: [
+      {
+        columnname: 'status',
+        value: 'Deleted',
+        class: 'text-decoration-line-through  text-danger',
+      },
+      {
+        columnname: 'status',
+        value: 'Rejected',
+        class: 'text-decoration-line-through  text-danger',
+      },
+    ],
   };
   public list: FeesReportResponse[] = [];
   public request: FeesReportRequest = new FeesReportRequest();
   public triggerTableAPI = false;
+  public _modalSettings: IModalSettings = new IModalSettings();
+  public deleteReason: string = '';
   constructor(
     private router: Router,
     private location: Location,
+    private globalService: GlobalService,
   ) {}
 
   ngOnInit() {}
@@ -121,5 +140,37 @@ export class DateWiseReportComponent implements OnInit {
       '_blank',
       `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`,
     );
+  }
+  onDeleteClick(value: any): void {
+    this.deleteReason = '';
+    this._modalSettings.headerMessage = 'Delete Fees Record';
+    this._modalSettings.targetHTML = null;
+    this._modalSettings.isModalVisible = true;
+    this._modalSettings.modalSize = 'md';
+    this._modalSettings.isDeleteForm = false;
+    this._modalSettings.modalId = 'delete-fees-modal';
+    this._modalSettings.api = '/StudentFeesTransaction/DeleteTransaction';
+    this._modalSettings.formId = 'delete-reason-form';
+    this._modalSettings.validationGroup = 'default';
+    this._modalSettings.buttonGroup = ['delete'];
+    this._modalSettings.note = 'This action cannot be undone.';
+    this._modalSettings.parameter = value; // sysId
+    this._modalSettings.getInputParameter = () => {
+      return {
+        sysId: value.sysId,
+        remark: this.deleteReason,
+      };
+    };
+    this._modalSettings.responseOkAction = (res: any) => {
+      if (res.status === '200') {
+        this.triggerTableAPI = true;
+        this.deleteReason = '';
+      }
+    };
+    // Add validation function to check if deleteReason is not empty
+    (this._modalSettings as any).isFormValid = () => {
+      return this.deleteReason && this.deleteReason.trim().length > 0;
+    };
+    this.globalService.updateModelDeleteConfirmation(this._modalSettings);
   }
 }

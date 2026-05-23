@@ -27,6 +27,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
 
               <fw-table [tableSettings]="tableSettings" [jsonData]="this.list"
+                (matDeleteClickChange)="onDeleteClick($event)  "
                 (matdynamicClickChange)="ondynamicClick($event)"></fw-table>
             </div>
           </div>
@@ -35,3 +36,25 @@
     </mat-card-content>
   </div>
 </mat-card>
+
+<fw-form-modal id="delete-fees-modal">
+  <mat-card>
+    <mat-card-content>
+      <form id="delete-reason-form">
+        <div class="row px-3 py-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label class="form-label">Reason for Deletion</label>
+            <textarea class="form-control" id="deleteReason" rows="4" [(ngModel)]="deleteReason" name="deleteReason"
+              placeholder="Enter the reason for deleting this record..." required></textarea>
+            <small class="form-text text-muted">Please provide a valid reason for this deletion.</small>
+            @if (deleteReason && deleteReason.trim() === '') {
+            <div class="alert alert-danger mt-2 mb-0" role="alert">
+              <small>Reason for deletion is required.</small>
+            </div>
+            }
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</fw-form-modal>

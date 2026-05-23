@@ -26,6 +26,7 @@ export class FormModalComponent {
   ngOnInit() {
     this.globalService.modelDeleteConfirmation$.subscribe((value: IModalSettings) => {
       this._modalSettings = value;
+      this.isApiLoading = false; // Reset loading state when modal opens
       setTimeout(() => {
         if (this.modalElement) {
           this.modalElement.nativeElement.focus();
@@ -46,6 +47,13 @@ export class FormModalComponent {
     }
     this._modalSettings.isModalVisible = false;
     if (this._modalSettings.onModalClose) this._modalSettings.onModalClose();
+  }
+  isFormValidForDelete(): boolean {
+    const isFormValid = (this._modalSettings as any).isFormValid;
+    if (isFormValid && typeof isFormValid === 'function') {
+      return isFormValid();
+    }
+    return true; // Allow if no validation function provided
   }
   CallAPI() {
     this.isApiLoading = true;

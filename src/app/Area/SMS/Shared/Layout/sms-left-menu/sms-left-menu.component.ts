@@ -45,10 +45,6 @@ export class SmsLeftMenuComponent implements OnInit {
                 { name: 'AcademicYear', link: 'SMS/AcademicYear' },
               ],
             });
-            this.menu.push({
-              name: 'Report',
-              subMenu: [{ name: 'Student Transfer', link: 'SMS/TransferStudent' }],
-            });
           }
           if (permission['Staff']) {
             this.menu.push({
@@ -68,6 +64,10 @@ export class SmsLeftMenuComponent implements OnInit {
               ],
             });
           }
+          this.menu.push({
+            name: 'Report',
+            subMenu: [{ name: 'Student Transfer', link: 'SMS/TransferStudent' }],
+          });
         },
       });
     }

@@ -107,6 +107,18 @@ export class ViewDetailComponent implements OnInit {
     columnSticky: [0, 1, 2],
     headerSticky: true,
     filter: false,
+    rowCallback: [
+      {
+        columnname: 'status',
+        value: 'Deleted',
+        class: 'text-decoration-line-through  text-danger',
+      },
+      {
+        columnname: 'status',
+        value: 'Rejected',
+        class: 'text-decoration-line-through  text-danger',
+      },
+    ],
   };
   public debit: number = 0;
   public credit: number = 0;
@@ -200,5 +212,8 @@ export class ViewDetailComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+  navigateToFeesList() {
+    this.router.navigate(['Fees/ViewFees']);
   }
 }
