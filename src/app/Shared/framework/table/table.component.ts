@@ -614,20 +614,31 @@ export class TableComponent implements OnInit {
       });
   }
   getRowClass(row: any): string {
+    // Row styling logic can be added here if needed
+    // rowCallback is now applied at the cell level in getCellClass to support excludeColumns
+    return '';
+  }
+  getCellClass(element: any, column: any): string {
+    // Check rowCallback first
     const callbacks = this._tableSettings?.rowCallback;
     if (Array.isArray(callbacks)) {
       for (const cb of callbacks) {
         if (cb && cb.columnname && cb.class && cb.value) {
-          const cellValue = (row[cb.columnname] || '').toString().toLowerCase();
+          const cellValue = (element[cb.columnname] || '').toString().toLowerCase();
           if (cellValue === cb.value.toLowerCase()) {
+            // Check if this column is excluded
+            if (cb.excludeColumns && Array.isArray(cb.excludeColumns)) {
+              if (cb.excludeColumns.includes(column.data)) {
+                continue; // Skip this column, don't apply the class
+              }
+            }
             return cb.class;
           }
         }
       }
     }
-    return '';
-  }
-  getCellClass(element: any, column: any): string {
+
+    // Check conditionalClass
     if (!Array.isArray(column.conditionalClass) || column.conditionalClass.length === 0) {
       return '';
     }

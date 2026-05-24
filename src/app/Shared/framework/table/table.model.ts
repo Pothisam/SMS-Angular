@@ -16,6 +16,7 @@ export class ITableSettings {
     columnname: string;
     value: string;
     class: string;
+    excludeColumns?: string[];
   }>;
   constructor() {
     this.showFotter = true;

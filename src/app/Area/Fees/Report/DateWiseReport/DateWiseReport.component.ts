@@ -99,11 +99,13 @@ export class DateWiseReportComponent implements OnInit {
         columnname: 'status',
         value: 'Deleted',
         class: 'text-decoration-line-through  text-danger',
+        excludeColumns: ['Mat-Action'],
       },
       {
         columnname: 'status',
         value: 'Rejected',
         class: 'text-decoration-line-through  text-danger',
+        excludeColumns: ['Mat-Action'],
       },
     ],
   };
