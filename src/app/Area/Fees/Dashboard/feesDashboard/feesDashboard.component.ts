@@ -52,7 +52,7 @@ export class FeesDashboardComponent implements OnInit {
     }
   }
 
-  onTableResponse(response: FeesSummaryClassWiseResponse[]): void {
+  onTableResponse(response: any): void {
     this.summaryList = response ?? [];
   }
 }

@@ -56,7 +56,13 @@ export class FeesNavComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const saved = this.globalService.GLSG('Darktheme');
+    if (saved === 'true') {
+      this.darkmode = true;
+      this.globalService.switchTheme('cyan-orange');
+    }
+  }
   loadmenu() {
     this.filter.push(
       {

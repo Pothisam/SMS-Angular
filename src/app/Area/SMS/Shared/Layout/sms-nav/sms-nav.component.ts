@@ -132,7 +132,13 @@ export class SmsNavComponent implements OnInit {
     });
     this.filter.push();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    const saved = this.globalService.GLSG('Darktheme');
+    if (saved === 'true') {
+      this.darkmode = true;
+      this.globalService.switchTheme('cyan-orange');
+    }
+  }
   darkMode() {
     this.darkmode = !this.darkmode;
     if (this.darkmode) {

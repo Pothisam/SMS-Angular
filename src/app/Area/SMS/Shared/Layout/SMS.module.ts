@@ -17,6 +17,7 @@ import { ChangePasswordComponent } from '../../User/ChangePassword/ChangePasswor
 import { TransferStudentComponent } from '../../Report/TransferStudent/TransferStudent.component';
 import { AddAdminUsersComponent } from '../../User/AddAdminUsers/AddAdminUsers.component';
 import { SharedCommonModule } from 'src/app/Shared/common/common.module';
+import { SmsDashboardComponent } from '../../Dashboard/SmsDashboard/SmsDashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharedCommonModule } from 'src/app/Shared/common/common.module';
     ViewStudentComponent,
     TransferStudentComponent,
     AddAdminUsersComponent,
+    SmsDashboardComponent,
   ],
   imports: [CommonModule, SMSRoutingModule, FrameworkModule, SharedCommonModule],
 })
