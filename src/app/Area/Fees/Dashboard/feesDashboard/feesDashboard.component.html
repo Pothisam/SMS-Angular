@@ -1,3 +1,42 @@
-<p>
-  feesDashboard works!
-</p>
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Fees Dashboard
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="FeesDashboard">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select
+              entity="academicYearSysId"
+              label="Academic Year"
+              apiUrl="/AcademicYear/GetAcademicYearList"
+              [triggerAPIOnload]="true"
+              [apicache]="true"
+              valueAndname="sysId,year"
+              [isrequired]="true"
+              [(modelValue)]="request.academicYearSysId"
+              (apiResponseChange)="onAcademicYearLoaded($event)"
+              (onSelectChange)="onAcademicYearChange()">
+            </fw-select>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="table-title mb-1">Student Fees Class Wise</div>
+            <fw-table
+              apiUrl="/Dashboard/GetFeesSummaryClassWise"
+              [tableSettings]="tableSettings"
+              [parameter]="request"
+              [(triggerAPI)]="triggerTableAPI"
+              (apiResponseChange)="onTableResponse($event)">
+            </fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
