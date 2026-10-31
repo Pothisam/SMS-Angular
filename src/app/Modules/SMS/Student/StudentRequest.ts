@@ -233,8 +233,10 @@ export class StudentDetailUpdateRequest {
   imageData: string;
   guid: string;
   concession: number;
+  status: string;
   constructor(init?: Partial<StudentDetailUpdateRequest>) {
     this.sysid = init?.sysid ?? 0;
+    this.status = init?.status ?? 'Active';
     this.applicationNumber = init?.applicationNumber ?? '';
     this.admissionNumber = init?.admissionNumber ?? '';
     this.admissionSerialNumber = init?.admissionSerialNumber ?? '';
