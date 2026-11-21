@@ -22,6 +22,19 @@
               (onSelectChange)="onAcademicYearChange()">
             </fw-select>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 col-xl-10 d-flex flex-wrap align-items-center justify-content-lg-end gap-2" *ngIf="feesTypes.length">
+            <span class="fees-filter-label">Fees Type:</span>
+            <mat-chip-set aria-label="Fees type filter">
+              <mat-chip-option
+                *ngFor="let fee of feesTypes"
+                [selected]="fee.selected"
+                (click)="toggleFeesType(fee)"
+                (keydown.enter)="toggleFeesType(fee)"
+                (keydown.space)="toggleFeesType(fee); $event.preventDefault()">
+                {{ fee.feesDescription }}
+              </mat-chip-option>
+            </mat-chip-set>
+          </div>
         </div>
 
         <div class="row mt-2">
@@ -30,6 +43,7 @@
             <fw-table
               apiUrl="/Dashboard/GetFeesSummaryClassWise"
               [tableSettings]="tableSettings"
+              [jsonData]="displayList"
               [parameter]="request"
               [(triggerAPI)]="triggerTableAPI"
               (apiResponseChange)="onTableResponse($event)">

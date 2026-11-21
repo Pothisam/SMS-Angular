@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   FeesDashboardRequest,
   FeesSummaryClassWiseResponse,
+  FeesTypeFilter,
 } from 'src/app/Modules/Fees/Dashboard/FeesDashboard';
 import { AcademicYearResponse } from 'src/app/Modules/SMS/AcademicYear/AcademicYearResponse';
 import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
@@ -15,6 +16,8 @@ import { ITableSettings } from 'src/app/Shared/framework/table/table.model';
 export class FeesDashboardComponent implements OnInit {
   public request: FeesDashboardRequest = new FeesDashboardRequest();
   public summaryList: FeesSummaryClassWiseResponse[] = [];
+  public displayList: FeesSummaryClassWiseResponse[] = [];
+  public feesTypes: FeesTypeFilter[] = [];
   public triggerTableAPI: boolean = false;
 
   public tableSettings: ITableSettings = {
@@ -54,5 +57,42 @@ export class FeesDashboardComponent implements OnInit {
 
   onTableResponse(response: any): void {
     this.summaryList = response ?? [];
+
+    // Build chips from the distinct fees types, keeping previous on/off choices
+    const previous = new Map(this.feesTypes.map((f) => [f.feesTypeId, f.selected]));
+    const seen = new Map<number, string>();
+    this.summaryList.forEach((r) => {
+      if (!seen.has(r.feesTypeId)) seen.set(r.feesTypeId, r.feesDescription);
+    });
+    this.feesTypes = [...seen.entries()]
+      .sort((a, b) => a[0] - b[0])
+      .map(([id, desc]) => new FeesTypeFilter(id, desc, previous.get(id) ?? true));
+
+    this.applyFilter();
+  }
+
+  toggleFeesType(fee: FeesTypeFilter): void {
+    fee.selected = !fee.selected;
+    this.applyFilter();
+  }
+
+  /** Filter by selected feesTypeId, then sum per class for the table */
+  private applyFilter(): void {
+    const active = new Set(this.feesTypes.filter((f) => f.selected).map((f) => f.feesTypeId));
+    const byClass = new Map<number, FeesSummaryClassWiseResponse>();
+
+    this.summaryList
+      .filter((r) => active.has(r.feesTypeId))
+      .forEach((r) => {
+        const row =
+          byClass.get(r.classSysId) ??
+          new FeesSummaryClassWiseResponse({ classSysId: r.classSysId, className: r.className });
+        row.totalFeesAmount += r.totalFeesAmount;
+        row.feesAmountReceived += r.feesAmountReceived;
+        row.feesBalance += r.feesBalance;
+        byClass.set(r.classSysId, row);
+      });
+
+    this.displayList = [...byClass.values()];
   }
 }
