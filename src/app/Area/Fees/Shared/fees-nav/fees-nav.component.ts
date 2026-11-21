@@ -90,6 +90,10 @@ export class FeesNavComponent implements OnInit {
         value: '/Fees/DateWiseReport',
       },
       {
+        text: 'Fees Balance Report',
+        value: '/Fees/FeesBalanceReport',
+      },
+      {
         text: 'Generate Concession',
         value: '/Fees/DateWiseReport',
       },

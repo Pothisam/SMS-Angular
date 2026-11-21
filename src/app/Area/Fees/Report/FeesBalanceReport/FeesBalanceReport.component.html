@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-header class="mat-card-header mat-primary rounded-top">
+    <mat-card-title class="d-flex justify-content-between w-100">
+      Fees Balance Report
+    </mat-card-title>
+  </mat-card-header>
+  <div class="scrolldiv">
+    <mat-card-content class="p-2">
+      <form id="FeesBalanceReport">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="acadamicYear" label="Academic Year" apiUrl="/AcademicYear/GetAcademicYearList"
+              [triggerAPIOnload]="true" [(modelValue)]="request.batch" valueAndname="sysId,year" [isrequired]="true"
+              [apicache]="true"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="classfkid" label="Class" [isrequired]="true" [apicache]="true"
+              apiUrl="/Class/GetClassListActive" [(modelValue)]="request.class" valueAndname="sysId,className"
+              [triggerAPIOnload]="true" (onSelectChange)="onClassChange()"
+              [(isSelectChange)]="triggerSectionAPI"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+            <fw-select entity="sectionfkid" label="Section" [isrequired]="true" [(parameter)]="sectionrequest"
+              apiUrl="/ClassSection/GetActiveSections" [(modelValue)]="request.section"
+              valueAndname="sysId,sectionName" [(triggerAPI)]="triggerSectionAPI"></fw-select>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-2 pt-3">
+            <fw-button label="View" apiUrl="/StudentFeesTransaction/GetFeesDetailsByClassWithFeesType"
+              [parameter]="request" (apiResponseChange)="onRespons($event)"></fw-button>
+          </div>
+        </div>
+
+        @if (feesTypes.length) {
+        <div class="row mt-2">
+          <div class="col-12 d-flex flex-wrap align-items-center gap-2">
+            <span class="fees-filter-label">Fees Type:</span>
+            <mat-chip-set aria-label="Fees type filter">
+              @for (fee of feesTypes; track fee.feesTypeId) {
+              <mat-chip-option [selected]="fee.selected" (click)="toggleFeesType(fee)"
+                (keydown.enter)="toggleFeesType(fee)"
+                (keydown.space)="toggleFeesType(fee); $event.preventDefault()">
+                {{ fee.feesDescription }}
+              </mat-chip-option>
+              }
+            </mat-chip-set>
+          </div>
+        </div>
+        }
+
+        <div class="row mt-2">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <fw-table [tableSettings]="tableSettings" [jsonData]="displayList"></fw-table>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>

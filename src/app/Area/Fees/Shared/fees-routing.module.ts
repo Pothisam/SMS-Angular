@@ -10,6 +10,7 @@ import { ViewDetailComponent } from '../CollectFees/ViewDetail/ViewDetail.compon
 import { DateWiseReportComponent } from '../Report/DateWiseReport/DateWiseReport.component';
 import { PrintCashReceiptComponent } from '../Report/PrintCashReceipt/PrintCashReceipt.component';
 import { GentrateConcessionComponent } from '../ManageFees/GentrateConcession/GentrateConcession.component';
+import { FeesBalanceReportComponent } from '../Report/FeesBalanceReport/FeesBalanceReport.component';
 
 const feesroutes: Routes = [
   {
@@ -47,6 +48,10 @@ const feesroutes: Routes = [
   {
     path: 'DateWiseReport',
     component: DateWiseReportComponent,
+  },
+  {
+    path: 'FeesBalanceReport',
+    component: FeesBalanceReportComponent,
   },
   {
     path: 'PrintCashReceipt',

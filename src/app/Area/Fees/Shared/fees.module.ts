@@ -13,6 +13,7 @@ import { DateWiseReportComponent } from '../Report/DateWiseReport/DateWiseReport
 import { PrintCashReceiptComponent } from '../Report/PrintCashReceipt/PrintCashReceipt.component';
 import { SharedCommonModule } from 'src/app/Shared/common/common.module';
 import { GentrateConcessionComponent } from '../ManageFees/GentrateConcession/GentrateConcession.component';
+import { FeesBalanceReportComponent } from '../Report/FeesBalanceReport/FeesBalanceReport.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GentrateConcessionComponent } from '../ManageFees/GentrateConcession/Ge
     DateWiseReportComponent,
     PrintCashReceiptComponent,
     GentrateConcessionComponent,
+    FeesBalanceReportComponent,
   ],
   imports: [CommonModule, FeesRoutingModule, FrameworkModule, SharedCommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

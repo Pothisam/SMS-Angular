@@ -60,7 +60,10 @@ export class FeesLeftMenuComponent implements OnInit {
     this.menu.push({ name: 'Collect Fees', link: 'Fees/ViewFees' });
     this.menu.push({
       name: 'Report',
-      subMenu: [{ name: 'Date wise Report', link: 'Fees/DateWiseReport' }],
+      subMenu: [
+        { name: 'Date wise Report', link: 'Fees/DateWiseReport' },
+        { name: 'Fees Balance Report', link: 'Fees/FeesBalanceReport' },
+      ],
     });
   }
 }
